@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRS Philippines Official</title>
+
+    <!-- Combined CSS -->
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            padding-top: 100px; /* Space for fixed header and nav */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        header, {
+            position: STICKY;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header {
+            background-color: #003366;
+            color: white;
+            padding: 15px 0;
+            top: 0;
+            text-align: center;
+            height: 80px; /* Adjust height based on logo size */
+        }
+
+        .logo {
+            max-width: 150px; /* Adjust based on your logo size */
+            height: auto;
+        }
+
+        nav {
+            background-color: #0059b3;
+            padding: 10px;
+            top: 80px; /* Adjust based on header height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+
+        nav ul li a:hover {
+            background-color: #004080;
+            border-radius: 5px;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        footer {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 20px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #0059b3;
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Games Section */
+        #games article {
+            background-color: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #games h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #0059b3;
+            cursor: pointer;
+        }
+
+        #games p {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Game title clickable functionality */
+        .game-title {
+            cursor: pointer;
+            color: #0059b3;
+        }
+
+        .game-details.hidden {
+            display: none;
+        }
+
+        /* Results Table */
+        #results table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        #results th, #results td {
+            border: 1px solid #ddd;
+            padding: 12px 15px;
+            text-align: center;
+        }
+
+        #results th {
+            background-color: #0059b3;
+            color: white;
+            font-weight: bold;
+        }
+
+        #results tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #results tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Winners Gallery */
+        #winners .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        #winners .gallery img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                display: none;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+                background-color: #0059b3;
+                color: white;
+                padding: 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            nav ul li {
+                margin-bottom: 10px;
+            }
+
+            header {
+                height: auto; /* Adjust based on logo size */
+                padding: 10px 0;
+            }
+        }
+
+        /* Game Images */
+        .game-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* Video Embed */
+        #home iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>LRS Philippines Official</h1>
+    </header>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <button class="nav-toggle"><img src="img/lrs.png" alt="LRS Philippines Logo" class="logo"> Menu</button>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#results">Results</a></li>
+            <li><a href="#winners">Winners</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="container">
+            <h2>Welcome to LRS Philippines Official</h2>
+            <p>Your trusted source for lotto games and fun betting experiences. We offer a wide range of exciting lottery games like 6/45, 6/49, 6/55, 6/58, 2D Lotto, and 3D Lotto. Join us for a chance to win big and experience the thrill of the lottery!</p>
+            <iframe src="https://www.youtube.com/watch?v=y5VfH2LTGX8" title="YouTube video player"></iframe>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>LRS Philippines Official is your reliable gaming and betting service provider. Our mission is to offer secure, entertaining, and rewarding gaming experiences. With a variety of lottery games, we bring excitement and big rewards to players across the country.</p>
+            <p>Transparency and fairness are our priorities. We provide clear rules and guidelines to ensure a thrilling and enjoyable gaming experience. Play responsibly and embrace the excitement of winning with LRS Philippines Official!</p>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games">
+        <div class="container">
+            <h2>Our Games</h2>
+            <article>
+                <img src="45 PRIZE.jpg" alt="6/45 Mega Lotto" class="game-image">
+                <h3 class="game-title">6/45 Mega Lotto</h3>
+                <div class="game-details hidden">
+                    <p>Ready for a mega win? Choose 3 numbers from 1 to 45 and wait for the draw! If all three of your numbers match the six drawn numbers, you win instantly. Even if only two numbers match, you get a return bet. Exciting, right? Join now and try your luck!</p>
+                </div>
+            </article>
+            <article>
+                <img src="49 PRIZE.jpg" alt="6/49 Super Lotto" class="game-image">
+                <h3 class="game-title">6/49 Super Lotto</h3>
+                <div class="game-details hidden">
+                    <p>Dreaming of a super prize? Pick 3 numbers from 1 to 49. If all three numbers appear in the six drawn numbers, you win immediately! If two numbers match, you’ll receive a return bet. The more you play, the higher your chances—give it a shot!</p>
+                </div>
+            </article>
+            <article>
+                <img src="55 PRIZE.jpg" alt="6/55 Grand Lotto" class="game-image">
+                <h3 class="game-title">6/55 Grand Lotto</h3>
+                <div class="game-details hidden">
+                    <p>Looking for grand prizes? Choose 3 numbers from 1 to 55. Match all three numbers with the six drawn numbers and win instantly! Even if only two numbers match, you get a return bet. Don’t miss out on your chance—join the excitement today!</p>
+                </div>
+            </article>
+            <article>
+                <img src="58 PRIZE.jpg" alt="6/58 Ultra Lotto" class="game-image">
+                <h3 class="game-title">6/58 Ultra Lotto</h3>
+                <div class="game-details hidden">
+                    <p>Get ready for ultra-sized prizes! Pick 3 numbers from 1 to 58. If all three match the six drawn numbers, you win right away. Even two matching numbers earn a return bet. Are you feeling lucky? Play now and see if you can win big!</p>
+                </div>
+            </article>
+            <article>
+                <img src="2D PRIZE.jpg" alt="2D Lotto" class="game-image">
+                <h3 class="game-title">2D Lotto</h3>
+                <div class="game-details hidden">
+                    <p>Pick 2 numbers from 1 to 31. Choose 'S' for straight or 'exact order', 'R' for rumble or 'any order', and 'P' for pompi or 'same number'. Match the drawn numbers and win! It's simple and exciting—give it a try today!</p>
+                </div>
+            </article>
+            <article>
+                <img src="3D PRIZE.jpg" alt="3D Lotto" class="game-image">
+                <h3 class="game-title">3D Lotto</h3>
+                <div class="game-details hidden">
+                    <p>Choose 3 numbers from 0 to 9. Opt for 'S' for straight or 'exact order', 'R' for rumble or 'any order', and 'T' for trio or 'same numbers'. Match the drawn numbers for a chance to win! It’s quick and fun—play now!</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results">
+        <div class="container">
+            <h2>Weekly Results</h2>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lotto Results and Winners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .section {
+            margin-bottom: 50px;
+        }
+        .search-container {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        input[type="date"], input[type="text"], select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Lotto Results and Winners</h1>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <!-- Dropdown for dates -->
+        <select id="dateDropdown">
+            <option value="">Select a date</option>
+            <option value="2024-09-01">2024-09-01</option>
+            <!-- Add more dates as options -->
+        </select>
+
+        <!-- OR search by typing date -->
+        <input type="date" id="dateInput" placeholder="Enter Date">
+
+        <!-- Search button -->
+        <button onclick="filterResults()">Search</button>
+    </div>
+
+    <div class="section" id="winning-numbers">
+        <h2>Winning Numbers</h2>
+        <table id="winningNumbersTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Draw</th>
+                    <th>Winning Numbers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Winning Numbers Data -->
+                <tr>
+                    <td>2024-09-01</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-03</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-04</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-05</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-06</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-07</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-08</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-09</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-10</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-11</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-12</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-13</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-14</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-15</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-16</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-17</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-18</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-19</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-20</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-21</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-22</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-23</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-24</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-25</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-26</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-27</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-28</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-29</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+                <tr>
+                    <td>2024-09-30</td>
+                    <td>6/49 SUPER LOTTO</td>
+                    <td>01-02-03-04-05-06</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section" id="winners">
+        <h2>Winners</h2>
+        <table id="winnersTable">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Team</th>
+                    <th>Agent</th>
+                    <th>Winner</th>
+                    <th>Combination</th>
+                    <th>Bet Amount</th>
+                    <th>Type of Bet</th>
+                    <th>Prize</th>
+                    <th>Draw</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Winners Data -->
+                <tr>
+                    <th>Date</th>
+                    <th>Team</th>
+                    <th>Agent</th>
+                    <th>Winner</th>
+                    <th>Combination</th>
+                    <th>Bet Amount</th>
+                    <th>Type of Bet</th>
+                    <th>Prize</th>
+                    <th>Draw</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Winners Data -->
+                <tr>
+                    <td>2024-09-01</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-01</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-01</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-05</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-03</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-04</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-06</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-07</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-10</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-11</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-12</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-13</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-14</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-15</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-16</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-17</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-18</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-19</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+                <tr>
+                    <td>2024-09-02</td>
+                    <td>TEAM LUCKY</td>
+                    <td>DAVID</td>
+                    <td>SAMPLE WINNER 1</td>
+                    <td>01-02-03</td>
+                    <td>25</td>
+                    <td>FB</td>
+                    <td>7500</td>
+                    <td>6/49 SUPER LOTTO</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function filterResults() {
+            // Get the date value from dropdown and input
+            let selectedDate = document.getElementById('dateDropdown').value;
+            let typedDate = document.getElementById('dateInput').value;
+
+            // Use the typed date if provided, otherwise use the dropdown value
+            let filterDate = typedDate ? typedDate : selectedDate;
+
+            // Get tables and rows
+            let winningNumbersTable = document.getElementById('winningNumbersTable').getElementsByTagName('tbody')[0];
+            let winnersTable = document.getElementById('winnersTable').getElementsByTagName('tbody')[0];
+
+            filterTableRows(winningNumbersTable, filterDate);
+            filterTableRows(winnersTable, filterDate);
+        }
+
+        function filterTableRows(tableBody, filterDate) {
+            let rows = tableBody.getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                let dateCell = rows[i].getElementsByTagName('td')[0];
+                if (dateCell) {
+                    let dateValue = dateCell.textContent || dateCell.innerText;
+
+                    // Show row if date matches the filterDate, hide otherwise
+                    if (dateValue.indexOf(filterDate) > -1) {
+                        rows[i].style.display = "";
+                    } else {
+                        rows[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.querySelectorAll('.game-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const details = title.nextElementSibling;
+                details.classList.toggle('hidden');
+            });
+        });
+
+        document.querySelector('.nav-toggle').addEventListener('click', () => {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
