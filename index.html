@@ -3,20 +3,21 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>LRS Philippines Official</title>
-	<link rel="stylesheet" href="style.ccs">
+	<link rel="stylesheet" href="style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
 </head>
 <style>
-*{
+* {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 	font-family: "Poppins", sans-serif;
 }
-.header{
+
+.header {
 	min-height: 100vh;
 	width: 100%;
 	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerhero.jpg);
@@ -24,37 +25,48 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	position: relative;
-	z-index: 1;
 }
 
 /* Navigation Styles */
-nav{
+nav {
 	display: flex;
-	padding: 2% 6%;
 	justify-content: space-between;
 	align-items: center;
-	position: relative;
-	z-index: 2;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 20px 50px;
+	background-color: rgba(0, 0, 255, 0.7); /* Semi-transparent background */
+	z-index: 1000;
 }
-nav img{
-	width: 150px;
+
+nav img {
+	width: 150px; /* Fixed size for logo */
+	height: auto;
 }
-.nav-links{
+
+.nav-links {
 	flex: 1;
 	text-align: right;
 }
-.nav-links ul li{
+
+.nav-links ul {
 	list-style: none;
-	display: inline-block;
-	padding: 8px 12px;
-	position: relative;
 }
-.nav-links ul li a{
+
+.nav-links ul li {
+	display: inline-block;
+	margin-left: 30px;
+}
+
+.nav-links ul li a {
 	color: white;
 	text-decoration: none;
-	font-size: 13px;
+	font-size: 1.2rem;
 }
-.nav-links ul li::after{
+
+.nav-links ul li::after {
 	content: '';
 	width: 0%;
 	height: 2px;
@@ -63,27 +75,37 @@ nav img{
 	margin: auto;
 	transition: 0.5s;
 }
-.nav-links ul li:hover::after{
+
+.nav-links ul li:hover::after {
 	width: 100%;
 }
-.text-box{
+
+nav .fa {
+	display: none;
+}
+
+/* Hero Section */
+.text-box {
 	width: 90%;
 	color: white;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%,-50%);
-	text-align: center; 
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
-.text-box h1{
+
+.text-box h1 {
 	font-size: 62px;
 }
-.text-box p{
+
+.text-box p {
 	margin: 10px 0 40px;
 	font-size: 14px;
 	color: white;
 }
-.hero-btn{
+
+.hero-btn {
 	display: inline-block;
 	text-decoration: none;
 	color: white;
@@ -91,29 +113,29 @@ nav img{
 	padding: 12px 34px;
 	font-size: 13px;
 	background: transparent;
-	position: relative;
 	cursor: pointer;
 }
-.hero-btn:hover{
+
+.hero-btn:hover {
 	border: 1px solid blue;
 	background: blue;
 	transition: 0.5s;
 }
-nav .fa{
-	display: none;
-}
 
 /* Media Queries for Mobile */
-@media(max-width: 700px){
-	.text-box h1{
-		font-size: 20px;
+@media (max-width: 700px) {
+	nav img {
+		width: 120px; /* Adjusted logo size for mobile */
 	}
-	.nav-links ul li{
+
+	.nav-links ul li {
 		display: block;
+		margin: 20px 0;
 	}
-	.nav-links{
+
+	.nav-links {
 		position: absolute;
-		background: rgba(0, 0, 0, 0.9); /* Darken menu for better readability */
+		background: blue; /* Solid background for mobile menu */
 		height: 100vh;
 		width: 200px;
 		top: 0;
@@ -122,22 +144,22 @@ nav .fa{
 		z-index: 999; /* Ensure it appears on top of hero section */
 		transition: 0.5s;
 	}
+
 	nav .fa {
 		display: block;
 		color: white;
-		margin: 10px;
 		font-size: 22px;
 		cursor: pointer;
 		z-index: 1000;
 	}
-	.nav-links ul{
-		padding: 30px;
+
+	.text-box h1 {
+		font-size: 20px;
 	}
-	/* Adjust hero section for mobile */
-	.header {
-		background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerheromobile.jpg); /* Mobile-optimized image */
-		background-position: top;
-		background-size: cover;
+
+	.hero-btn {
+		font-size: 12px;
+		padding: 10px 24px;
 	}
 }
 </style>
