@@ -11,160 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
-}
-
-.header {
-    min-height: 100vh;
-    width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerhero.jpg);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    position: relative;
-    z-index: 1;
-}
-
-/* Navigation Styles */
-nav {
-    display: flex;
-    padding: 10px 6%;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: transparent; /* Transparent background */
-    z-index: 10;
-}
-
-nav img {
-    width: 150px;
-}
-
-.nav-links {
-    flex: 1;
-    text-align: right;
-}
-
-.nav-links ul li {
-    list-style: none;
-    display: inline-block;
-    padding: 8px 12px;
-    position: relative;
-}
-
-.nav-links ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.nav-links ul li::after {
-    content: '';
-    width: 0%;
-    height: 2px;
-    background: blue;
-    display: block;
-    margin: auto;
-    transition: 0.5s;
-}
-
-.nav-links ul li:hover::after {
-    width: 100%;
-}
-
-.text-box {
-    width: 90%;
-    color: white;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center; 
-}
-
-.text-box h1 {
-    font-size: 62px;
-}
-
-.text-box p {
-    margin: 10px 0 40px;
-    font-size: 14px;
-    color: white;
-}
-
-.hero-btn {
-    display: inline-block;
-    text-decoration: none;
-    color: white;
-    border: 1px solid white;
-    padding: 12px 34px;
-    font-size: 13px;
-    background: transparent;
-    position: relative;
-    cursor: pointer;
-}
-
-.hero-btn:hover {
-    border: 1px solid blue;
-    background: blue;
-    transition: 0.5s;
-}
-
-nav .fa {
-    display: none;
-}
-
-/* Media Queries for Mobile */
-@media(max-width: 700px) {
-    .text-box h1 {
-        font-size: 20px;
-    }
-
-    .nav-links ul li {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
-        height: 100vh;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        z-index: 999;
-        transition: 0.5s;
-    }
-
-    nav .fa {
-        display: block;
-        color: white;
-        margin: 10px;
-        font-size: 22px;
-        cursor: pointer;
-        z-index: 1000;
-    }
-
-    .nav-links ul {
-        padding: 30px;
-    }
-
-    .header {
-        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerheromobile.jpg); /* Mobile-optimized image */
-        background-position: top;
-        background-size: cover;
-    }
-}
-</style>
-
 <body>
 <section class="header">
     <nav>
@@ -188,6 +34,107 @@ nav .fa {
         <a href="" class="hero-btn">Visit Us To Know More</a>
     </div>
 </section>
+
+<!------ Games ------>
+<section class="games">
+    <h1>🎉 Mga Kapana-panabik na Lotto Games! 🎉</h1>
+  <p>Kahit ikaw ay sanay na manlalaro o bagong tuklas sa saya ng lotto, nagbibigay kami ng simpleng at nakakaengganyong karanasan sa pagtaya. Tuklasin ang iyong paboritong laro ngayon at dagdagan ang iyong tsansa na manalo ng jackpot!</p>
+  
+  <div class="row">
+    <div class="games-col">
+      <h3>Pick 3 Lotto</h3>
+      <p>Pumili ng 3 Numero.<br>Kapag lumabas ang 3 numero mula sa anim na bola sa Live Draw, ikaw ay Panalo!</p>
+    </div>
+    <div class="games-col">
+      <h3>2D Lotto</h3>
+      <p>Pumili ng 2 Numero mula 1 hanggang 31.<br>Lagyan ng "S" kung exact order, "R" kung in any order at "P" kung same numbers.<br> Kapag lumabas ang numero mo sa live draw, ikaw ay Panalo!</p>
+    </div>
+    <div class="games-col">
+      <h3>3D Lotto</h3>
+      <p>Pumili ng 3 Numero mula 0 hanggang 9.<br>Lagyan ng "S" kung exact order, "R" kung in any order at "T" kung 3 same numbers.<br> Kapag lumabas ang mga numero mo sa live draw, ikaw ay Panalo!</p>
+    </div>
+</section>
+  
+<!------ pick3 ------>
+<section class="pick3">
+  <h1>Our Pick 3 Games</h1>
+  <p>Sumali sa saya sa aming iba't ibang laro ng lotto! Pumili mula sa 6/45, 6/49, 6/55, 6/58, 2D Lotto, at 3D Lotto. Bawat laro ay nag-aalok ng natatanging pagkakataon upang manalo ng malaki! 🏆💰</p>
+  <div class="row">
+    <div class="pick3-col">
+      <img scr="creative/45lotto.jpg" alt="6/45 MegaLotto">
+      <div class="layer">
+        <h3>6/45 Mega Lotto</h3>
+      </div>
+    </div>
+    <div class="pick3-col">
+      <img scr="creative/49lotto.jpg" alt="6/49 Lotto">
+      <div class="layer">
+        <h3>6/49 Super Lotto</h3>
+      </div>
+    </div>
+    <div class="pick3-col">
+      <img scr="creative/55lotto.jpg" alt="6/55 Lotto">
+      <div class="layer">
+        <h3>6/55 Grand Lotto</h3>
+      </div>
+    </div>
+    <div class="pick3-col">
+      <img scr="creative/58lotto.jpg" alt="6/58 Lotto">
+      <div class="layer">
+        <h3>6/58 Ultra Lotto</h3>
+      </div>
+    </div>
+ </section>
+  
+<!------ Testimonials ------>
+  <section class="testimonials">
+    <h1>What are Bettor Says</h1>
+    <p>Ito ang ilan sa mga sinabi ng mga Nanalo sa LRS Philippines Official.</p>
+    <div class="row">
+      <div class="testimonial-col">
+        <img scr="creatives/bet1.jpg">
+        <div>
+          <p> Maraming salamat po, talagang legit po kayo! Natanggap ko na po ang premyo ko! </p>
+          <h3>Bettor 1</h3>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star-half"></i>
+        </div>
+      </div>
+      <div class="testimonial-col">
+        <img scr="creatives/bet2.jpg">
+        <div>
+          <p> Maraming salamat po, talagang legit po kayo! Natanggap ko na po ang premyo ko! </p>
+          <h3>Bettor 2</h3>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+      </div>
+      <div class="testimonial-col">
+        <img scr="creatives/bet3.jpg">
+        <div>
+          <p> Maraming salamat po, talagang legit po kayo! Natanggap ko na po ang premyo ko! </p>
+          <h3>Bettor 3</h3>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+      </div>
+    </div> 
+  </section>
+  
+<!------ footer ------>
+  <section class="footer">
+    <h4>About Us</h4>
+    <p> -------------------------- </p>
+    </section>
 
 <!------JavaScript for Toggle Menu------>
 <script>
