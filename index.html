@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
 <html lang="en">
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LRS Philippines Official</title>
 	<link rel="shortcut icon" type="x-icon" href="img/lrs.png">
-	<link rel="stylesheet" href="style.ccs">
+	<link rel="stylesheet" href="style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
@@ -13,161 +12,175 @@
 </head>
 	
 <style>
-*{
-margin: 0;
-padding: 0;
-font-family: "Poppins", sans-serif;
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Poppins", sans-serif;
 }
-.header{
-min-height: 100vh;
-width: 100%;
-background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerhero.jpg);
-background-position: center;
-background-size: cover;
-background-repeat: no-repeat;
-position: relative;
+
+.header {
+	min-height: 100vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerhero.jpg);
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
 	z-index: 1;
 }
 
 /* Navigation Styles */
-nav{
-display: flex;
-padding: 2% 6%;
-justify-content: space-between;
-align-items: center;
+nav {
+	display: flex;
+	padding: 2% 6%;
+	justify-content: space-between;
+	align-items: center;
 	position: relative;
 	z-index: 2;
 }
-nav img{
-width: 150px;
+
+nav img {
+	width: 150px;
 }
-.nav-links{
-flex: 1;
-text-align: right;
+
+.nav-links {
+	flex: 1;
+	text-align: right;
 }
-.nav-links ul li{
-list-style: none;
-display: inline-block;
-padding: 8px 12px;
-position: relative;
+
+.nav-links ul li {
+	list-style: none;
+	display: inline-block;
+	padding: 8px 12px;
+	position: relative;
 }
-.nav-links ul li a{
-color: white;
-text-decoration: none;
-font-size: 13px;
+
+.nav-links ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 13px;
 }
-.nav-links ul li::after{
-content: '';
-width: 0%;
-height: 2px;
-background: blue;
-display: block;
-margin: auto;
-transition: 0.5s;
+
+.nav-links ul li::after {
+	content: '';
+	width: 0%;
+	height: 2px;
+	background: blue;
+	display: block;
+	margin: auto;
+	transition: 0.5s;
 }
-.nav-links ul li:hover::after{
-width: 100%;
+
+.nav-links ul li:hover::after {
+	width: 100%;
 }
-.text-box{
-width: 90%;
-color: white;
-position: absolute;
-top: 50%;
-left: 50%;
-transform: translate(-50%,-50%);
-text-align: center; 
+
+.text-box {
+	width: 90%;
+	color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center; 
 }
-.text-box h1{
-font-size: 62px;
+
+.text-box h1 {
+	font-size: 62px;
 }
-.text-box p{
-margin: 10px 0 40px;
-font-size: 14px;
-color: white;
+
+.text-box p {
+	margin: 10px 0 40px;
+	font-size: 14px;
+	color: white;
 }
-.hero-btn{
-display: inline-block;
-text-decoration: none;
-color: white;
-border: 1px solid white;
-padding: 12px 34px;
-font-size: 13px;
-background: transparent;
-position: relative;
-cursor: pointer;
+
+.hero-btn {
+	display: inline-block;
+	text-decoration: none;
+	color: white;
+	border: 1px solid white;
+	padding: 12px 34px;
+	font-size: 13px;
+	background: transparent;
+	position: relative;
+	cursor: pointer;
 }
-.hero-btn:hover{
-border: 1px solid blue;
-background: blue;
-transition: 0.5s;
+
+.hero-btn:hover {
+	border: 1px solid blue;
+	background: blue;
+	transition: 0.5s;
 }
-nav .fa{
-display: none;
+
+nav .fa {
+	display: none;
 }
 
 /* Media Queries for Mobile */
-@media(max-width: 700px){
-.text-box h1{
-font-size: 20px;
-}
-.nav-links ul li{
-display: block;
-}
-.nav-links{
-position: absolute;
-		background: blue;
-		background: rgba(0, 0, 0, 0.9); /* Darken menu for better readability */
-height: 100vh;
-width: 200px;
-top: 0;
-right: -200px;
-text-align: left;
-		z-index: 0;
-		transition: 1s;
-		z-index: 999; /* Ensure it appears on top of hero section */
+@media(max-width: 700px) {
+	.text-box h1 {
+		font-size: 20px;
+	}
+
+	.nav-links ul li {
+		display: block;
+	}
+
+	.nav-links {
+		position: absolute;
+		background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile */
+		height: 100vh;
+		width: 200px;
+		top: 0;
+		right: -200px;
+		text-align: left;
+		z-index: 999;
 		transition: 0.5s;
-}
-nav .fa {
-display: block;
-color: white;
-margin: 10px;
-font-size: 22px;
-cursor: pointer;
+	}
+
+	nav .fa {
+		display: block;
+		color: white;
+		margin: 10px;
+		font-size: 22px;
+		cursor: pointer;
 		z-index: 1000;
-}
-.nav-links ul{
-padding: 30px;
-}
-/* Adjust hero section for mobile */
-.header {
-background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerheromobile.jpg); /* Mobile-optimized image */
-background-position: top;
-background-size: cover;
-}
+	}
+
+	.nav-links ul {
+		padding: 30px;
+	}
+
+	.header {
+		background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerheromobile.jpg); /* Mobile-optimized image */
+		background-position: top;
+		background-size: cover;
+	}
 }
 </style>
+
 <body>
 <section class="header">
 <nav>
-     <a href="./"><img src="creatives/lrs.png"></a>
      <a href="./"><img src="creatives/lrs.png" alt="LRS Logo"></a>
-<div class="nav-links" id="navLinks">
-<i class="fa fa-times" onclick="hideMenu()"></i>
-<ul>
-<li><a href="./">HOME</a></li>
-<li><a href="./games">GAMES</a></li>
-<li><a href="./results">RESULT</a></li>
-<li><a href="./winners">WINNERS</a></li>
-<li><a href="./contact">CONTACT</a></li>
-</ul>
-</div>
-<i class="fa fa-bars" onclick="showMenu()"></i>
+	<div class="nav-links" id="navLinks">
+		<i class="fa fa-times" onclick="toggleMenu()"></i>
+		<ul>
+			<li><a href="./">HOME</a></li>
+			<li><a href="./games">GAMES</a></li>
+			<li><a href="./results">RESULT</a></li>
+			<li><a href="./winners">WINNERS</a></li>
+			<li><a href="./contact">CONTACT</a></li>
+		</ul>
+	</div>
+	<i class="fa fa-bars" onclick="toggleMenu()"></i>
 </nav>
 
 <div class="text-box">
-<h1>LRS Philippines Official</h1>
-<p>Ang LRS Philippines Official ay isang kumpanya na nagbibigay ng makabago at mapagkakatiwalaang sistema para sa mga mahilig sa lotto. <br>Kami ay nag-aalok ng isang espesyal na paraan ng pagtaya na nagbibigay sa mga manlalaro ng higit pang pagkakataon na manalo.</p>
-<a href="" class="hero-btn">Visit Us To Know More</a>
+	<h1>LRS Philippines Official</h1>
+	<p>Ang LRS Philippines Official ay isang kumpanya na nagbibigay ng makabago at mapagkakatiwalaang sistema para sa mga mahilig sa lotto. <br>Kami ay nag-aalok ng isang espesyal na paraan ng pagtaya na nagbibigay sa mga manlalaro ng higit pang pagkakataon na manalo.</p>
+	<a href="" class="hero-btn">Visit Us To Know More</a>
 </div>
 
 </section>
@@ -175,11 +188,14 @@ background-size: cover;
 <!------JavaScript for Toggle Menu------>
 <script>
 var navLinks = document.getElementById("navLinks");
-function showMenu(){
-navLinks.style.right = "0";
-}
-function hideMenu(){
-navLinks.style.right = "-200px";
+
+function toggleMenu() {
+	// Toggle the menu visibility by changing its position
+	if (navLinks.style.right === "0px") {
+		navLinks.style.right = "-200px";  // Hide menu
+	} else {
+		navLinks.style.right = "0";  // Show menu
+	}
 }
 </script>
 
