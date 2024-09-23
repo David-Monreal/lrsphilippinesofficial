@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LRS Philippines Official</title>
-	<link rel="shortcut icon" type="x-icon" href="img/lrs.png">
+	<link rel="shortcut icon" type="x-icon" href="creatives/lrs.png">
 	<link rel="stylesheet" href="style.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -128,13 +128,17 @@ nav .fa {
 		font-size: 20px;
 	}
 
+	.nav-links ul li {
+		display: block;
+	}
+
 	.nav-links {
-		position: fixed;
+		position: absolute;
 		background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
-		height: auto; /* Height only as needed */
-		width: 100%; /* Full width to align with the header */
-		top: 60px; /* Below the header */
-		right: -100%; /* Initially hidden off-screen */
+		height: 100vh;
+		width: 200px;
+		top: 0;
+		right: -200px;
 		text-align: left;
 		z-index: 999;
 		transition: 0.5s;
@@ -150,11 +154,7 @@ nav .fa {
 	}
 
 	.nav-links ul {
-		padding: 10px;
-	}
-
-	.nav-links.active {
-		right: 0; /* Show menu when active */
+		padding: 30px;
 	}
 
 	.header {
@@ -179,7 +179,7 @@ nav .fa {
 			<li><a href="./contact">CONTACT</a></li>
 		</ul>
 	</div>
-	<i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
+	<i class="fa fa-bars" onclick="toggleMenu()"></i>
 </nav>
 
 <div class="text-box">
@@ -193,16 +193,13 @@ nav .fa {
 <!------JavaScript for Toggle Menu------>
 <script>
 var navLinks = document.getElementById("navLinks");
-var menuBtn = document.getElementById("menuBtn");
 
 function toggleMenu() {
-	// Toggle the menu visibility
+	// Toggle the menu visibility by changing its position
 	if (navLinks.style.right === "0px") {
-		navLinks.style.right = "-100%";  // Hide menu
-		menuBtn.style.display = "block";  // Show the menu button again
+		navLinks.style.right = "-200px";  // Hide menu
 	} else {
-		navLinks.style.right = "0";  // Show menu (overlaps the hero)
-		menuBtn.style.display = "none";  // Hide the menu button
+		navLinks.style.right = "0";  // Show menu
 	}
 }
 </script>
