@@ -35,11 +35,11 @@ nav {
     padding: 10px 6%;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
+     /* position: fixed; */ /* Remove or comment out this line */
     width: 100%;
     top: 0;
     left: 0;
-    background: transparent; /* Transparent background */
+    background: black;
     z-index: 10;
 }
 
@@ -165,12 +165,12 @@ nav .fa {
 
 
 /*------ Games ------*/
- 	
+ 
  .games {
    width: 80%;
    margin: auto;
    text-align: center;
-   padding top: 100px;
+   padding-top: 100px;
 }
 h1{
   font-size: 36px;
@@ -191,7 +191,23 @@ p{
 }
 .games-col{
   flex-basis: 31%;
-  background: #fff3f3;
+  background: #eeadad;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+}
+.games-col1{
+  flex-basis: 31%;
+  background: #eeeead;
+  border-radius: 10px;
+  margin-bottom: 5%;
+  padding: 20px 12px;
+  box-sizing: border-box;
+}
+.games-col2{
+  flex-basis: 31%;
+  background: #adafee;
   border-radius: 10px;
   margin-bottom: 5%;
   padding: 20px 12px;
@@ -205,6 +221,13 @@ h3{
 .games-col:hover{
   box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
 }
+.games-col1:hover{
+  box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+.games-col2:hover{
+  box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
+}
+      
 
 @media(max-width:700px){
   .row{
@@ -306,6 +329,15 @@ h3{
     margin-left: 0x;
     margin-right: 15x;
 }
+  @media(max-width: 700px){
+    .row {
+    flex-direction: column;
+  }
+  .pick3-col {
+    flex-basis: 100%;
+    margin-bottom: 15px;
+  }
+}
 
 /*------ footer ------*/
   .footer{
@@ -332,7 +364,7 @@ h3{
                 <li><a href="./games">GAMES</a></li>
                 <li><a href="./results">RESULT</a></li>
                 <li><a href="./winners">WINNERS</a></li>
-                <li><a href="./contact">PROOF OF PAID</a></li>
+                <li><a href="./proof">PROOF OF PAID</a></li>
                 <li><a href="./contact">CONTACT</a></li>
             </ul>
         </div>
@@ -353,16 +385,28 @@ h3{
   
   <div class="row">
     <div class="games-col">
-      <h3>Pick 3 Lotto</h3>
-      <p>Pumili ng 3 Numero.<br>Kapag lumabas ang 3 numero mula sa anim na bola sa Live Draw, ikaw ay Panalo!</p>
+      <h3>🍀 Sali na sa Pick 3 Games! 🍀</h3>
+      <p>Pumili ng 3 numero mula sa mga laro na:<br><br>
+	🎰 <strong>6/45 Mega Lotto</strong>
+	<br>✔️ Mas Kaunting Numero, Mas Mataas na Tsansa!
+	<br><i>Pabilisin ang iyong panalo sa 45 lamang na numero!</i><br>
+	<br>💰 <strong>6/49 Super Lotto</strong>
+	<br>✔️ Balanseng Tsansa, Malaking Gantimpala!
+	<br><i>Sa 1-49, mayroon kang magandang tsansa sa panalo at premyo!</i><br>
+	<br>💸 <strong>6/55 Grand Lotto</strong>
+	<br>✔️ Mas Mataas na Premyo para SAYO!
+	<br><i>Pumili mula sa 1-55 at asahan ang mas malaking gantimpala!</i><br>
+	<br>🏆 <strong>6/58 Ultra Lotto</strong>
+	<br>✔️ Biggest Prize, Widest Smile!
+	<br><i>Sa 1-58, kahit gaano karami ang numero, ang gantimpala ay aabot hanggang dulo!</i></p>
     </div>
-    <div class="games-col">
-      <h3>2D Lotto</h3>
-      <p>Pumili ng 2 Numero mula 1 hanggang 31.<br>Lagyan ng "S" kung exact order, "R" kung in any order at "P" kung same numbers.<br> Kapag lumabas ang numero mo sa live draw, ikaw ay Panalo!</p>
+    <div class="games-col1">
+      <h3>🎲 Panalo sa 2D Lotto! 🎲</h3>
+      <p>Pumili lang ng 2 numero mula 1 hanggang 31 at abangan ang swerte!<br>Dalwang numero, mas madaling manalo! Tatlong paraan sa pagtaya:<br><br>🎯 <strong>Straight</strong><br>- dapat eksaktong pagkakasunod-sunod ng mga napiling numero para manalo<br><br>🔄 <strong>Rumble</strong><br>- kahit magpalit-palit ang pagkakasunod ng mga numero, siguradong may panalo<br><br>👥 <strong>Pompi</strong><br>- kapag parehong numero ang lumabas, automatic ang panalo! 💵</p>
     </div>
-    <div class="games-col">
-      <h3>3D Lotto</h3>
-      <p>Pumili ng 3 Numero mula 0 hanggang 9.<br>Lagyan ng "S" kung exact order, "R" kung in any order at "T" kung 3 same numbers.<br> Kapag lumabas ang mga numero mo sa live draw, ikaw ay Panalo!</p>
+    <div class="games-col2">
+      <h3>🎉 Subukan ang swerte sa 3D! 🎉</h3>
+      <p>Pumili ng 3 numero mula 0 hanggang 9!<br>Mas madali, mas exciting! May iba't ibang paraan para manalo:<br><br>🎯 <strong>Straight</strong><br>- ng tamang pagkakasunod-sunod ng iyong mga napiling numero ang susi para manalo ng jackpot!<br><br>🔄 <strong>Rumble</strong><br>- kahit anong ayos ng mga numero, panalo ka!<br><br>👥 <strong>Trio</strong><br>- tatlong magkaparehong numero! Jackpot! 💸</p>
     </div>
 </section>
   
@@ -405,8 +449,8 @@ h3{
       <div class="testimonial-col">
         <img src="creatives/bet1.jpg">
         <div>
-          <p> Maraming salamat po, talagang legit po kayo! Natanggap ko na po ang premyo ko! </p>
-          <h3>Bettor 1</h3>
+          <p><i> Pangatlong tama ko na po yan at nagpapasalamat ako kay madam admin. <strong>TYAGA AT TIWALA</strong> lang guys kayo nadin ang sunod. Alagaan lang natin atin numero.<em>Walang imposible</em> sa taong may tiwala <strong><3</strong></i></p>
+          <h3>Anne M.</h3>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
@@ -417,20 +461,8 @@ h3{
       <div class="testimonial-col">
         <img src="creatives/bet2.jpg">
         <div>
-          <p> Maraming salamat po, talagang legit po kayo! Natanggap ko na po ang premyo ko! </p>
-          <h3>Bettor 2</h3>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-          <i class="fa fa-star"></i>
-        </div>
-      </div>
-      <div class="testimonial-col">
-        <img src="creatives/bet3.jpg">
-        <div>
-          <p> Maraming salamat po, talagang legit po kayo! Natanggap ko na po ang premyo ko! </p>
-          <h3>Bettor 3</h3>
+          <p><i> Thank you so much! Guys wala lang sukuan may darating din na biyaya. <strong>Taya lang ng taya!</strong> Ano malay mo? Ikaw na kasunod! Goodluck mga ka-LUCKY! Pang ilang bese ko na po ito.<strong>LEGIT NA LEGIT</strong> po dito! </i></p>
+          <h3>Arman</h3>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
           <i class="fa fa-star"></i>
