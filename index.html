@@ -39,7 +39,7 @@ nav {
     width: 100%;
     top: 0;
     left: 0;
-    background: black;
+    background: transparent;
     z-index: 10;
 }
 
@@ -166,7 +166,7 @@ nav .fa {
 
 /*------ Games ------*/
  
- .games {
+.games {
    width: 80%;
    margin: auto;
    text-align: center;
@@ -187,52 +187,44 @@ p{
 .row{
   margin-top: 5%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 20px;
 }
-.games-col{
-  flex-basis: 31%;
-  background: #eeadad;
+.games-col, .games-col1{
+  flex-basis: 45%;
+  background-size: cover; 
+  background-position: center; 
   border-radius: 10px;
   margin-bottom: 5%;
   padding: 20px 12px;
   box-sizing: border-box;
+  color: white; 
 }
-.games-col1{
-  flex-basis: 31%;
-  background: #eeeead;
-  border-radius: 10px;
-  margin-bottom: 5%;
-  padding: 20px 12px;
-  box-sizing: border-box;
+.games-col {
+  background-image: url('creatives/2dlotto.jpg'); 
 }
-.games-col2{
-  flex-basis: 31%;
-  background: #adafee;
-  border-radius: 10px;
-  margin-bottom: 5%;
-  padding: 20px 12px;
-  box-sizing: border-box;
+.games-col1 {
+  background-image: url('creatives/3dlotto.jpg'); 
 }
 h3{
   text-align: center;
   font-weight: 600;
   margin: 10px 0;
 }
-.games-col:hover{
-  box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
-}
-.games-col1:hover{
-  box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
-}
-.games-col2:hover{
+.games-col:hover, .games-col1:hover{
   box-shadow: 0 0 20px 0px rgba(0,0,0,0.2);
 }
       
-
-@media(max-width:700px){
+@media(max-width: 700px){
   .row{
     flex-direction: column;
   }
+.games-col {
+  background-image: url('creatives/2dlottom.jpg'); 
+}
+.games-col1 {
+  background-image: url('creatives/3dlottom.jpg'); 
+}
 }
 
 /*------ pick3 ------*/
@@ -377,43 +369,12 @@ h3{
         <a href="" class="hero-btn">Visit Us To Know More</a>
     </div>
 </section>
-
-<!------ Games ------>
-<section class="games">
-    <h1>🎉 Mga Kapana-panabik na Lotto Games! 🎉</h1>
-  <p>Kahit ikaw ay sanay na manlalaro o bagong tuklas sa saya ng lotto, nagbibigay kami ng simpleng at nakakaengganyong karanasan sa pagtaya. Tuklasin ang iyong paboritong laro ngayon at dagdagan ang iyong tsansa na manalo ng jackpot!</p>
-  
-  <div class="row">
-    <div class="games-col">
-      <h3>🍀 Sali na sa Pick 3 Games! 🍀</h3>
-      <p>Pumili ng 3 numero mula sa mga laro na:<br><br>
-	🎰 <strong>6/45 Mega Lotto</strong>
-	<br>✔️ Mas Kaunting Numero, Mas Mataas na Tsansa!
-	<br><i>Pabilisin ang iyong panalo sa 45 lamang na numero!</i><br>
-	<br>💰 <strong>6/49 Super Lotto</strong>
-	<br>✔️ Balanseng Tsansa, Malaking Gantimpala!
-	<br><i>Sa 1-49, mayroon kang magandang tsansa sa panalo at premyo!</i><br>
-	<br>💸 <strong>6/55 Grand Lotto</strong>
-	<br>✔️ Mas Mataas na Premyo para SAYO!
-	<br><i>Pumili mula sa 1-55 at asahan ang mas malaking gantimpala!</i><br>
-	<br>🏆 <strong>6/58 Ultra Lotto</strong>
-	<br>✔️ Biggest Prize, Widest Smile!
-	<br><i>Sa 1-58, kahit gaano karami ang numero, ang gantimpala ay aabot hanggang dulo!</i></p>
-    </div>
-    <div class="games-col1">
-      <h3>🎲 Panalo sa 2D Lotto! 🎲</h3>
-      <p>Pumili lang ng 2 numero mula 1 hanggang 31 at abangan ang swerte!<br>Dalwang numero, mas madaling manalo! Tatlong paraan sa pagtaya:<br><br>🎯 <strong>Straight</strong><br>- dapat eksaktong pagkakasunod-sunod ng mga napiling numero para manalo<br><br>🔄 <strong>Rumble</strong><br>- kahit magpalit-palit ang pagkakasunod ng mga numero, siguradong may panalo<br><br>👥 <strong>Pompi</strong><br>- kapag parehong numero ang lumabas, automatic ang panalo! 💵</p>
-    </div>
-    <div class="games-col2">
-      <h3>🎉 Subukan ang swerte sa 3D! 🎉</h3>
-      <p>Pumili ng 3 numero mula 0 hanggang 9!<br>Mas madali, mas exciting! May iba't ibang paraan para manalo:<br><br>🎯 <strong>Straight</strong><br>- ng tamang pagkakasunod-sunod ng iyong mga napiling numero ang susi para manalo ng jackpot!<br><br>🔄 <strong>Rumble</strong><br>- kahit anong ayos ng mga numero, panalo ka!<br><br>👥 <strong>Trio</strong><br>- tatlong magkaparehong numero! Jackpot! 💸</p>
-    </div>
-</section>
   
 <!------ pick3 ------>
 <section class="pick3">
-  <h1>Our Pick 3 Games</h1>
-  <p>Sumali sa saya sa aming iba't ibang laro ng lotto! Pumili mula sa 6/45, 6/49, 6/55, 6/58, 2D Lotto, at 3D Lotto. Bawat laro ay nag-aalok ng natatanging pagkakataon upang manalo ng malaki! 🏆💰</p>
+  <h1>Pick 3 Games</h1>
+  <p>Kahit ikaw ay sanay na manlalaro o bagong tuklas sa saya ng lotto, nagbibigay kami ng simpleng at nakakaengganyong karanasan sa pagtaya. Tuklasin ang iyong paboritong laro ngayon at dagdagan ang iyong tsansa na manalo ng jackpot!</p>	
+  <p>Sumali sa saya sa aming iba't ibang laro ng lotto! Pumili mula sa 6/45, 6/49, 6/55 at 6/58. Bawat laro ay nag-aalok ng natatanging pagkakataon upang manalo ng malaki! 🏆💰</p>
   <div class="row">
     <div class="pick3-col">
       <img src="creatives/45lotto.jpg" alt="6/45 MegaLotto">
@@ -440,6 +401,22 @@ h3{
       </div>
     </div>
  </section>
+
+<!------ Games ------>
+<section class="games">
+    <h1>🎉 2D at 3D Lotto 🎉</h1>
+  <p>Kahit ikaw ay sanay na manlalaro o bagong tuklas sa saya ng lotto, nagbibigay kami ng simpleng at nakakaengganyong karanasan sa pagtaya. Tuklasin ang iyong paboritong laro ngayon at dagdagan ang iyong tsansa na manalo ng jackpot!</p>
+  
+  <div class="row">
+    <div class="games-col">
+      <h3>🎲 Panalo sa 2D Lotto! 🎲</h3>
+      <p>Pumili lang ng 2 numero mula 1 hanggang 31 at abangan ang swerte!<br>Dalwang numero, mas madaling manalo! Tatlong paraan sa pagtaya:<br><br>🎯 <strong>Straight</strong><br>- dapat eksaktong pagkakasunod-sunod ng mga napiling numero para manalo<br><br>🔄 <strong>Rumble</strong><br>- kahit magpalit-palit ang pagkakasunod ng mga numero, siguradong may panalo<br><br>👥 <strong>Pompi</strong><br>- kapag parehong numero ang lumabas, automatic ang panalo! 💵</p>
+    </div>
+    <div class="games-col1">
+      <h3>🎉 Subukan ang swerte sa 3D! 🎉</h3>
+      <p>Pumili ng 3 numero mula 0 hanggang 9!<br>Mas madali, mas exciting! May iba't ibang paraan para manalo:<br><br>🎯 <strong>Straight</strong><br>- ng tamang pagkakasunod-sunod ng iyong mga napiling numero ang susi para manalo ng jackpot!<br><br>🔄 <strong>Rumble</strong><br>- kahit anong ayos ng mga numero, panalo ka!<br><br>👥 <strong>Trio</strong><br>- tatlong magkaparehong numero! Jackpot! 💸</p>
+    </div>
+</section>
   
 <!------ Testimonials ------>
   <section class="testimonials">
