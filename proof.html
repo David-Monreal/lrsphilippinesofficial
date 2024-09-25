@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRS Philippines Official - Proof of Winners</title>
+    <link rel="shortcut icon" type="x-icon" href="creatives/lrs.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+.header {
+    min-height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/heroproof.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    padding: 10px 6%;
+    justify-content: space-between;
+    align-items: center;
+     /* position: fixed; */ /* Remove or comment out this line */
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    z-index: 10;
+}
+
+nav img {
+    width: 150px;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
+.text-box {
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; 
+}
+
+.text-box h1 {
+    font-size: 62px;
+}
+
+.text-box p {
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: white;
+}
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    border: 1px solid blue;
+    background: blue;
+    transition: 0.5s;
+}
+
+nav .fa {
+    display: none;
+}
+
+/* Media Queries for Mobile */
+@media(max-width: 700px) {
+    .text-box h1 {
+        font-size: 20px;
+    }
+
+    .nav-links ul li {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 999;
+        transition: 0.5s;
+    }
+
+    nav .fa {
+        display: block;
+        color: white;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .nav-links ul {
+        padding: 30px;
+    }
+
+    .header {
+        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/heroproofm.jpg); /* Mobile-optimized image */
+        background-position: top;
+        background-size: cover;
+    }
+}
+
+/*------ footer ------*/
+  .footer{
+    width: 100%;
+    text-align: center;
+    padding: 30px 0;
+  }
+  .footer h4{
+    margin-bottom: 25px;
+    margin-top: 20px;
+    font-weight: 600;
+    text-align: center;
+  }
+</style>
+
+<body>
+<section class="header">
+    <nav>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="toggleMenu()"></i>
+            <ul>
+                <li><a href="./">HOME</a></li>
+                <li><a href="./games">GAMES</a></li>
+                <li><a href="./results">RESULT</a></li>
+                <li><a href="./winners">WINNERS</a></li>
+                <li><a href="./proof">PROOF OF PAID</a></li>
+                <li><a href="./contact">CONTACT</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
+    </nav>
+
+</section>
+  
+  
+<!------ footer ------>
+  <section class="footer">
+    <h4>About Us</h4>
+    <p> -------------------------- </p>
+    </section>
+
+
+</body>
+</html>
