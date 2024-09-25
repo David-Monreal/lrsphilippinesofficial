@@ -154,6 +154,9 @@ nav .fa {
         cursor: pointer;
         z-index: 1000;
     }
+.nav-links.active {
+        right: 0;
+    }
 
     .nav-links ul {
         padding: 30px;
@@ -176,7 +179,7 @@ nav .fa {
 
 <body>
 <section class="header">
-<header>    <nav>
+    <nav>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-times" onclick="toggleMenu()"></i>
             <ul>
@@ -190,8 +193,15 @@ nav .fa {
         </div>
         <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
     </nav>
-</header>
+
 </section>
+
+<script>
+function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("active");
+}
+</script>
   
   
 <!------ footer ------>
