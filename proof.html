@@ -21,9 +21,9 @@
 .header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/heroproof.jpg);
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/heroproof.jpg);
     background-position: center;
-    background-size: cover;
+    background-size: contain; 
     background-repeat: no-repeat;
     position: relative;
     z-index: 1;
@@ -35,7 +35,6 @@ nav {
     padding: 10px 6%;
     justify-content: space-between;
     align-items: center;
-     /* position: fixed; */ /* Remove or comment out this line */
     width: 100%;
     top: 0;
     left: 0;
@@ -133,7 +132,7 @@ nav .fa {
 
     .nav-links {
         position: absolute;
-        background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
+        background: rgba(0, 0, 0, 0.9); 
         height: 100vh;
         width: 200px;
         top: 0;
@@ -157,9 +156,10 @@ nav .fa {
     }
 
     .header {
-        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/heroproofm.jpg); /* Mobile-optimized image */
-        background-position: top;
-        background-size: cover;
+        background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/heroproofm.jpg); /
+        background-position: center; 
+        background-size: contain; 
+        background-repeat: no-repeat; 
     }
 }
 
