@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRS Philippines Official - List of Winners</title>
+    <link rel="shortcut icon" type="x-icon" href="creatives/lrs.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        header {
+            width: 100vw; 
+            height: 50vh; 
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herowinners.jpg);
+            background-position: center; 
+            background-size: cover; 
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            display: flex;
+            padding: 10px 6%;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background: transparent;
+            z-index: 10;
+        }
+
+        nav img {
+            width: 150px;
+        }
+
+        .nav-links {
+            flex: 1;
+            text-align: right;
+        }
+
+        .nav-links ul li {
+            list-style: none;
+            display: inline-block;
+            padding: 8px 12px;
+            position: relative;
+        }
+
+        .nav-links ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav-links ul li::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: blue;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+
+        .nav-links ul li:hover::after {
+            width: 100%;
+        }
+
+        .text-box {
+            width: 90%;
+            color: white;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center; 
+        }
+
+        .text-box h1 {
+            font-size: 62px;
+        }
+
+        .text-box p {
+            margin: 10px 0 40px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            border: 1px solid white;
+            padding: 12px 34px;
+            font-size: 13px;
+            background: transparent;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            border: 1px solid blue;
+            background: blue;
+            transition: 0.5s;
+        }
+
+        nav .fa {
+            display: none;
+        }
+
+        @media(max-width: 700px) {
+            header {
+                height: 50vh; 
+                background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herowinnersm.jpg); 
+            }
+
+            .text-box h1 {
+                font-size: 20px;
+            }
+
+            .nav-links ul li {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                background: rgba(0, 0, 0, 0.9); 
+                height: 100vh;
+                width: 200px;
+                top: 0;
+                right: -200px;
+                text-align: left;
+                z-index: 999;
+                transition: 0.5s;
+            }
+
+            nav .fa {
+                display: block;
+                color: white;
+                margin: 10px;
+                font-size: 22px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links ul {
+                padding: 30px;
+            }
+        }
+
+/*------ table ------*/
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        #search {
+            display: block;
+            margin: 20px auto;
+            width: 60%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+/*------ footer ------*/
+        .footer {
+            width: 100%;
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .footer h4 {
+            margin-bottom: 25px;
+            margin-top: 20px;
+            font-weight: 600;
+            text-align: center;
+        }
+    </style>
+
+<!-- PapaParse Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+
+<body>
+<section class="header">
+    <header>
+        <nav>
+            <a href="./"><img src="creatives/lrs.png" alt="LRS Logo"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="toggleMenu()"></i>
+                <ul>
+                    <li><a href="./">HOME</a></li>
+                    <li><a href="./games">GAMES</a></li>
+                    <li><a href="./results">RESULT</a></li>
+                    <li><a href="./winners">WINNERS</a></li>
+                    <li><a href="./proof">PROOF OF PAID</a></li>
+                    <li><a href="./contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
+        </nav>
+    </header>
+</section>
+
+    <h1 style="text-align: center;">List of Winners</h1>
+    <!-- Search Input -->
+    <input type="text" id="search" placeholder="Search Winner by Name, Team, or Agent...">
+
+    <table id="winners-table">
+        <thead>
+            <tr>
+                <th>BETTOR</th>
+                <th>COMBINATION</th>
+                <th>BET AMOUNT</th>
+                <th>PRIZE</th>
+                <th>DRAW</th>
+                <th>TOB</th>
+                <th>DATE</th>
+                <th>TEAM</th>
+                <th>AGENT</th>
+                <th>TIME</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // URL of the CSV file hosted on GitHub
+        const csvUrl = 'winners.csv';
+        let winnersData = []; // To store all the winners' data
+
+        // Function to load and parse the CSV file
+        function loadCSV() {
+            fetch(csvUrl)
+                .then(response => response.text())
+                .then(data => {
+                    // Parse the CSV data using PapaParse
+                    Papa.parse(data, {
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: function(results) {
+                            winnersData = sortWinnersByDate(results.data);
+                            displayWinners(winnersData);
+                        }
+                    });
+                })
+                .catch(error => console.error('Error fetching CSV file:', error));
+        }
+
+        // Function to sort winners by date from latest to oldest
+        function sortWinnersByDate(winners) {
+            return winners.sort((a, b) => {
+                const dateA = new Date(a.Date);
+                const dateB = new Date(b.Date);
+                return dateB - dateA;
+            });
+        }
+
+        // Function to format date as MM DD, YYYY
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Function to display winners data in the table
+        function displayWinners(winners) {
+            const tableBody = document.getElementById('winners-table').querySelector('tbody');
+            tableBody.innerHTML = ''; // Clear any existing rows
+            winners.forEach(winner => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${winner.BETTOR}</td>
+                    <td>${winner.COMBINATION}</td>
+                    <td>${winner.BET AMOUNT}</td>
+                    <td>${winner.PRIZE}</td>
+                    <td>${winner.TOB}</td>
+                    <td>${winner.TEAM}</td>
+                    <td>${winner.AGENT}</td>
+                    <td>${winner.DRAW}</td>
+                    <td>${formatDate(winner.DATE)}</td>
+                    <td>${winner.TIME}</td>
+
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Function to filter the table based on search input
+        function filterTable() {
+            const query = document.getElementById('search').value.toLowerCase();
+            const filteredData = winnersData.filter(winner => {
+                return (
+                    winner.Name.toLowerCase().includes(query) ||
+                    winner.Prize.toLowerCase().includes(query) ||
+                    formatDate(winner.Date).toLowerCase().includes(query) ||
+                    winner.Game.toLowerCase().includes(query)
+                );
+            });
+            displayWinners(filteredData);
+        }
+
+        // Load CSV data when the page is loaded
+        document.addEventListener('DOMContentLoaded', loadCSV);
+
+        // Add event listener to the search input for real-time filtering
+        document.getElementById('search').addEventListener('input', filterTable);
+    </script>
+</body>
+</html>
