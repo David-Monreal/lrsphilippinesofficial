@@ -118,7 +118,6 @@ nav img {
 nav .fa {
     display: none;
 }
-
 /* Media Queries for Mobile */
 @media(max-width: 700px) {
     header {
@@ -163,6 +162,103 @@ nav .fa {
     }
 }
 
+/*------ pictures ------*/
+.pictures{
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+            background-color: #333; /* Optional: Background color for the header */
+            color: white; /* Optional: Text color */
+            font-size: 24px;
+        }
+.gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+        }
+        .gallery-item {
+            flex: 1 1 calc(20% - 20px); /* 20% width for 5 items in a row on desktop */
+            max-width: calc(20% - 20px);
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            display: block;
+        }
+        /* Lightbox Styles */
+        .lightbox {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 80%;
+            margin: auto;
+        }
+        .lightbox .close, .lightbox .prev, .lightbox .next {
+            position: absolute;
+            top: 50%;
+            font-size: 30px;
+            color: white;
+            text-decoration: none;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .lightbox .close {
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+        }
+        .lightbox .prev {
+            left: 20px;
+        }
+        .lightbox .next {
+            right: 20px;
+        }
+@media (max-width: 1024px) {
+            .gallery-item {
+                flex: 1 1 calc(33.33% - 20px); /* 33.33% width for 3 items in a row */
+                max-width: calc(33.33% - 20px);
+            }
+        }
+        @media (max-width: 768px) {
+            .gallery-item {
+                flex: 1 1 calc(50% - 20px); /* 50% width for 2 items in a row */
+                max-width: calc(50% - 20px);
+            }
+        }
+        @media (max-width: 480px) {
+            .gallery-item {
+                flex: 1 1 calc(100% - 20px); /* 100% width for 1 item in a row */
+                max-width: calc(100% - 20px);
+            }
+            .lightbox img {
+                max-width: 100%; /* Ensure the image doesn't overflow */
+                max-height: 100%;
+            }
+        }
+ 
 /*------ footer ------*/
 .footer {
     width: 100%;
@@ -196,13 +292,103 @@ nav .fa {
     </nav>
 </header>
 </section>
+<section class="pictures">
+<h1>Paid Winners</h1>
+    <div class="gallery">
+        <!-- Gallery Items -->
+        <div class="gallery-item">
+            <img src="proof/8.jpg" alt="Proof 8">
+        </div>
+        <div class="gallery-item">
+            <img src="proof/7.jpg" alt="Proof 7">
+        </div>
+        <div class="gallery-item">
+            <img src="proof/6.jpg" alt="Proof 6">
+        </div>
+        <div class="gallery-item">
+            <img src="proof/5.jpg" alt="Proof 5">
+        </div>
+        <div class="gallery-item">
+            <img src="proof/4.jpg" alt="Proof 4">
+        </div>
+        <div class="gallery-item">
+            <img src="proof/3.jpg" alt="Proof 3">
+        </div>
+<div class="gallery-item">
+            <img src="proof/2.jpg" alt="Proof 2">
+        </div>
+<div class="gallery-item">
+            <img src="proof/1.jpg" alt="Proof 1">
+        </div>
+    </div>
+</section>
+
+ <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="close" onclick="closeLightbox()">&times;</span>
+        <span class="prev" onclick="changePhoto(-1)">&#10094;</span>
+        <img id="lightbox-img" src="" alt="Photo">
+        <span class="next" onclick="changePhoto(1)">&#10095;</span>
+    </div>
 
 <script>
 function toggleMenu() {
     const navLinks = document.getElementById("navLinks");
     navLinks.classList.toggle("active");
 }
-</script>
+
+        // JavaScript for Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.gallery-item img');
+        let currentIndex = 0;
+
+        images.forEach((image, index) => {
+            image.addEventListener('click', () => {
+                lightbox.style.display = 'flex';
+                lightboxImg.src = image.src;
+                currentIndex = index;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+        }
+
+        function changePhoto(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = images.length - 1;
+            } else if (currentIndex >= images.length) {
+                currentIndex = 0;
+            }
+            lightboxImg.src = images[currentIndex].src;
+        }
+
+        // Swipe functionality for lightbox
+        let startX = 0;
+        lightbox.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        lightbox.addEventListener('touchmove', (e) => {
+            if (!startX) return;
+            let moveX = e.touches[0].clientX;
+            let diffX = startX - moveX;
+
+            if (diffX > 50) { // Swipe left
+                changePhoto(1);
+                startX = 0;
+            } else if (diffX < -50) { // Swipe right
+                changePhoto(-1);
+                startX = 0;
+            }
+        });
+
+        lightbox.addEventListener('touchend', () => {
+            startX = 0;
+        });
+    </script>
   
   
 <!------ footer ------>
