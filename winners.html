@@ -20,7 +20,7 @@
         header {
             width: 100vw; 
             height: 50vh; 
-            background-image: url(creatives/herowinners.jpg);
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),url(creatives/herowinners.jpg);
             background-position: center; 
             background-size: cover; 
             position: relative;
@@ -120,7 +120,7 @@
         @media(max-width: 700px) {
             header {
                 height: 50vh; 
-                background-image: url(creatives/herowinnersm.jpg); 
+                background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),url(creatives/herowinnersm.jpg); 
             }
 
             .text-box h1 {
@@ -162,9 +162,10 @@
         }
 
         /*------ table ------*/
-        .table-container {
+         .table-container {
             margin: 20px auto;
-            width: 80%;
+            width: 90%; /* Increased to allow more space for mobile */
+            overflow-x: auto; /* Enables horizontal scroll */
         }
 
         table {
@@ -178,13 +179,14 @@
             padding: 10px;
             text-align: center;
             border: 1px solid #ddd;
+word-wrap: break-word;
         }
 
         th {
             background-color: #f4f4f4;
             position: sticky;
             top: 0;
-            z-index: 1; /* Ensure header is above table rows */
+            z-index: 1; 
         }
 
         #search {
@@ -239,6 +241,19 @@
             max-height: 60vh;
             overflow-y: auto;
         }
+      @media (max-width: 700px) {
+    th, td {
+        font-size: 10px; /* Adjust the font size as needed */
+    }
+}
+
+th {
+    background-color: #f4f4f4;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+      }
     </style>
 
     <!-- PapaParse Library -->
