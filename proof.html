@@ -325,10 +325,20 @@
     <span class="next" onclick="changePhoto(1)">&#10095;</span>
 </div>
 
+<!------JavaScript for Toggle Menu------>
 <script>
+var navLinks = document.getElementById("navLinks");
+var menuBtn = document.getElementById("menuBtn");
+
 function toggleMenu() {
-    const navLinks = document.getElementById("navLinks");
-    navLinks.classList.toggle("active");
+    // Toggle the menu visibility and the menu button
+    if (navLinks.style.right === "0px") {
+        navLinks.style.right = "-200px";  // Hide menu
+        menuBtn.style.display = "block";  // Show menu button
+    } else {
+        navLinks.style.right = "0";  // Show menu
+        menuBtn.style.display = "none";  // Hide menu button
+    }
 }
 
 // JavaScript for Lightbox Functionality
