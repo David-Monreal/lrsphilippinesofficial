@@ -161,6 +161,123 @@
             }
         }
 
+/*------ table ------*/
+.container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        main {
+            padding: 20px;
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-container input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 100%;
+            max-width: 400px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .winners-table-wrapper {
+            position: relative;
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        .winners-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 100%;
+        }
+
+        .winners-table thead th {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            background-color: #0033cc;
+            color: #fff;
+            z-index: 1;
+        }
+
+        .winners-table th, .winners-table td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .winners-table th:nth-child(1) {
+            width: 150px;
+        }
+
+        .winners-table th:nth-child(2) {
+            width: 100px;
+        }
+
+        .winners-table th:nth-child(3) {
+            width: 150px;
+        }
+
+        .winners-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .pagination {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .pagination button {
+            padding: 10px;
+            margin: 0 5px;
+            border: none;
+            background: #0033cc;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .pagination button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .view-all-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .view-all-container button {
+            padding: 10px;
+            border: none;
+            background: #ff0000;
+            color: #fff;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .view-all-container button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+/*------ footer ------*/
         .footer {
             width: 100%;
             text-align: center;
@@ -196,6 +313,49 @@
         </nav>
     </header>
 </section>
+<main>
+        <section id="winners">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search for winners...">
+            </div>
+
+            <div class="winners-table-wrapper">
+                <table class="winners-table" id="winners-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Team</th>
+                            <th>Agent</th>
+                            <th>Winner</th>
+                            <th>Combination</th>
+                            <th>Bet</th>
+                            <th>TOB</th>
+                            <th>Prize</th>
+                            <th>Game</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data will be inserted dynamically -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="no-data" id="no-data-message" style="display: none;">
+                No data available
+            </div>
+
+            <div class="pagination">
+                <button id="prev-page" disabled>Previous</button>
+                <span id="page-info">Winner Page 1</span>
+                <button id="next-page">Next</button>
+            </div>
+
+            <div class="view-all-container">
+                <button id="view-all">View All</button>
+            </div>
+        </section>
+    </main>
 
 <!------JavaScript for Toggle Menu------>
 <script>
@@ -212,6 +372,496 @@ function toggleMenu() {
         menuBtn.style.display = "none";  // Hide menu button
     }
 }
+<!------JavaScript table ------>
+const winnersTable = document.getElementById('winners-table');
+        const tbody = winnersTable.querySelector('tbody');
+        const prevPageButton = document.getElementById('prev-page');
+        const nextPageButton = document.getElementById('next-page');
+        const pageInfo = document.getElementById('page-info');
+        const viewAllButton = document.getElementById('view-all');
+        const noDataMessage = document.getElementById('no-data-message');
+        const searchInput = document.getElementById('search-input');
+        const rowsPerPage = 10;
+        let currentPage = 1;
+        let showAll = false;
+        let data = [
+{ date: 'Sep 01, 2024', time: '2PM', team: 'Jazz', agent: 'Manuel', winner: 'J Saavedra', combi: '02 08', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 01, 2024', time: '5PM', team: 'Gigi', agent: 'Blunt', winner: 'D Daypuyart 02', combi: '11 04', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 01, 2024', time: '5PM', team: 'Jing', agent: 'Jing', winner: 'Jayla', combi: '11 04', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 01, 2024', time: '5PM', team: 'Kylie', agent: 'Kylie', winner: 'Ador', combi: '04 11', bet: '20', tob: 'S', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 01, 2024', time: '5PM', team: 'Kylie', agent: 'Kylie', winner: 'Ador', combi: '11 04', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'Kylie', agent: 'Kylie', winner: 'Ador', combi: '28 20', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'Venice', agent: 'Venice', winner: 'Evangeline Amplayo ‼️', combi: '28 16 04', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'She', agent: 'Wena', winner: 'Arturo Bual ', combi: '28 20 04', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'She', agent: 'Wena', winner: 'Mina Rosco ', combi: '04 16 20', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'Issa', agent: 'Issa', winner: 'S-Win C 💕 ', combi: '04 16 28', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Aj Tj Tres ', combi: '16 44 28', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 01, 2024', time: '9PM', team: 'Friday', agent: 'Allen', winner: 'Leah Valdez Doles ', combi: '04 28 20', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 02, 2024', time: '2PM', team: 'Jing', agent: 'Amalia', winner: 'E Diaz Ac', combi: '15 17', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 02, 2024', time: '2PM', team: 'Mich', agent: 'Maryl', winner: 'O Volante Mc', combi: '3 4 0', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 02, 2024', time: '5PM', team: 'Heart', agent: 'Alexa', winner: 'Hb Saurane', combi: '27 02', bet: '20', tob: 'S', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 02, 2024', time: '5PM', team: 'Heart', agent: 'Alexa', winner: 'Hb Saurane', combi: '27 02', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 02, 2024', time: '5PM', team: 'Naza', agent: 'Naza', winner: 'Dls Jenny', combi: '02 27', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 02, 2024', time: '5PM', team: 'Raymart', agent: 'Raymart', winner: 'N Pagdangaran', combi: '02 27', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Heart', agent: 'Ange', winner: 'Lito B', combi: '6 1 7', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Ivy', agent: 'Ivy', winner: 'Neb', combi: '6 7 1', bet: '20', tob: 'S', prize: '9600', game: '3D Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'Candy', combi: '1 6 7', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Gigi', agent: 'Blunt', winner: 'Nida Toledo 02 •••', combi: '16 30 25', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'Jojo Hoa', combi: '25 39 30', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Mika Mika', combi: '30 17 36', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Dover Lee', combi: '17 36 16', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 02, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'Danny Jj', combi: '36 16 25', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 03, 2024', time: '2PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Bernie', combi: '04 26', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 03, 2024', time: '2PM', team: 'Jollifer', agent: 'Jollifer', winner: 'Ap Padilla', combi: '04 26', bet: '100', tob: 'R', prize: '24500', game: '2D Lotto' },
+{ date: 'Sep 03, 2024', time: '2PM', team: 'Melani', agent: 'Melani', winner: 'Md Catan', combi: '04 26', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 03, 2024', time: '2PM', team: 'Melani', agent: 'Melani', winner: 'Md Catan', combi: '04 26', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 03, 2024', time: '5PM', team: 'Heart', agent: 'Aubrie', winner: 'N Dao', combi: '14 28', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Kylie', agent: 'Kylie', winner: 'Ador', combi: '1 1 9', bet: '40', tob: 'R', prize: '3000', game: '3D Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Hanna', agent: 'Monaliza', winner: 'E Vista', combi: '1 1 9', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Friday', agent: 'Claudia', winner: 'Joanna Vip', combi: '01 11 18', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Gigi', agent: 'Gigi', winner: 'Mark Russel Ditan G1', combi: '01 11 18', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Joyce', agent: 'Joyce', winner: 'Sherlyn Javin ', combi: '01 11 20', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Khar', agent: 'Randy', winner: 'ファリナ・ジョ Zz', combi: '01 11 13', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Ronalyn', agent: 'Ana Mik', winner: 'Engelbert ', combi: '01 20 18', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 03, 2024', time: '9PM', team: 'Vivian', agent: 'Vivian', winner: 'Eiyo', combi: '01 18 44', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 04, 2024', time: '9PM', team: 'Jing', agent: 'Amalia', winner: 'Ma Gallo Ac', combi: '02 22', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 04, 2024', time: '9PM', team: 'Irish', agent: 'Irish', winner: 'Bryan', combi: '1 0 7', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 04, 2024', time: '9PM', team: 'Aliana', agent: 'Aliana', winner: 'Janice O. Tabano ', combi: '16 28 33', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 04, 2024', time: '9PM', team: 'Khar', agent: 'Reggie', winner: 'Adrian Montaño', combi: '16 20 28', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 04, 2024', time: '9PM', team: 'She', agent: 'She', winner: 'Fhe Villanueva ', combi: '20 28 16', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 05, 2024', time: '2PM', team: 'Jorge', agent: 'Christian', winner: 'J Quijano', combi: '28 18', bet: '10', tob: 'S', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '2PM', team: 'Jennifer', agent: 'Jennifer', winner: 'C Tan J4', combi: '18 28', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '5PM', team: 'Joy', agent: 'Joy', winner: 'Jomel', combi: '07 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '5PM', team: 'Maricel', agent: 'Maricel', winner: 'Madam Vee Hh', combi: '07 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '5PM', team: 'Khar', agent: 'Ramoncarlo', winner: 'Fair Rc', combi: '07 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '5PM', team: 'Ivy', agent: 'Karen', winner: 'J-J Simbulan', combi: ' 9 6 3', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'R A Bautista', combi: '29 22', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Heart', agent: 'Zoe', winner: 'M Castro (Zd', combi: '22 29', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Maricel', agent: 'Maricel', winner: 'M L Agullo', combi: '1 7 5', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Aliana', agent: 'Athena', winner: 'J Mesia', combi: '09 12 28', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Hero **', combi: '09 28 49', bet: '475', tob: '', prize: '171000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Hero **', combi: '09 28 42', bet: '225', tob: '', prize: '81000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Khar', agent: 'Maricris', winner: 'Jhey Ehm ', combi: '09 12 42', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'Justin P', combi: '09 28 49', bet: '100', tob: '', prize: '36000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'Karl Karl', combi: '28 09 49', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'David L', combi: '09 28 49', bet: '100', tob: '', prize: '36000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Monica', agent: 'Josua', winner: 'J F. Teves J', combi: '12 28 09', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 05, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'R Lagera ', combi: '09 12 28', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 06, 2024', time: '2PM', team: 'Melani', agent: 'Melani', winner: 'Md Catan', combi: '22 26', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '2PM', team: 'Melani', agent: 'Melani', winner: 'Md Catan', combi: '22 26', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '2PM', team: 'Heart', agent: 'Alexa', winner: 'J Agripata', combi: '4 9 2', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 06, 2024', time: '5pm', team: 'Jennifer', agent: 'Jennifer', winner: 'Jessie J4', combi: '03 08', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '5pm', team: 'Hanna', agent: 'Monaliza', winner: 'Cheska', combi: '08 03', bet: '10', tob: 'S', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '5pm', team: 'Khar', agent: 'Ramoncarlo', winner: 'Fair Rc', combi: '08 03', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '5pm', team: 'Heart', agent: 'Zoe', winner: 'J Castillo (Zd', combi: '08 03', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Jennifer', agent: 'Jennifer', winner: 'Jessie J4', combi: '31 12', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Ivy', agent: 'Karen', winner: 'J A Bundalian', combi: '12 31', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Ivy', agent: 'Karen', winner: 'J A Bundalian', combi: '12 31', bet: '10', tob: 'S', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Mich', agent: 'Nikky', winner: 'C Cateron', combi: '12 31', bet: '50', tob: 'S', prize: '24500', game: '2D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Jing', agent: 'Jing', winner: 'D Sotto', combi: '9 1 1', bet: '30', tob: 'S', prize: '14400', game: '3D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'D Austria', combi: '9 1 1', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Mich', agent: 'Mich', winner: 'R Bation', combi: '1 9 1', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'Denver Ccc', combi: '41 40 53', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Jasper P', combi: '53 45 18', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Sparky Sprks', combi: '45 18 41', bet: '0', tob: 'FB', prize: '7500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 06, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'Milagros 56&45', combi: '41 40 13', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Ejl', combi: '01 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Clha', combi: '01 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Kylie', agent: 'Kylie', winner: 'Ador', combi: '01 19', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Aliana', agent: 'Athena', winner: 'Nel ', combi: '17 20 24', bet: '100', tob: '', prize: '39200', game: '6/55 Grand Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Friday', agent: 'Claudia', winner: 'Orly Vip ', combi: '03 17 31', bet: '50', tob: '', prize: '19600', game: '6/55 Grand Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Heart', agent: 'Heart', winner: 'Entz L', combi: '03 17 20', bet: '25', tob: '', prize: '9800', game: '6/55 Grand Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Khar', agent: 'Gliceria', winner: 'Rita G Lanog 69', combi: '17 03 24', bet: '25', tob: '', prize: '9800', game: '6/55 Grand Lotto' },
+{ date: 'Sep 07, 2024', time: '9PM', team: 'Kimberly', agent: 'Kenley', winner: 'Willie Entena ', combi: '03 17 24', bet: '0', tob: 'FB', prize: '7500', game: '6/55 Grand Lotto' },
+{ date: 'Sep 08, 2024', time: '2PM', team: 'Heart', agent: 'Chabs', winner: 'Joey Duzz', combi: '18 25', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 08, 2024', time: '2PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Nestor', combi: '6 1 4', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 08, 2024', time: '5PM', team: 'Raymart', agent: 'Candace', winner: 'M D Dandan', combi: '05 01', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 08, 2024', time: '5PM', team: 'Gigi', agent: 'Jannalyn', winner: 'M Hubilla', combi: '05 01', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 08, 2024', time: '5PM', team: 'Jollifer', agent: 'Jollifer', winner: 'R Cornel', combi: '01 05', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Mich', agent: 'Mich', winner: 'Michelle', combi: '03 24', bet: '20', tob: 'S', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Mich', agent: 'Mich', winner: 'Michelle', combi: '03 24', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Jennifer', agent: 'Jennifer', winner: 'Jessie J4', combi: '5 4 5', bet: '50', tob: 'S', prize: '24000', game: '3D Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Mich', agent: 'Lou', winner: 'G Soriano Af', combi: '5 4 5', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Gigi', agent: 'Christine', winner: 'S M Parantes 🉑', combi: '07 03 38', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Monica', agent: 'Carisa', winner: 'R Peregua Elefan', combi: '07 03 35', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 08, 2024', time: '9PM', team: 'Ronalyn', agent: 'Erniejie', winner: 'N-Basan', combi: '07 35 38', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 09, 2024', time: '2PM', team: 'Jollifer', agent: 'Jollifer', winner: 'J R Hawn', combi: '5 1 8', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 09, 2024', time: '2PM', team: 'Joy', agent: 'Joy', winner: 'Grey', combi: '5 1 8', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 09, 2024', time: '2PM', team: 'Heart', agent: 'Rizel', winner: 'M J B Ayson', combi: '5 1 8', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Clha', combi: '01 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Ivy', agent: 'Ivy', winner: 'Tiger', combi: '3 3 9', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Maricel', agent: 'Maricel', winner: 'L Bautista', combi: '9 3 3', bet: '20', tob: 'S', prize: '9600', game: '3D Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Maricel', agent: 'Maricel', winner: 'L Bautista', combi: '9 3 3', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Aliana', agent: 'Athena', winner: 'Lilibeth ', combi: '12 25 33', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Aliana', agent: 'Kassy', winner: 'Dar D', combi: '12 33 09', bet: '100', tob: '', prize: '32800', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Ardin', agent: 'Vince', winner: 'Epel', combi: '37 07 09', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Friday', agent: 'Allen', winner: 'Sandy Lee ', combi: '07 09 33', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Friday', agent: 'Allen', winner: 'Sandy Lee ', combi: '12 25 33', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Nestor', combi: '37 12 25', bet: '500', tob: '', prize: '164000', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Glaiza', combi: '07 09 12', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Heart', agent: 'Zoe', winner: 'S Mira (Zd', combi: '09 12 25', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Ivy', agent: 'Ivy', winner: 'Ramo Van', combi: '07 25 33', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Joyce', agent: 'Joyce', winner: 'T Marcos', combi: '12 09 25', bet: '100', tob: '', prize: '32800', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Bogut **', combi: '12 25 09', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Preciosa **', combi: '07 09 12', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Khar', agent: 'Ramon Carlo', winner: 'Daisy Rc6', combi: '09 12 33', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Krystal', agent: 'Andie', winner: 'J Concepcion ', combi: '12 09 25', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Mae', agent: 'Leos', winner: 'Lance B• ', combi: '09 25 12', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Rk', combi: '07 09 33', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'L Singular Millan ', combi: '07 09 25', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Sky Nath 56', combi: '13 37 25', bet: '150', tob: '', prize: '49200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Mich', agent: 'Nikky', winner: 'A Salonga ', combi: '12 09 25', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'Nancy P%', combi: '37 25 12', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 09, 2024', time: '9PM', team: 'Ronalyn', agent: 'Ana Mik', winner: 'Velo ', combi: '09 33 25', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 10, 2024', time: '2PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Sir Melchor', combi: '18 24', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 10, 2024', time: '2PM', team: 'Heart', agent: 'Zoe', winner: 'W S Umpa (Zd', combi: '18 24', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 10, 2024', time: '2PM', team: 'Monica', agent: 'Carisa', winner: 'Ceb', combi: '5 1 6', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Ivy', agent: 'Karen', winner: 'Kiteng', combi: '08 15', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Ardin', agent: 'Jannah', winner: 'Michael Villaflor ', combi: '13 17 45', bet: '300', tob: '', prize: '108000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Katelyn', agent: 'Katelyn', winner: 'April John Cabrera **', combi: '17 02 19', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Aurelio Tanig **', combi: '13 17 19', bet: '50', tob: 'RB', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'Cahaya ', combi: '19 17 35', bet: '50', tob: 'RB', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Maricel', agent: 'Maricel', winner: 'Jocel Mesa Madriñan ', combi: '02 13 19', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Monica', agent: 'Josua', winner: 'Nayr Enafalliv J', combi: '17 02 35', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Venice', agent: 'Venice', winner: 'Yrrag Garry ', combi: '19 02 45', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 10, 2024', time: '9PM', team: 'Venice', agent: 'Venice', winner: 'Paulo Louie Bautista ‼️', combi: '19 35 17', bet: '200', tob: 'RB', prize: '72000', game: '6/49 Super Lotto' },
+{ date: 'Sep 11, 2024', time: '2PM', team: 'Monica', agent: 'Carisa', winner: 'G Alvarado', combi: '15 29', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '2PM', team: 'Ellaine', agent: 'Ellaine', winner: 'J Bruto', combi: '15 29', bet: '20', tob: 'S', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '2PM', team: 'Krystal', agent: 'Krystal', winner: 'Kc', combi: '15 29', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '2PM', team: 'Heart', agent: 'Aubrie', winner: 'Bitoy', combi: '4 4 6', bet: '100', tob: 'S', prize: '48000', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '2PM', team: 'Heart', agent: 'Aubrie', winner: 'Bitoy', combi: '4 4 6', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '2PM', team: 'Joy', agent: 'Joy', winner: 'Mere', combi: '4 6 4', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '5PM', team: 'Jing', agent: 'Jing', winner: 'J Manzon', combi: '19 19', bet: '40', tob: 'P', prize: '17200', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '5PM', team: 'Monica', agent: 'Carisa', winner: 'Ceb', combi: '6 3 1', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '5PM', team: 'Jing', agent: 'Jing', winner: 'G F Sorino', combi: '6 1 3', bet: '50', tob: 'S', prize: '24000', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '5PM', team: 'Jing', agent: 'Jing', winner: 'G F Sorino', combi: '6 1 3', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Hanna', agent: 'Angeli', winner: 'Marilou', combi: '16 14', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Gigi', agent: 'Blunt', winner: 'E D Justa 2', combi: '14 16', bet: '10', tob: 'S', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Adriano', agent: 'Pilits', winner: 'A Robles', combi: '16 14', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Mae', agent: 'Leos', winner: 'Sweetcrissie', combi: '6 9 2', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'D L S Jenny', combi: '9 2 6', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Adriano', agent: 'Adriano', winner: 'Benchbench Oaboalab Ab8', combi: '09 14 41', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Aliana', agent: 'Aliana', winner: 'Lyn Lyn ', combi: '13 14 09', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Aliana', agent: 'Kassy', winner: 'Nhok S', combi: '04 13 14', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Ardin', agent: 'Jannah', winner: 'L Smith Bugarin', combi: '09 13 14', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Gigi', agent: 'Roland', winner: 'F Armas •••', combi: '13 14 09', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Gigi', agent: 'Gigi', winner: 'V Bognot G1', combi: '09 13 14', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Gigi', agent: 'Gigi', winner: 'M Mariano G6', combi: '04 13 23', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Hanna', agent: 'Angeli', winner: 'Jose Phine C', combi: '04 09 23', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Heart', agent: 'Angel', winner: 'Ginafermalino M', combi: '09 23 14', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Irish', agent: 'Irish', winner: 'Lavender', combi: '14 23 09', bet: '100', tob: '', prize: '32800', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Ivy', agent: 'Angel', winner: 'Rey Gane ', combi: '23 04 41', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Joy', agent: 'Joy', winner: 'Doris', combi: '23 09 13', bet: '100', tob: '', prize: '32800', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Bogut **', combi: '14 23 04', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Mader Dee **', combi: '13 14 23', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Kimberly', agent: 'Liza', winner: 'Rleen Cruz ', combi: '09 14 04', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Kimberly', agent: 'Kenley', winner: 'Cyd Dilao ', combi: '09 13 23', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Kylie', agent: 'Kylie', winner: 'L Gebilaguin ', combi: '04 14 09', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Mae', agent: 'Mae', winner: 'Dave E. 3', combi: '14 13 09', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Maricel', agent: 'Honey', winner: 'J Baleña Hh', combi: '09 14 04', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Mark', agent: 'Raymond', winner: 'A Cerezo Rrb', combi: '09 13 41', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Megan', agent: 'Megan', winner: 'Rose', combi: '09 23 14', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Monica', agent: 'Carisa', winner: 'Jan🩷 ', combi: '09 13 23', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Monica', agent: 'Carisa', winner: 'Guard Besone ', combi: '04 13 23', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Monica', agent: 'Josua', winner: 'J Daileg Monroe J', combi: '09 13 41', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Ronalyn', agent: 'Ana Mik', winner: 'J Aquino ', combi: '09 14 13', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Ryan', agent: 'Ryan', winner: ' R. Perlas ', combi: '09 14 23', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Ryan', agent: 'Fred', winner: 'R R. Valencia ', combi: '09 13 14', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Vivian', agent: 'Vivian', winner: 'Jayson', combi: '09 04 23', bet: '100', tob: '', prize: '32800', game: '6/45 Mega Lotto' },
+{ date: 'Sep 11, 2024', time: '9PM', team: 'Vivian', agent: 'Vivian', winner: 'Jayson', combi: '13 09 23', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 12, 2024', time: '2PM', team: 'Ivy', agent: 'Ivy', winner: 'M Cabrera', combi: '28 31', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 12, 2024', time: '2PM', team: 'Raymart', agent: 'Raymart', winner: 'E Egipto', combi: '28 31', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 12, 2024', time: '2PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Nestor', combi: '3 5 1', bet: '50', tob: 'R', prize: '3750', game: '3D Lotto' },
+{ date: 'Sep 12, 2024', time: '5PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Ejl', combi: '07 30', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 12, 2024', time: '5PM', team: 'Realyn', agent: 'Jiselle', winner: 'B Ha M Bham', combi: '07 30', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 12, 2024', time: '5PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Nestor', combi: '3 5 2', bet: '50', tob: 'S', prize: '24000', game: '3D Lotto' },
+{ date: 'Sep 12, 2024', time: '5PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Nestor', combi: '3 5 2', bet: '50', tob: 'R', prize: '3750', game: '3D Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Ady', agent: 'Ady', winner: 'Arnold', combi: '05 04', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Heart', agent: 'Zoe', winner: 'Batshoy (Zd', combi: '4 1 0', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Adel', agent: 'Isabel', winner: 'Jr Supremo ', combi: '12 18 44', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Adriano', agent: 'Pilits', winner: 'F G Ravana ', combi: '12 05 24', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Aliana', agent: 'Athena', winner: 'M Roble', combi: '12 24 38', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Aliana', agent: 'Abigail', winner: 'A Jocson Moleño ', combi: '12 38 24', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Bella', agent: 'Fred', winner: 'J Patulin ', combi: '12 18 24', bet: '200', tob: '', prize: '72000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Gigi', agent: 'Charlie', winner: 'Irish Irish 💎', combi: '18 12 38', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Hanna', agent: 'Hanna', winner: 'Anha ', combi: '12 05 18', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Jing', agent: 'Jing', winner: 'Chache Chache ', combi: '12 18 24', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Katelyn', agent: 'Katelyn', winner: 'F Oliquiano Jr. **', combi: '24 18 44', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Khar', agent: 'Ramon Carlo', winner: 'E Tabing Rc ', combi: '05 24 38', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Khar', agent: 'Ramon Carlo', winner: 'M Tabanao Rc ', combi: '05 24 38', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Krystal', agent: 'Krystal', winner: 'Nmanalo ', combi: '24 12 18', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Mae', agent: 'Mae', winner: 'Sad Dam 2', combi: '05 12 24', bet: '100', tob: '', prize: '36000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Megan', agent: 'Mike', winner: 'Seno Xela ', combi: '12 05 18', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'D Oliva De Luna ', combi: '05 12 24', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Monica', agent: 'Josua', winner: 'N Mariz Arevalo J', combi: '12 18 44', bet: '100', tob: '', prize: '36000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Paul', agent: 'Paul', winner: 'Alas', combi: '05 12 38', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 12, 2024', time: '9PM', team: 'Ruby', agent: 'Mareen', winner: 'Arnel O.', combi: '05 18 24', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 13, 2024', time: '2PM', team: 'Khar', agent: 'Maricris', winner: 'Xoxo', combi: '16 29', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '2PM', team: 'Vivian', agent: 'Vivian', winner: 'Jv', combi: '16 29', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '2PM', team: 'Monica', agent: 'Carisa', winner: '@Ceb', combi: '6 1 6', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 13, 2024', time: '5PM', team: 'Gigi', agent: 'Blunt', winner: 'A O Araveug *', combi: '19 28', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '5PM', team: 'Joyce', agent: 'Joyce', winner: 'V M Diana', combi: '19 28', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '5PM', team: 'Monica', agent: 'Monica', winner: 'R D Torres - Abela', combi: '19 28', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '5PM', team: 'Katelyn', agent: 'John', winner: 'Tupert Tuper **', combi: '2 8 3', bet: '15', tob: 'R', prize: '1125', game: '3D Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'H S Tyzer', combi: '10 21', bet: '40', tob: 'R', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Otabs F S', combi: '10 21', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Kylie', agent: 'Kylie', winner: 'S Samson', combi: '10 21', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Ellaine', agent: 'Ellaine', winner: 'R G Albatera ', combi: '20 50 30', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Gigi', agent: 'Gigi', winner: 'Mc D Nuez G1', combi: '15 30 45', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Khar', agent: 'Mia', winner: '93Jestoni D G2', combi: '30 17 20', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'P Diana Cj🏆🏆🏆 ', combi: '15 17 30', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'V Panganiban ', combi: '30 45 50', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Mich', agent: 'Lou', winner: 'V Prevosa Campo Af', combi: '17 20 30', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Mich', agent: 'Nikky', winner: 'J Obina ', combi: '45 17 50', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 13, 2024', time: '9PM', team: 'Ryan', agent: 'Ryan', winner: 'I Mendoza ', combi: '20 30 50', bet: '100', tob: '', prize: '42000', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Heart', agent: 'Alexa', winner: 'L G-B Diamante', combi: '15 26', bet: '10', tob: 'S', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Melani', agent: 'Melani', winner: 'M D Catan', combi: '15 26', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Monica', agent: 'Carisa', winner: 'Ceb', combi: '9 2 1', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Katelyn', agent: 'John', winner: 'Tupert Tuper **', combi: '1 2 9', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Katelyn', agent: 'John', winner: 'Tupert Tuper **', combi: '1 2 9', bet: '10', tob: 'S', prize: '4800', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Mae', agent: 'Mae', winner: 'Rhyanalyn', combi: '1 2 9', bet: '20', tob: 'S', prize: '9600', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '2PM', team: 'Mae', agent: 'Mae', winner: 'Rhyanalyn', combi: '9 1 2 ', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '5PM', team: 'Irish', agent: 'Jennylyn', winner: 'Rose', combi: '07 26', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Jorge', agent: 'Christian', winner: 'J Quijano', combi: '2 3 7', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Khar', agent: 'Ric', winner: 'S-Rm', combi: '7 3 2', bet: '30', tob: 'S', prize: '14400', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Khar', agent: 'Ric', winner: 'S-Rm', combi: '7 3 2', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Aliana', agent: 'Aliana', winner: 'Aquilez ', combi: '06 21 27', bet: '25', tob: '', prize: '9800', game: '6/55 Grand Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Aliana', agent: 'Athena', winner: 'Lilibeth', combi: '06 26 27', bet: '50', tob: '', prize: '19600', game: '6/55 Grand Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Gigi', agent: 'Roland', winner: 'D L Entierro 02 *', combi: '06 21 26', bet: '25', tob: '', prize: '9800', game: '6/55 Grand Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Gigi', agent: 'Jessiel', winner: 'J Segayo 💞 💕 ', combi: '06 26 27', bet: '25', tob: '', prize: '9800', game: '6/55 Grand Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Ivy', agent: 'Ivy', winner: 'Jasson', combi: '06 34 21', bet: '25', tob: '', prize: '9800', game: '6/55 Grand Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Ronalyn', agent: 'Ronalyn', winner: 'Kim ', combi: '34 27 44', bet: '50', tob: '', prize: '19600', game: '6/55 Grand Lotto' },
+{ date: 'Sep 14, 2024', time: '9PM', team: 'Venice', agent: 'Venice', winner: 'N Asi ‼️', combi: '06 21 34', bet: '50', tob: '', prize: '19600', game: '6/55 Grand Lotto' },
+{ date: 'Sep 15, 2024', time: '2PM', team: 'Ardin', agent: 'Ardin', winner: 'Mj', combi: '9 3 2', bet: '50', tob: 'S', prize: '24000', game: '3D Lotto' },
+{ date: 'Sep 15, 2024', time: '2PM', team: 'Ardin', agent: 'Ardin', winner: 'Mj', combi: '9 2 3', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 15, 2024', time: '2PM', team: 'Khar', agent: 'Ric', winner: 'Sidrick-Rm', combi: '9 3 2', bet: '100', tob: 'S', prize: '48000', game: '3D Lotto' },
+{ date: 'Sep 15, 2024', time: '2PM', team: 'Khar', agent: 'Ric', winner: 'Sidrick-Rm', combi: '9 3 2', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 15, 2024', time: '5PM', team: 'Vivian', agent: 'Vivian', winner: 'Ryan', combi: '23 31', bet: '200', tob: 'R', prize: '49000', game: '2D Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Jorge', agent: 'Christian', winner: 'J Quijano', combi: '19 29', bet: '20', tob: 'S', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Mae', agent: 'Mae', winner: 'M Anthony U.', combi: '19 29', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'D L S Jenny', combi: '8 1 1', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Adriano', agent: 'Adriano', winner: 'O Enriquez Ab3', combi: '09 19 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ady', agent: 'Ady', winner: 'Josephine ', combi: '25 09 15', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Aliana', agent: 'Abigail', winner: 'J G. Manaig ', combi: '09 15 32', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Arlene', agent: 'Arlene', winner: 'R S Malenab ', combi: '09 15 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'H D Vital ', combi: '19 21 25', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'Rc', combi: '09 15 25', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Gigi', agent: 'Jessiel', winner: 'Sky💕💕', combi: '19 25 32', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Gigi', agent: 'Gigi', winner: 'P Deguzman G9', combi: '15 19 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Gigi', agent: 'Gigi', winner: 'R Mijares G6', combi: '09 15 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Heart', agent: 'Zoe', winner: 'J Labrada (Zd', combi: '09 15 21', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Heart', agent: 'Alexa', winner: 'P Ipsagel ', combi: '09 15 19', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Heart', agent: 'Aubrie', winner: 'J Gloria ', combi: '09 15 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ivy', agent: 'Karen', winner: 'L Ebio ', combi: '09 15 32', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ivy', agent: 'Lalaine Joy', winner: 'Jordan ', combi: '15 19 32', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Jerald', agent: 'Jerald', winner: 'Y Bonifacio ', combi: '09 15 25', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'W M. Segovia ', combi: '09 15 25', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'L Baterisna **', combi: '09 15 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Khar', agent: 'Khar', winner: 'Kp Cesar Mzz', combi: '32 09 15', bet: '300', tob: '', prize: '108000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Khar', agent: 'Khar', winner: 'Kp Cesar Mzz', combi: '09 15 32', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Khar', agent: 'Ramon Carlo', winner: 'E Tabing Rc', combi: '25 15 19', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Khar', agent: 'Mia', winner: '93 T Postrado G4', combi: '09 15 21', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Khar', agent: 'Jaina', winner: 'A V.  Vvip', combi: '25 19 21', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Mae', agent: 'Almira', winner: 'A Bitoonas Lp', combi: '15 25 09', bet: '100', tob: '', prize: '36000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Maricel', agent: 'Honey', winner: 'U Vlog Hh', combi: '19 15 09', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Megan', agent: 'Megan', winner: 'Zakura', combi: '15 25 19', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Mich', agent: 'Nikky', winner: 'B Lopez ', combi: '21 09 15', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Mich', agent: 'Nikky', winner: 'S Verdadero ', combi: '19 21 25', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Mich', agent: 'Noreen', winner: 'C D Ocampo ', combi: '21 09 25', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Monica', agent: 'Monica', winner: 'G B Arnold ', combi: '09 15 21', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Naza', agent: 'Naza', winner: 'B S Jhez ', combi: '19 09 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Realyn', agent: 'Jiselle', winner: 'Nabila ', combi: '15 19 09', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ronalyn', agent: 'Erniejie', winner: 'B Mike ', combi: '19 09 15', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ronalyn', agent: 'Erniejie', winner: 'Ryan', combi: '09 21 25', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ruby', agent: 'Ruby', winner: 'Dhan Mz', combi: '15 25 32', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ryan', agent: 'Ryan', winner: 'R C Ybera ', combi: '09 19 21', bet: '200', tob: '', prize: '72000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Ryan', agent: 'Ryan', winner: 'H Villanueva ', combi: '19 25 32', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Venice', agent: 'Laika', winner: 'France ❤', combi: '09 15 25', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Venice', agent: 'Gerlie', winner: 'F Escasinas ', combi: '32 25 21', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 15, 2024', time: '9PM', team: 'Vivian', agent: 'Vivian', winner: 'Renier', combi: '19 32 21', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Raymart', agent: 'Chloe', winner: 'Judy', combi: '06 09', bet: '10', tob: 'R', prize: '2150', game: '2D Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Mae', agent: 'Mae', winner: 'M Anthony U.', combi: '06 09', bet: '20', tob: 'R', prize: '4300', game: '2D Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Monica', agent: 'Monica', winner: 'A Maglonzo', combi: '06 09', bet: '10', tob: 'R', prize: '2150', game: '2D Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Jorge', agent: 'Christian', winner: 'N Doncillo', combi: '2 2 5', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Jorge', agent: 'Christian', winner: 'J Quijano', combi: '2 2 5', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Jorge', agent: 'Christian', winner: 'J Quijano', combi: '2 2 5', bet: '20', tob: 'S', prize: '9600', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '2PM', team: 'Mich', agent: 'Lou', winner: 'Dhes Af', combi: '5 2 2', bet: '30', tob: 'R', prize: '2250', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '5PM', team: 'Ivy', agent: 'Ivy', winner: 'Josie', combi: '27 28', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 16, 2024', time: '5PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Sir Derwin', combi: '3 8 0', bet: '50', tob: 'R', prize: '3750', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Mae', agent: 'Mae', winner: 'Rhyanalyn', combi: '4 4  2', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Mae', agent: 'Mae', winner: 'Rhyanalyn', combi: '4 4  2', bet: '20', tob: 'S', prize: '9600', game: '3D Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Issa', agent: 'Issa', winner: 'Julia B 💕 💕 ', combi: '39 44 25', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Jayvezell', agent: 'Jayvezell', winner: 'El Fashir J', combi: '03 11 25', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'R Cornel', combi: '01 25 39', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Khar', agent: 'Mia', winner: '93G Donglal G2', combi: '03 25 44', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Kyara', agent: 'Kyara', winner: 'E Oicadac ', combi: '01 03 25', bet: '100', tob: '', prize: '32800', game: '6/45 Mega Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Ronalyn', agent: 'Rosey', winner: 'Domingo ', combi: '01 03 25', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 16, 2024', time: '9PM', team: 'Vienne', agent: 'Louise', winner: 'M Alcantara Tabianan ', combi: '11 25 39', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 17, 2024', time: '2PM', team: 'Jennifer', agent: 'Jennifer', winner: 'Benedicto', combi: '07 15', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 17, 2024', time: '2PM', team: 'Heart', agent: 'Zoe', winner: 'J Castillo (Zd', combi: '07 15', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 17, 2024', time: '2PM', team: 'Monica', agent: 'Carisa', winner: 'Ceb', combi: '3 1 6', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 17, 2024', time: '2PM', team: 'Jing', agent: 'Jing', winner: 'E Francisco', combi: '1 6 3', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 17, 2024', time: '5PM', team: 'Ady', agent: 'Ady', winner: 'Elvira', combi: '10 16', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 17, 2024', time: '5PM', team: 'Gigi', agent: 'Blunt', winner: 'M Jackfruit 03 •••', combi: '16 10', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 17, 2024', time: '5PM', team: 'Maricel', agent: 'Maricel', winner: 'M Undajon', combi: '1 4 8', bet: '10', tob: 'S', prize: '4800', game: '3D Lotto' },
+{ date: 'Sep 17, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Alvin M S', combi: '08 22', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 17, 2024', time: '9PM', team: 'Gigi', agent: 'Roland', winner: 'Enelra *', combi: '18 19 45', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 17, 2024', time: '9PM', team: 'Heart', agent: 'Zoe', winner: 'Dominador Iraula Doblado (Zd', combi: '26 19 18', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 17, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Bogut**', combi: '18 26 32', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 17, 2024', time: '9PM', team: 'Ronalyn', agent: 'Ana Mik', winner: 'Sheila ', combi: '45 19 32', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 18, 2024', time: '2PM', team: 'Vivian', agent: 'Vivian', winner: 'Ryan', combi: '4 9 5', bet: '250', tob: 'S', prize: '120000', game: '3D Lotto' },
+{ date: 'Sep 18, 2024', time: '5PM', team: 'Venice', agent: 'Laika', winner: 'E G Benavidez ❤', combi: '07 14', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '5PM', team: 'Melani', agent: 'Melani', winner: 'S Asuncion', combi: '07 14', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '5PM', team: 'Adel', agent: 'Adel', winner: 'Floreda Reis', combi: '9 2 3', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 18, 2024', time: '5PM', team: 'Heart', agent: 'Alexa', winner: 'Jinky Agripa', combi: '2 9 3', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Gigi', agent: 'Blunt', winner: 'A Alonzo 02 *', combi: '07 27', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Raymart', agent: 'Raymart', winner: 'N Pagdanganan', combi: '07 27', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'She', agent: 'She', winner: 'J Cavidog', combi: '07 27', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Heart', agent: 'Zoe', winner: 'A Magbanua (Zd', combi: '07 27', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Zoey', agent: 'Zoey', winner: 'Kd', combi: '07 27', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Ady', agent: 'Ady', winner: 'Cedes ', combi: '25 28 04', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Gigi', agent: 'Jannalyn', winner: 'W Ladiao Boado ', combi: '04 25 36', bet: '50', tob: '', prize: '16400', game: '6/45 Mega Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Khar', agent: 'Jaina', winner: 'Jojie E.  Vip', combi: '04 25 29', bet: '25', tob: '', prize: '8200', game: '6/45 Mega Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Khar', agent: 'Mark', winner: '88-', combi: '25 36 45', bet: '0', tob: 'FB', prize: '7500', game: '6/45 Mega Lotto' },
+{ date: 'Sep 18, 2024', time: '9PM', team: 'Ronalyn', agent: 'Ana Mik', winner: 'Antonio ', combi: '04 25 29', bet: '200', tob: '', prize: '65600', game: '6/45 Mega Lotto' },
+{ date: 'Sep 19, 2024', time: '2PM', team: 'Adel', agent: 'Adel', winner: 'P M Roda', combi: '04 09', bet: '10', tob: 'R', prize: '2150', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '2PM', team: 'Heart', agent: 'Zoe', winner: 'J Lee (Zd', combi: '09 04', bet: '10', tob: 'R', prize: '2150', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '2PM', team: 'Hanna', agent: 'Angeli', winner: 'Ariel D', combi: '6 2 1', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 19, 2024', time: '2PM', team: 'Irish', agent: 'Irish', winner: 'Rebekah', combi: '6 1 2', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 19, 2024', time: '5PM', team: 'Irish', agent: 'Irish', winner: 'Doll', combi: '10 28', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '5PM', team: 'Ivy', agent: 'Ivy', winner: 'M A Cabrera', combi: '28 10', bet: '50', tob: 'R', prize: '12250', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '5PM', team: 'Melani', agent: 'Melani', winner: 'Arsen Mb', combi: '10 28', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'A A Parica **', combi: '12 21', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'B King', combi: '21 12', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Melani', agent: 'Melani', winner: 'Jo Hn', combi: '12 21', bet: '20', tob: 'S', prize: '9800', game: '2D Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Arlene', agent: 'Arlene', winner: 'I G Glenn', combi: '2 1 3', bet: '30', tob: 'S', prize: '14400', game: '3D Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'S Aurigue', combi: '1 2 3', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Adel', agent: 'Isabel', winner: 'D Rutagenes ', combi: '03 15 24', bet: '200', tob: '', prize: '72000', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Gigi', agent: '', winner: 'M Victoria Aguas G6', combi: '03 15 05', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Gigi', agent: 'Jessiel', winner: 'T Enano Macandog Jr. 💕💕', combi: '15 24 38', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Heart', agent: '', winner: 'M Galang', combi: '24 38 15', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Ivy', agent: 'Lalaine Joy', winner: 'Jordan', combi: '05 15 03', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Khar', agent: 'Reggie', winner: 'Jelly', combi: '03 05 24', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Khar', agent: 'Ramon Carlo', winner: 'M Tabanao Rc', combi: '05 24 38', bet: '25', tob: '', prize: '9000', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Khar', agent: 'Ramon Carlo', winner: 'E Tabing Rc ', combi: '05 24 38', bet: '0', tob: 'FB', prize: '7500', game: '6/49 Super Lotto' },
+{ date: 'Sep 19, 2024', time: '9PM', team: 'Reymond', agent: 'Reymond', winner: 'P Adol Opao G2', combi: '38 15 03', bet: '50', tob: '', prize: '18000', game: '6/49 Super Lotto' },
+{ date: 'Sep 20, 2024', time: '2PM', team: 'Katelyn', agent: 'John', winner: 'A A Parica **', combi: '11 12', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 20, 2024', time: '2PM', team: 'Irish', agent: 'Jennylyn', winner: 'Conchita', combi: '9 2 9', bet: '100', tob: 'S', prize: '48000', game: '3D Lotto' },
+{ date: 'Sep 20, 2024', time: '2PM', team: 'Vivian', agent: 'Vivian', winner: 'Eppie', combi: '9 2 9', bet: '100', tob: 'S', prize: '48000', game: '3D Lotto' },
+{ date: 'Sep 20, 2024', time: '5PM', team: 'Ellaine', agent: 'Ellaine', winner: 'Ejl', combi: '01 16', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 20, 2024', time: '5PM', team: 'Jorge', agent: 'Christian', winner: 'J Quijano', combi: '9 1 8', bet: '20', tob: 'R', prize: '1500', game: '3D Lotto' },
+{ date: 'Sep 20, 2024', time: '5PM', team: 'Venice', agent: 'Gerlie', winner: 'L Flores', combi: '9 1 8', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 20, 2024', time: '5PM', team: 'Jollifer', agent: 'Jollifer', winner: 'T N Boyttaco', combi: '1 9 8', bet: '40', tob: 'S', prize: '19200', game: '3D Lotto' },
+{ date: 'Sep 20, 2024', time: '5PM', team: 'Jollifer', agent: 'Jollifer', winner: 'T N Boyttaco', combi: '1 9 8', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 20, 2024', time: '9PM', team: 'Adriano', agent: 'Adriano', winner: 'Kp Villaruel Ab', combi: '26 12', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 20, 2024', time: '9PM', team: 'Adriano', agent: 'Adriano', winner: 'Atty Rj Ab', combi: '12 26', bet: '100', tob: 'R', prize: '24500', game: '2D Lotto' },
+{ date: 'Sep 20, 2024', time: '9PM', team: 'Ady', agent: 'Ady', winner: 'Victor', combi: '12 26', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 20, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'Jovie Cedillo **', combi: '34 26 28', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 20, 2024', time: '9PM', team: 'Megan', agent: 'Mike', winner: 'Seno Xela ', combi: '01 26 28', bet: '25', tob: '', prize: '10500', game: '6/58 Ultra Lotto' },
+{ date: 'Sep 21, 2024', time: '2PM', team: 'Khar', agent: 'Ramoncarlo', winner: 'Fair Rc', combi: '18 19', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 21, 2024', time: '5PM', team: 'Jerald', agent: 'Jerald', winner: 'O Escosa', combi: '30 20', bet: '10', tob: 'S', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Adel', agent: 'Adel', winner: 'B Sagonoy Jr.', combi: '20 17', bet: '30', tob: 'R', prize: '7350', game: '2D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Jerald', agent: 'Jerald', winner: 'C Arriesgado', combi: '17 20', bet: '10', tob: 'R', prize: '2450', game: '2D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Jollifer', agent: 'Jollifer', winner: 'R V Buelva', combi: '17 20', bet: '20', tob: 'R', prize: '4900', game: '2D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Arlene', agent: 'Arlene', winner: 'R S Basak', combi: '9 2 4', bet: '10', tob: 'S', prize: '4800', game: '3D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Arlene', agent: 'Arlene', winner: 'R S Basak', combi: '9 2 4', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Bella', agent: 'Bella', winner: 'W Jake', combi: '9 2 4', bet: '50', tob: 'S', prize: '24000', game: '3D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Katelyn', agent: 'John', winner: 'F Bantulan **', combi: '9 2 4', bet: '20', tob: 'S', prize: '9600', game: '3D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'Joy', agent: 'Joy', winner: 'Grace', combi: '2 9 4', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+{ date: 'Sep 21, 2024', time: '9PM', team: 'She', agent: 'She', winner: 'P Lhean', combi: '4 2 9', bet: '10', tob: 'R', prize: '750', game: '3D Lotto' },
+
+
+
+
+            // Add more data as needed
+        ];
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        function renderTable() {
+            tbody.innerHTML = '';
+            const searchTerm = searchInput.value.toLowerCase();
+            const sortedData = sortDataByDate(data);
+
+            // Automatically show all data when searching
+            const filteredData = sortedData.filter(row =>
+                Object.values(row).some(value =>
+                    value.toString().toLowerCase().includes(searchTerm)
+                )
+            );
+
+            const paginatedData = paginateData(filteredData);
+
+            if (paginatedData.length === 0) {
+                noDataMessage.style.display = 'block';
+                winnersTable.style.display = 'none';
+            } else {
+                noDataMessage.style.display = 'none';
+                winnersTable.style.display = 'table';
+
+                paginatedData.forEach(row => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${formatDate(row.date)}</td>
+                        <td>${row.time}</td>
+                        <td>${row.team}</td>
+                        <td>${row.agent}</td>
+                        <td>${row.winner}</td>
+                        <td>${row.combi}</td>
+                        <td>${row.bet}</td>
+                        <td>${row.tob}</td>
+                        <td>${row.prize}</td>
+                        <td>${row.game}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+
+                prevPageButton.disabled = currentPage === 1 || showAll || searchTerm;
+                nextPageButton.disabled = (currentPage * rowsPerPage) >= filteredData.length || showAll || searchTerm;
+                pageInfo.textContent = `Winner Page ${currentPage}`;
+            }
+        }
+
+        function sortDataByDate(data) {
+            return data.sort((a, b) => new Date(b.date) - new Date(a.date));
+        }
+
+        function paginateData(data) {
+            if (showAll || searchInput.value) {
+                return data; // Show all data when search or view-all is active
+            }
+            const start = (currentPage - 1) * rowsPerPage;
+            const end = start + rowsPerPage;
+            return data.slice(start, end);
+        }
+
+        function toggleViewAll() {
+            showAll = !showAll;
+            currentPage = 1;
+            renderTable();
+            viewAllButton.textContent = showAll ? 'Show Less' : 'View All';
+        }
+
+        function changePage(increment) {
+            if (showAll || searchInput.value) return;
+            currentPage += increment;
+            renderTable();
+        }
+
+        function handleSearch() {
+            currentPage = 1; // Reset to first page when searching
+            renderTable();
+        }
+
+        searchInput.addEventListener('input', handleSearch);
+        prevPageButton.addEventListener('click', () => changePage(-1));
+        nextPageButton.addEventListener('click', () => changePage(1));
+        viewAllButton.addEventListener('click', toggleViewAll);
+
+        renderTable();
 </script>
 
 <section class="footer">
