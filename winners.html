@@ -163,11 +163,8 @@
 
         /*------ table ------*/
         .table-container {
-            max-height: 60vh;
-            overflow-y: auto;
             margin: 20px auto;
             width: 80%;
-            position: relative;
         }
 
         table {
@@ -211,6 +208,16 @@
             padding: 8px 12px;
             margin: 0 5px;
             cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .pagination button[disabled] {
+            background-color: #ccc;
+            cursor: not-allowed;
         }
 
         /*------ footer ------*/
@@ -225,6 +232,12 @@
             margin-top: 20px;
             font-weight: 600;
             text-align: center;
+        }
+
+        /* Scrollable table for "Show All" */
+        .scrollable {
+            max-height: 60vh;
+            overflow-y: auto;
         }
     </style>
 
@@ -263,7 +276,7 @@
             <tr>
                 <th>BETTOR</th>
                 <th>COMBINATION</th>
-                <th>BET AMOUNT</th>
+                <th>BET</th>
                 <th>PRIZE</th>
                 <th>DRAW</th>
                 <th>TOB</th>
@@ -280,33 +293,35 @@
 </div>
 
 <div class="pagination">
-    <button id="prevBtn" onclick="prevPage()">Previous</button>
-    <span id="pageNum">Page 1</span>
-    <button id="nextBtn" onclick="nextPage()">Next</button>
+    <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
+    <button id="nextBtn" onclick="nextPage()" disabled>Next</button>
+</div>
+
+<div style="text-align: center; margin: 10px 0;">
     <button id="showAllBtn" onclick="toggleShowAll()">Show All</button>
+</div>
+
+<div class="footer">
+    <h4>&copy; 2024 LRS Philippines Official. All rights reserved.</h4>
 </div>
 
 <script>
     const csvUrl = 'https://raw.githubusercontent.com/David-Monreal/lrsphilippinesofficial/main/winner.csv'; // Updated CSV URL
-    let winnersData = []; 
-    let currentPage = 1; 
+    let winnersData = [];
+    let currentPage = 1;
     const rowsPerPage = 10; 
-    let showAll = false;
+    let showAll = false; 
 
     function loadCSV() {
-        fetch(csvUrl)
-            .then(response => response.text())
-            .then(data => {
-                Papa.parse(data, {
-                    header: true,
-                    skipEmptyLines: true,
-                    complete: function(results) {
-                        winnersData = results.data;
-                        winnersData.sort((a, b) => new Date(b.DATE) - new Date(a.DATE)); // Sort from latest to oldest
-                        displayData();
-                    }
-                });
-            });
+        Papa.parse(csvUrl, {
+            download: true,
+            header: true,
+            complete: function(results) {
+                winnersData = results.data;
+                winnersData.sort((a, b) => new Date(b.DATE) - new Date(a.DATE)); // Sort by date
+                displayData();
+            }
+        });
     }
 
     function displayData() {
@@ -320,7 +335,7 @@
             const row = `<tr>
                 <td>${winner.BETTOR}</td>
                 <td>${winner.COMBINATION}</td>
-                <td>${winner.BET_AMOUNT}</td>
+                <td>${winner.BET}</td>
                 <td>${winner.PRIZE}</td>
                 <td>${winner.DRAW}</td>
                 <td>${winner.TOB}</td>
@@ -332,10 +347,19 @@
             tbody.innerHTML += row;
         });
 
-        document.getElementById('pageNum').textContent = `Page ${currentPage}`;
-        document.getElementById('prevBtn').style.display = currentPage === 1 ? 'none' : 'inline';
-        document.getElementById('nextBtn').style.display = (currentPage * rowsPerPage >= winnersData.length || showAll) ? 'none' : 'inline';
+        // Previous button logic
+        document.getElementById('prevBtn').disabled = currentPage === 1;
+
+        // Next button logic
+        document.getElementById('nextBtn').disabled = (currentPage * rowsPerPage >= winnersData.length && !showAll);
+
         document.getElementById('showAllBtn').textContent = showAll ? 'Show Less' : 'Show All';
+
+        if (showAll) {
+            tbody.parentElement.classList.add('scrollable'); // Add scroll only when showing all
+        } else {
+            tbody.parentElement.classList.remove('scrollable');
+        }
     }
 
     function toggleShowAll() {
@@ -360,10 +384,6 @@
 
     loadCSV();
 </script>
-
-<div class="footer">
-    <h4>&copy; 2024 LRS Philippines Official. All rights reserved.</h4>
-</div>
 
 </body>
 </html>
