@@ -330,6 +330,22 @@
 
         // Add event listener to the search input for real-time filtering
         document.getElementById('search').addEventListener('input', filterTable);
+
+// Nagivation Menu
+var navLinks = document.getElementById("navLinks");
+var menuBtn = document.getElementById("menuBtn");
+
+function toggleMenu() {
+    // Toggle the menu visibility and the menu button
+    if (navLinks.style.right === "0px") {
+        navLinks.style.right = "-200px";  // Hide menu
+        menuBtn.style.display = "block";  // Show menu button
+    } else {
+        navLinks.style.right = "0";  // Show menu
+        menuBtn.style.display = "none";  // Hide menu button
+    }
+}
+</script>
     </script>
 </body>
 </html>
