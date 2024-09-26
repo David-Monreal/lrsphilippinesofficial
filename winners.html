@@ -339,43 +339,43 @@ th {
         });
     }
 
-    function displayData() {
-        const tbody = document.querySelector('#winners-table tbody');
-        tbody.innerHTML = ''; // Clear existing data
-        const startIdx = showAll ? 0 : (currentPage - 1) * rowsPerPage;
-        const endIdx = showAll ? winnersData.length : currentPage * rowsPerPage;
-        const paginatedData = winnersData.slice(startIdx, endIdx);
+    function displayData(dataToDisplay = winnersData) {
+    const tbody = document.querySelector('#winners-table tbody');
+    tbody.innerHTML = ''; // Clear existing data
+    const startIdx = (currentPage - 1) * rowsPerPage;
+    const endIdx = currentPage * rowsPerPage;
+    const paginatedData = dataToDisplay.slice(startIdx, endIdx);
 
-        paginatedData.forEach(winner => {
-            const row = `<tr>
-                <td>${winner.BETTOR}</td>
-                <td>${winner.COMBINATION}</td>
-                <td>${winner.BET}</td>
-                <td>${winner.PRIZE}</td>
-                <td>${winner.DRAW}</td>
-                <td>${winner.TOB}</td>
-                <td>${new Date(winner.DATE).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
-                <td>${winner.TEAM}</td>
-                <td>${winner.AGENT}</td>
-                <td>${winner.TIME}</td>
-            </tr>`;
-            tbody.innerHTML += row;
-        });
+    paginatedData.forEach(winner => {
+        const row = `<tr>
+            <td>${winner.BETTOR}</td>
+            <td>${winner.COMBINATION}</td>
+            <td>${winner.BET}</td>
+            <td>${winner.PRIZE}</td>
+            <td>${winner.DRAW}</td>
+            <td>${winner.TOB}</td>
+            <td>${new Date(winner.DATE).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
+            <td>${winner.TEAM}</td>
+            <td>${winner.AGENT}</td>
+            <td>${winner.TIME}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
 
         // Previous button logic
         document.getElementById('prevBtn').disabled = currentPage === 1;
 
         // Next button logic
-        document.getElementById('nextBtn').disabled = (currentPage * rowsPerPage >= winnersData.length && !showAll);
+        document.getElementById('nextBtn').disabled = (currentPage * rowsPerPage >= dataToDisplay.length && dataToDisplay.length > rowsPerPage);
 
-        document.getElementById('showAllBtn').textContent = showAll ? 'Show Less' : 'Show All';
+         document.getElementById('showAllBtn').textContent = showAll ? 'Show Less' : 'Show All';
 
         if (showAll) {
-            tbody.parentElement.classList.add('scrollable'); // Add scroll only when showing all
-        } else {
-            tbody.parentElement.classList.remove('scrollable');
-        }
+        tbody.parentElement.classList.add('scrollable'); // Add scroll only when showing all
+    } else {
+        tbody.parentElement.classList.remove('scrollable');
     }
+}
 
     function toggleShowAll() {
         showAll = !showAll;
@@ -420,18 +420,23 @@ document.getElementById('search').addEventListener('input', filterTable);
 
 function filterTable() {
     const searchTerm = document.getElementById('search').value.toLowerCase();
-    const filteredData = winnersData.filter(winner => {
-        return Object.values(winner).some(value => 
-            value.toString().toLowerCase().includes(searchTerm)
-        );
-    });
+    
+    if (searchTerm) {
+        const filteredData = winnersData.filter(winner => {
+            return Object.values(winner).some(value => 
+                value.toString().toLowerCase().includes(searchTerm)
+            );
+        });
 
-    if (filteredData.length === 0) {
-        document.querySelector('#winners-table tbody').innerHTML = '<tr><td colspan="10">No data available</td></tr>';
+        if (filteredData.length === 0) {
+            document.querySelector('#winners-table tbody').innerHTML = '<tr><td colspan="10">No data available</td></tr>';
+        } else {
+            displayData(filteredData); // Show all filtered data
+        }
     } else {
-        currentPage = 1; // Reset to first page on search
-        winnersData = filteredData; // Update winnersData to the filtered data
-        displayData();
+        // Reset to original winnersData and show only 10 rows
+        currentPage = 1; // Reset to first page
+        displayData(); // Show original data
     }
 }
 </script>
