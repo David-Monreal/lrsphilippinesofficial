@@ -199,9 +199,6 @@
             text-align: center;
         }
     </style>
-
-<!-- PapaParse Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
 </head>
 
 <body>
@@ -225,113 +222,7 @@
     </header>
 </section>
 
-    <h1 style="text-align: center;">List of Winners</h1>
-    <!-- Search Input -->
-    <input type="text" id="search" placeholder="Search Winner by Name, Team, or Agent...">
-
-    <table id="winners-table">
-        <thead>
-            <tr>
-                <th>BETTOR</th>
-                <th>COMBINATION</th>
-                <th>BET AMOUNT</th>
-                <th>PRIZE</th>
-                <th>DRAW</th>
-                <th>TOB</th>
-                <th>DATE</th>
-                <th>TEAM</th>
-                <th>AGENT</th>
-                <th>TIME</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data will be inserted here -->
-        </tbody>
-    </table>
-
     <script>
-        // URL of the CSV file hosted on GitHub
-        const csvUrl = 'winners.csv';
-        let winnersData = []; // To store all the winners' data
-
-        // Function to load and parse the CSV file
-        function loadCSV() {
-            fetch(csvUrl)
-                .then(response => response.text())
-                .then(data => {
-                    // Parse the CSV data using PapaParse
-                    Papa.parse(data, {
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: function(results) {
-                            winnersData = sortWinnersByDate(results.data);
-                            displayWinners(winnersData);
-                        }
-                    });
-                })
-                .catch(error => console.error('Error fetching CSV file:', error));
-        }
-
-        // Function to sort winners by date from latest to oldest
-        function sortWinnersByDate(winners) {
-            return winners.sort((a, b) => {
-                const dateA = new Date(a.Date);
-                const dateB = new Date(b.Date);
-                return dateB - dateA;
-            });
-        }
-
-        // Function to format date as MM DD, YYYY
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
-            return date.toLocaleDateString('en-US', options);
-        }
-
-        // Function to display winners data in the table
-        function displayWinners(winners) {
-            const tableBody = document.getElementById('winners-table').querySelector('tbody');
-            tableBody.innerHTML = ''; // Clear any existing rows
-            winners.forEach(winner => {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${winner.BETTOR}</td>
-                    <td>${winner.COMBINATION}</td>
-                    <td>${winner.BET AMOUNT}</td>
-                    <td>${winner.PRIZE}</td>
-                    <td>${winner.TOB}</td>
-                    <td>${winner.TEAM}</td>
-                    <td>${winner.AGENT}</td>
-                    <td>${winner.DRAW}</td>
-                    <td>${formatDate(winner.DATE)}</td>
-                    <td>${winner.TIME}</td>
-
-                `;
-                tableBody.appendChild(row);
-            });
-        }
-
-        // Function to filter the table based on search input
-        function filterTable() {
-            const query = document.getElementById('search').value.toLowerCase();
-            const filteredData = winnersData.filter(winner => {
-                return (
-                    winner.Name.toLowerCase().includes(query) ||
-                    winner.Prize.toLowerCase().includes(query) ||
-                    formatDate(winner.Date).toLowerCase().includes(query) ||
-                    winner.Game.toLowerCase().includes(query)
-                );
-            });
-            displayWinners(filteredData);
-        }
-
-        // Load CSV data when the page is loaded
-        document.addEventListener('DOMContentLoaded', loadCSV);
-
-        // Add event listener to the search input for real-time filtering
-        document.getElementById('search').addEventListener('input', filterTable);
-
-// Nagivation Menu
 var navLinks = document.getElementById("navLinks");
 var menuBtn = document.getElementById("menuBtn");
 
