@@ -10,49 +10,159 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-            box-sizing: border-box;
-        }
-        header {
-            width: 100vw; 
-            height: 50vh; 
-            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herowinners.jpg);
-            background-position: center; 
-            background-size: cover; 
-            position: relative;
-            z-index: 1;
-        }
-        nav {
-            display: flex;
-            padding: 10px 6%;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            top: 0;
-            left: 0;
-            background: transparent;
-            z-index: 10;
-        }
-        nav img {
-            width: 150px;
-        }
-        .nav-links {
-            flex: 1;
-            text-align: right;
-        }
-        .nav-links ul li {
-            list-style: none;
-            display: inline-block;
-            padding: 8px 12px;
-            position: relative;
-        }
-        .nav-links ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 13px;
+       * {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
+
+.header {
+    min-height: 50vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herowinners.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    padding: 10px 6%;
+    justify-content: space-between;
+    align-items: center;
+     /* position: fixed; */ /* Remove or comment out this line */
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: transparent;
+    z-index: 10;
+}
+
+nav img {
+    width: 150px;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
+.text-box {
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; 
+}
+
+.text-box h1 {
+    font-size: 62px;
+}
+
+.text-box p {
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: white;
+}
+
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.hero-btn:hover {
+    border: 1px solid blue;
+    background: blue;
+    transition: 0.5s;
+}
+
+nav .fa {
+    display: none;
+}
+
+/* Media Queries for Mobile */
+@media(max-width: 700px) {
+    .text-box h1 {
+        font-size: 20px;
+    }
+
+    .nav-links ul li {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
+        height: 100vh;
+        width: 200px;
+        top: 0;
+        right: -200px;
+        text-align: left;
+        z-index: 999;
+        transition: 0.5s;
+    }
+
+    nav .fa {
+        display: block;
+        color: white;
+        margin: 10px;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .nav-links ul {
+        padding: 30px;
+    }
+
+    .header {
+        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herowinnersm.jpg); /* Mobile-optimized image */
+        background-position: top;
+        background-size: cover;
+    }
+}
+
+/*------ Table ------*/
         }
         h1 {
             text-align: center;
@@ -62,33 +172,105 @@
             margin: 20px auto;
             width: 90%;
             overflow-x: auto; 
+ 	    max-width: 1000px; /* Set a maximum width for larger screens */
+  	    display: flex; /* Optional: Use flexbox for alignment */
+   	    justify-content: center; /* Center the table horizontally */
         }
         table {
             width: 100%;
             border-collapse: collapse;
             font-family: Arial, sans-serif;
             margin-bottom: 20px;
+	    table-layout: fixed;
         }
         th, td {
             padding: 10px;
             text-align: center;
             border: 1px solid #ddd;
+	    word-wrap: break-word;
         }
         th {
             background-color: #f4f4f4;
             position: sticky;
             top: 0;
             z-index: 1; 
+
+/* Fixed widths for each column in pixels */
+th:nth-child(1), td:nth-child(1) { /* BETTOR column */
+    width: 200px; 
+}
+th:nth-child(2), td:nth-child(2) { /* COMBINATION column */
+    width: 150px; 
+}
+th:nth-child(3), td:nth-child(3) { /* BET column */
+    width: 30px; 
+}
+th:nth-child(4), td:nth-child(4) { /* PRIZE column */
+    width: 150px;
+}
+th:nth-child(5), td:nth-child(5) { /* DRAW column */
+    width: 70px; 
+}
+th:nth-child(6), td:nth-child(6) { /* TOB column */
+    width: 100px;
+}
+th:nth-child(7), td:nth-child(7) { /* TEAM column */
+    width: 120px; 
+}
+th:nth-child(8), td:nth-child(8) { /* AGENT column */
+    width: 120px; 
+}
+th:nth-child(9), td:nth-child(9) { /* TIME column */
+    width: 50px; 
+}
+
         }
         #search {
             display: block;
             margin: 20px auto;
-            width: 60%;
+            width: 500px;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
+@media (max-width: 768px) {
+    table {
+        font-size: 8px; /* Adjust this value as needed */
+    }
+    th, td {
+        padding: 8px; /* Adjust padding for mobile view */
+    }
+th:nth-child(1), td:nth-child(1) { /* BETTOR column */
+    width: 152px; 
+}
+th:nth-child(2), td:nth-child(2) { /* COMBINATION column */
+    width: 114px; 
+}
+th:nth-child(3), td:nth-child(3) { /* BET column */
+    width: 23px; 
+}
+th:nth-child(4), td:nth-child(4) { /* PRIZE column */
+    width: 114px; 
+}
+th:nth-child(5), td:nth-child(5) { /* DRAW column */
+    width: 53px; 
+}
+th:nth-child(6), td:nth-child(6) { /* TOB column */
+    width: 76px; 
+}
+th:nth-child(7), td:nth-child(7) { /* TEAM column */
+    width: 91px; 
+}
+th:nth-child(8), td:nth-child(8) { /* AGENT column */
+    width: 91px; 
+}
+th:nth-child(9), td:nth-child(9) { /* TIME column */
+    width: 38px; 
+}
+
+/*------ Footer ------*/
         footer {
             background: #0033cc;
             color: #fff;
@@ -127,7 +309,7 @@
 
 <h1>List of Winners</h1>
 <!-- Search Input -->
-<input type="text" id="search" placeholder="Search Winner by Name, Team, or Agent...">
+<input type="text" id="search" placeholder="Search Winner">
 
 <div class="table-container">
     <div id="winners-table">
@@ -176,7 +358,7 @@
         table.innerHTML = `<thead>
             <tr>
                 <th>BETTOR</th>
-                <th>COMBINATION</th>
+                <th>COMBI</th>
                 <th>BET</th>
                 <th>PRIZE</th>
                 <th>DRAW</th>
@@ -229,7 +411,7 @@ function filterTable() {
     });
 
     if (filteredData.length) {
-        const tableHeader = document.createElement('h2');
+        const tableHeader = document.createElement('h4');
         tableHeader.textContent = 'Winners';
         tbody.appendChild(tableHeader);
 
@@ -238,7 +420,7 @@ function filterTable() {
             <tr>
                 <th>DATE</th>
                 <th>BETTOR</th>
-                <th>COMBINATION</th>
+                <th>COMBI</th>
                 <th>BET</th>
                 <th>PRIZE</th>
                 <th>DRAW</th>
@@ -276,21 +458,20 @@ function filterTable() {
 
     loadCSV();
 
-    // Menu Button Function   
-    var navLinks = document.getElementById("navLinks");
-    var menuBtn = document.getElementById("menuBtn");
+<!------JavaScript for Toggle Menu------>
+var navLinks = document.getElementById("navLinks");
+var menuBtn = document.getElementById("menuBtn");
 
-    function toggleMenu() {
-        if (navLinks.style.right === "0px") {
-            navLinks.style.right = "-200px";  // Hide menu
-            menuBtn.style.display = "block";  // Show menu button
-        } else {
-            navLinks.style.right = "0";  // Show menu
-            menuBtn.style.display = "none";  // Hide menu button
-        }
+function toggleMenu() {
+    // Toggle the menu visibility and the menu button
+    if (navLinks.style.right === "0px") {
+        navLinks.style.right = "-200px";  // Hide menu
+        menuBtn.style.display = "block";  // Show menu button
+    } else {
+        navLinks.style.right = "0";  // Show menu
+        menuBtn.style.display = "none";  // Hide menu button
     }
-
-    document.getElementById('search').addEventListener('input', filterTable);
+}
 </script>
 
 </body>
