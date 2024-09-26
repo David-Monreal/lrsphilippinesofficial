@@ -16,7 +16,6 @@
             font-family: "Poppins", sans-serif;
             box-sizing: border-box;
         }
-
         header {
             width: 100vw; 
             height: 50vh; 
@@ -26,7 +25,6 @@
             position: relative;
             z-index: 1;
         }
-
         nav {
             display: flex;
             padding: 10px 6%;
@@ -38,157 +36,50 @@
             background: transparent;
             z-index: 10;
         }
-
         nav img {
             width: 150px;
         }
-
         .nav-links {
             flex: 1;
             text-align: right;
         }
-
         .nav-links ul li {
             list-style: none;
             display: inline-block;
             padding: 8px 12px;
             position: relative;
         }
-
         .nav-links ul li a {
             color: white;
             text-decoration: none;
             font-size: 13px;
         }
-
-        .nav-links ul li::after {
-            content: '';
-            width: 0%;
-            height: 2px;
-            background: blue;
-            display: block;
-            margin: auto;
-            transition: 0.5s;
+        h1 {
+            text-align: center;
+            margin: 20px 0;
         }
-
-        .nav-links ul li:hover::after {
-            width: 100%;
-        }
-
-        .text-box {
-            width: 90%;
-            color: white;
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center; 
-        }
-
-        .text-box h1 {
-            font-size: 62px;
-        }
-
-        .text-box p {
-            margin: 10px 0 40px;
-            font-size: 14px;
-            color: white;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            text-decoration: none;
-            color: white;
-            border: 1px solid white;
-            padding: 12px 34px;
-            font-size: 13px;
-            background: transparent;
-            position: relative;
-            cursor: pointer;
-        }
-
-        .hero-btn:hover {
-            border: 1px solid blue;
-            background: blue;
-            transition: 0.5s;
-        }
-
-        nav .fa {
-            display: none;
-        }
-
-        @media(max-width: 700px) {
-            header {
-                height: 50vh; 
-                background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herowinnersm.jpg); 
-            }
-
-            .text-box h1 {
-                font-size: 20px;
-            }
-
-            .nav-links ul li {
-                display: block;
-            }
-
-            .nav-links {
-                position: absolute;
-                background: rgba(0, 0, 0, 0.9); 
-                height: 100vh;
-                width: 200px;
-                top: 0;
-                right: -200px;
-                text-align: left;
-                z-index: 999;
-                transition: 0.5s;
-            }
-
-            nav .fa {
-                display: block;
-                color: white;
-                margin: 10px;
-                font-size: 22px;
-                cursor: pointer;
-                z-index: 1000;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links ul {
-                padding: 30px;
-            }
-        }
-
-        /*------ table ------*/
-         .table-container {
+        .table-container {
             margin: 20px auto;
-            width: 90%; /* Increased to allow more space for mobile */
-            overflow-x: auto; /* Enables horizontal scroll */
+            width: 90%;
+            overflow-x: auto; 
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
             font-family: Arial, sans-serif;
-            position: relative;
+            margin-bottom: 20px;
         }
-
         th, td {
             padding: 10px;
             text-align: center;
             border: 1px solid #ddd;
-word-wrap: break-word;
         }
-
         th {
             background-color: #f4f4f4;
             position: sticky;
             top: 0;
             z-index: 1; 
         }
-
         #search {
             display: block;
             margin: 20px auto;
@@ -198,31 +89,6 @@ word-wrap: break-word;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 20px 0;
-        }
-
-        .pagination button {
-            padding: 8px 12px;
-            margin: 0 5px;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            transition: background-color 0.3s;
-        }
-
-        .pagination button[disabled] {
-            background-color: #ccc;
-            cursor: not-allowed;
-        }
-
-        /*------ footer ------*/
         footer {
             background: #0033cc;
             color: #fff;
@@ -232,25 +98,6 @@ word-wrap: break-word;
             width: 100%;
             bottom: 0;
         }
-
-        /* Scrollable table for "Show All" */
-        .scrollable {
-            max-height: 60vh;
-            overflow-y: auto;
-        }
-      @media (max-width: 700px) {
-    th, td {
-        font-size: 10px; /* Adjust the font size as needed */
-    }
-}
-
-th {
-    background-color: #f4f4f4;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-      }
     </style>
 
     <!-- PapaParse Library -->
@@ -278,39 +125,14 @@ th {
     </header>
 </section>
 
-<h1 style="text-align: center;">List of Winners</h1>
+<h1>List of Winners</h1>
 <!-- Search Input -->
 <input type="text" id="search" placeholder="Search Winner by Name, Team, or Agent...">
 
 <div class="table-container">
-    <table id="winners-table">
-        <thead>
-            <tr>
-                <th>BETTOR</th>
-                <th>COMBINATION</th>
-                <th>BET</th>
-                <th>PRIZE</th>
-                <th>DRAW</th>
-                <th>TOB</th>
-                <th>DATE</th>
-                <th>TEAM</th>
-                <th>AGENT</th>
-                <th>TIME</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Data will be inserted here -->
-        </tbody>
-    </table>
-</div>
-
-<div class="pagination">
-    <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
-    <button id="nextBtn" onclick="nextPage()" disabled>Next</button>
-</div>
-
-<div style="text-align: center; margin: 10px 0;">
-    <button id="showAllBtn" onclick="toggleShowAll()">Show All</button>
+    <div id="winners-table">
+        <!-- Data will be inserted here -->
+    </div>
 </div>
 
 <div class="footer">
@@ -318,11 +140,8 @@ th {
 </div>
 
 <script>
-    const csvUrl = 'https://raw.githubusercontent.com/David-Monreal/lrsphilippinesofficial/main/winner.csv'; // Updated CSV URL
+    const csvUrl = 'https://raw.githubusercontent.com/David-Monreal/lrsphilippinesofficial/main/winner.csv';
     let winnersData = [];
-    let currentPage = 1;
-    const rowsPerPage = 10; 
-    let showAll = false; 
 
     function loadCSV() {
         Papa.parse(csvUrl, {
@@ -330,118 +149,149 @@ th {
             header: true,
             complete: function(results) {
                 winnersData = results.data;
-                winnersData.sort((a, b) => new Date(b.DATE) - new Date(a.DATE)); // Sort by date
-                displayData();
+                displayWinnersByDate();
             }
         });
     }
 
-    function displayData(dataToDisplay = winnersData) {
-    const tbody = document.querySelector('#winners-table tbody');
-    tbody.innerHTML = ''; // Clear existing data
-    const startIdx = (currentPage - 1) * rowsPerPage;
-    const endIdx = currentPage * rowsPerPage;
-    const paginatedData = dataToDisplay.slice(startIdx, endIdx);
+    function displayWinnersByDate() {
+    const groupedWinners = winnersData.reduce((acc, winner) => {
+        const dateKey = new Date(winner.DATE).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        if (!acc[dateKey]) acc[dateKey] = [];
+        acc[dateKey].push(winner);
+        return acc;
+    }, {});
 
-    paginatedData.forEach(winner => {
-        const row = `<tr>
-            <td>${winner.BETTOR}</td>
-            <td>${winner.COMBINATION}</td>
-            <td>${winner.BET}</td>
-            <td>${winner.PRIZE}</td>
-            <td>${winner.DRAW}</td>
-            <td>${winner.TOB}</td>
-            <td>${new Date(winner.DATE).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</td>
-            <td>${winner.TEAM}</td>
-            <td>${winner.AGENT}</td>
-            <td>${winner.TIME}</td>
-        </tr>`;
-        tbody.innerHTML += row;
+    const sortedDates = Object.keys(groupedWinners).sort((a, b) => new Date(b) - new Date(a));
+
+    const tbody = document.querySelector('#winners-table');
+    tbody.innerHTML = '';
+
+    sortedDates.forEach(date => {
+        const tableHeader = document.createElement('h2');
+        tableHeader.textContent = `${date} Winners`;
+        tbody.appendChild(tableHeader);
+
+        const table = document.createElement('table');
+        table.innerHTML = `<thead>
+            <tr>
+                <th>BETTOR</th>
+                <th>COMBINATION</th>
+                <th>BET</th>
+                <th>PRIZE</th>
+                <th>DRAW</th>
+                <th>TOB</th>
+                <th>TEAM</th>
+                <th>AGENT</th>
+                <th>TIME</th>
+            </tr>
+        </thead><tbody></tbody>`;
+
+        const tbodyForWinners = table.querySelector('tbody');
+
+        // Sort by bettor's name alphabetically
+        const sortedWinners = groupedWinners[date].sort((a, b) => a.BETTOR.localeCompare(b.BETTOR));
+
+        sortedWinners.forEach(winner => {
+            const row = `<tr>
+                <td>${winner.BETTOR}</td>
+                <td>${winner.COMBINATION}</td>
+                <td>${winner.BET}</td>
+                <td>${winner.PRIZE}</td>
+                <td>${winner.DRAW}</td>
+                <td>${winner.TOB}</td>
+                <td>${winner.TEAM}</td>
+                <td>${winner.AGENT}</td>
+                <td>${winner.TIME}</td>
+            </tr>`;
+            tbodyForWinners.innerHTML += row;
+        });
+
+        tbody.appendChild(table);
     });
-
-        // Previous button logic
-        document.getElementById('prevBtn').disabled = currentPage === 1;
-
-        // Next button logic
-        document.getElementById('nextBtn').disabled = (currentPage * rowsPerPage >= dataToDisplay.length && dataToDisplay.length > rowsPerPage);
-
-         document.getElementById('showAllBtn').textContent = showAll ? 'Show Less' : 'Show All';
-
-        if (showAll) {
-        tbody.parentElement.classList.add('scrollable'); // Add scroll only when showing all
-    } else {
-        tbody.parentElement.classList.remove('scrollable');
-    }
 }
-
-    function toggleShowAll() {
-        showAll = !showAll;
-        currentPage = 1; 
-        displayData();
-    }
-
-    function prevPage() {
-        if (currentPage > 1) {
-            currentPage--;
-            displayData();
-        }
-    }
-
-    function nextPage() {
-        if (!showAll && (currentPage * rowsPerPage < winnersData.length)) {
-            currentPage++;
-            displayData();
-        }
-    }
-
-    loadCSV();
-
-
-// Menu Button Function   
-var navLinks = document.getElementById("navLinks");
-var menuBtn = document.getElementById("menuBtn");
-
-function toggleMenu() {
-    // Toggle the menu visibility and the menu button
-    if (navLinks.style.right === "0px") {
-        navLinks.style.right = "-200px";  // Hide menu
-        menuBtn.style.display = "block";  // Show menu button
-    } else {
-        navLinks.style.right = "0";  // Show menu
-        menuBtn.style.display = "none";  // Hide menu button
-    }
-}
-    
-// Filter function
-document.getElementById('search').addEventListener('input', filterTable);
 
 function filterTable() {
     const searchTerm = document.getElementById('search').value.toLowerCase();
     
-    if (searchTerm) {
-        const filteredData = winnersData.filter(winner => {
-            return Object.values(winner).some(value => 
-                value.toString().toLowerCase().includes(searchTerm)
-            );
+    if (searchTerm === '') {
+        displayWinnersByDate(); // Restore the original display
+        return;
+    }
+
+    const tbody = document.querySelector('#winners-table');
+    tbody.innerHTML = '';
+
+    const filteredData = winnersData.filter(winner => {
+        return Object.values(winner).some(value => 
+            value.toString().toLowerCase().includes(searchTerm)
+        );
+    });
+
+    if (filteredData.length) {
+        const tableHeader = document.createElement('h2');
+        tableHeader.textContent = 'Winners';
+        tbody.appendChild(tableHeader);
+
+        const table = document.createElement('table');
+        table.innerHTML = `<thead>
+            <tr>
+                <th>DATE</th>
+                <th>BETTOR</th>
+                <th>COMBINATION</th>
+                <th>BET</th>
+                <th>PRIZE</th>
+                <th>DRAW</th>
+                <th>TOB</th>
+                <th>TEAM</th>
+                <th>AGENT</th>
+                <th>TIME</th>
+            </tr>
+        </thead><tbody></tbody>`;
+
+        const tbodyForFiltered = table.querySelector('tbody');
+
+        // Sort by date from latest to oldest
+        const sortedFilteredData = filteredData.sort((a, b) => new Date(b.DATE) - new Date(a.DATE));
+
+        sortedFilteredData.forEach(winner => {
+            const row = `<tr>
+                <td>${new Date(winner.DATE).toLocaleDateString('en-US')}</td>
+                <td>${winner.BETTOR}</td>
+                <td>${winner.COMBINATION}</td>
+                <td>${winner.BET}</td>
+                <td>${winner.PRIZE}</td>
+                <td>${winner.DRAW}</td>
+                <td>${winner.TOB}</td>
+                <td>${winner.TEAM}</td>
+                <td>${winner.AGENT}</td>
+                <td>${winner.TIME}</td>
+            </tr>`;
+            tbodyForFiltered.innerHTML += row;
         });
 
-        if (filteredData.length === 0) {
-            document.querySelector('#winners-table tbody').innerHTML = '<tr><td colspan="10">No data available</td></tr>';
-        } else {
-            displayData(filteredData); // Show all filtered data
-        }
-    } else {
-        // Reset to original winnersData and show only 10 rows
-        currentPage = 1; // Reset to first page
-        displayData(); // Show original data
+        tbody.appendChild(table);
     }
 }
-</script>
 
-<!------ footer ------>
-  <footer>
-        <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
-    </footer>
+    loadCSV();
+
+    // Menu Button Function   
+    var navLinks = document.getElementById("navLinks");
+    var menuBtn = document.getElementById("menuBtn");
+
+    function toggleMenu() {
+        if (navLinks.style.right === "0px") {
+            navLinks.style.right = "-200px";  // Hide menu
+            menuBtn.style.display = "block";  // Show menu button
+        } else {
+            navLinks.style.right = "0";  // Show menu
+            menuBtn.style.display = "none";  // Hide menu button
+        }
+    }
+
+    document.getElementById('search').addEventListener('input', filterTable);
+</script>
 
 </body>
 </html>
