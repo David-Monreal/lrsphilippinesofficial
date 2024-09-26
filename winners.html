@@ -399,6 +399,8 @@ th {
 
     loadCSV();
 
+
+// Menu Button Function   
 var navLinks = document.getElementById("navLinks");
 var menuBtn = document.getElementById("menuBtn");
 
@@ -412,7 +414,26 @@ function toggleMenu() {
         menuBtn.style.display = "none";  // Hide menu button
     }
 }
-</script>
+    
+// Filter function
+document.getElementById('search').addEventListener('input', filterTable);
+
+function filterTable() {
+    const searchTerm = document.getElementById('search').value.toLowerCase();
+    const filteredData = winnersData.filter(winner => {
+        return Object.values(winner).some(value => 
+            value.toString().toLowerCase().includes(searchTerm)
+        );
+    });
+
+    if (filteredData.length === 0) {
+        document.querySelector('#winners-table tbody').innerHTML = '<tr><td colspan="10">No data available</td></tr>';
+    } else {
+        currentPage = 1; // Reset to first page on search
+        winnersData = filteredData; // Update winnersData to the filtered data
+        displayData();
+    }
+}
 </script>
 
 </body>
