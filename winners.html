@@ -34,17 +34,31 @@ nav {
     padding: 10px 6%;
     justify-content: space-between;
     align-items: center;
-     /* position: fixed; */ /* Remove or comment out this line */
+    position: fixed; 
     width: 100%;
     top: 0;
     left: 0;
-    background: transparent;
+    background: rgba(4, 9, 30, 0.7);
     z-index: 10;
+    transition: opacity 0.3s ease;
 }
 
 nav img {
     width: 150px;
+    transition: opacity 0.3s ease;
 }
+
+        @media(max-width: 700px) {
+            nav img {
+                width: 100px; 
+            }
+            .text-box h1 {
+                font-size: 24px; 
+            }
+            .text-box p {
+                font-size: 14px; 
+            }
+        }
 
 .nav-links {
     flex: 1;
@@ -82,7 +96,7 @@ nav img {
     width: 90%;
     color: white;
     position: absolute;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%,-50%);
     text-align: center; 
@@ -94,7 +108,7 @@ nav img {
 
 .text-box p {
     margin: 10px 0 40px;
-    font-size: 14px;
+    font-size: 16px;
     color: white;
 }
 
@@ -120,147 +134,145 @@ nav .fa {
     display: none;
 }
 
-/* Media Queries for Mobile */
 @media(max-width: 700px) {
-    .text-box h1 {
-        font-size: 20px;
-    }
-
-    .nav-links ul li {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
-        height: 100%;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        z-index: 999;
-        transition: 0.5s;
-    }
-
-    nav .fa {
-        display: block;
-        color: white;
-        margin: 10px;
-        font-size: 22px;
-        cursor: pointer;
-        z-index: 1000;
-    }
-
-    .nav-links ul {
-        padding: 30px;
-    }
-
-    .header {
-        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herowinners.jpg); /* Mobile-optimized image */
-        background-position: top;
-        background-size: cover;
-    }
-}
-
-        /*------ Table ------*/
-        h1 {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .table-container {
-            margin: 20px auto;
-            width: 90%;
-            overflow-x: auto; 
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-            table-layout: auto; /* Allow columns to adjust */
-        }
-        th, td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-        }
-        th {
-            background-color: #f4f4f4;
-            position: sticky;
-            top: 0;
-            z-index: 1; 
-        }
-        /* Adjust column widths for auto sizing */
-        .table-container table th, 
-        .table-container table td {
-            white-space: nowrap; /* Prevent text from wrapping */
-            overflow: hidden; /* Hide overflow */
-            text-overflow: ellipsis; /* Add ellipsis for overflowed text */
-        }
-
-        /* Specific adjustments for the columns */
-        th:nth-child(1), td:nth-child(1) { /* TEAM column */
-            min-width: 120px; /* Minimum width */
-        }
-        th:nth-child(2), td:nth-child(2) { /* AGENT column */
-            min-width: 120px; /* Minimum width */
-        }
-        th:nth-child(3), td:nth-child(3) { /* BETTOR column */
-            min-width: 150px; /* Minimum width */
-        }
-        th:nth-child(4), td:nth-child(4) { /* COMBINATION column */
-            min-width: 120px; /* Minimum width */
-        }
-        th:nth-child(5), td:nth-child(5) { /* BET column */
-            min-width: 100px; /* Minimum width */
-        }
-        th:nth-child(6), td:nth-child(6) { /* PRIZE column */
-            min-width: 120px; /* Minimum width */
-        }
-        th:nth-child(7), td:nth-child(7) { /* DRAW column */
-            min-width: 100px; /* Minimum width */
-        }
-        th:nth-child(8), td:nth-child(8) { /* TOB column */
-            min-width: 150px; /* Minimum width */
-        }
-        th:nth-child(9), td:nth-child(9) { /* TIME column */
-            min-width: 80px; /* Minimum width */
-        }
-
-        /* Responsive adjustments for mobile */
-        @media (max-width: 768px) {
-            table {
-                font-size: 12px; /* Adjust font size for mobile */
+  header {
+    height: 50vh;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herowinnersm.jpg); 
             }
-            th, td {
-                padding: 8px; /* Adjust padding for mobile view */
+.text-box h1 {
+  font-size: 20px; /* Mobile size */
+            }
+.nav-links ul li {
+  display: block;
+            }
+.nav-links {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  height: 100vh;
+  width: 200px;
+  top: 0;
+  right: -200px;
+  text-align: left;
+  z-index: 999;
+  transition: 0.5s;
+            }
+nav .fa {
+  display: block;
+  color: white;
+  margin: 10px;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 1000;
+            }
+.nav-links.active {
+  right: 0;
+            }
+.nav-links ul {
+  padding: 30px;
             }
         }
 
-        /*------ Search ------*/
-        #search {
-            display: block;
-            margin: 20px auto;
-            width: 60%;
-            padding: 10px;
-            font-size: 16px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+/*------ Table ------*/
+h1 {
+  text-align: center;
+  margin: 20px 0;
+        }
+.table-container {
+  margin: 20px auto;
+  width: 90%;
+  overflow-x: auto; 
+        }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: auto; /* Allow columns to adjust */
+        }
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+        }
+th {
+  background-color: #f4f4f4;
+  position: sticky;
+  top: 0;
+  z-index: 1; 
+        }
+      
+/* Adjust column widths for auto sizing */
+.table-container table th, 
+.table-container table td {
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
         }
 
-        /*------ Footer ------*/
-        footer {
-            background: #0033cc;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+/* Specific adjustments for the columns */
+th:nth-child(1), td:nth-child(1) {
+  min-width: 120px; 
         }
-    </style>
+th:nth-child(2), td:nth-child(2) {
+  min-width: 120px; 
+        }
+th:nth-child(3), td:nth-child(3) {
+  min-width: 150px; 
+        }
+th:nth-child(4), td:nth-child(4) {
+  min-width: 120px;
+        }
+th:nth-child(5), td:nth-child(5) {
+  min-width: 100px; 
+        }
+th:nth-child(6), td:nth-child(6) {
+  min-width: 120px;
+        }
+th:nth-child(7), td:nth-child(7) {
+  min-width: 100px; 
+        }
+th:nth-child(8), td:nth-child(8) {
+  min-width: 150px; 
+        }
+th:nth-child(9), td:nth-child(9) {
+  min-width: 80px; 
+        }
 
-    <!-- PapaParse Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  table {
+    font-size: 12px; /* Adjust font size for mobile */
+            }
+  th, td {
+    padding: 8px; /* Adjust padding for mobile view */
+            }
+        }
+
+/*------ Search ------*/
+#search {
+  display: block;
+  margin: 20px auto;
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+        }
+
+/*------ Footer ------*/
+footer {
+  background: #0033cc;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+        }
+</style>
+
+<!-- PapaParse Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+
 </head>
 
 <body>
@@ -436,17 +448,31 @@ function filterTable() {
 
     // Menu Button Function   
     var navLinks = document.getElementById("navLinks");
-    var menuBtn = document.getElementById("menuBtn");
+var menuBtn = document.getElementById("menuBtn");
 
-    function toggleMenu() {
-        if (navLinks.style.right === "0px") {
-            navLinks.style.right = "-200px";  // Hide menu
-            menuBtn.style.display = "block";  // Show menu button
-        } else {
-            navLinks.style.right = "0";  // Show menu
-            menuBtn.style.display = "none";  // Hide menu button
-        }
+function toggleMenu() {
+    if (navLinks.style.right === "0px") {
+        navLinks.style.right = "-200px";  
+        menuBtn.style.display = "block";  
+    } else {
+        navLinks.style.right = "0";  
+        menuBtn.style.display = "none";  
     }
+}
+
+let lastScrollTop = 0; 
+const logo = document.querySelector('nav img');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        logo.style.opacity = '0'; 
+    } else {
+        logo.style.opacity = '1'; 
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+});
 
     document.getElementById('search').addEventListener('input', filterTable);
 </script>
