@@ -28,19 +28,34 @@
         }
 
         nav {
-            display: flex;
-            padding: 10px 6%;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
+            position: fixed; /* Keep navigation fixed */
             top: 0;
             left: 0;
-            background: transparent;
+            width: 100%;
+            background: rgba(4, 9, 30, 0.7); /* Background for visibility */
             z-index: 10;
+            padding: 10px 6%; /* Padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: opacity 0.3s ease; /* Smooth transition for visibility */
         }
 
         nav img {
-            width: 150px;
+            width: 120px; /* Desktop size */
+            transition: opacity 0.3s ease; /* Smooth transition for visibility */
+        }
+
+        @media(max-width: 700px) {
+            nav img {
+                width: 100px; /* Mobile size */
+            }
+            .text-box h1 {
+                font-size: 24px; /* Mobile size */
+            }
+            .text-box p {
+                font-size: 14px; /* Mobile size */
+            }
         }
 
         .nav-links {
@@ -86,12 +101,12 @@
         }
 
         .text-box h1 {
-            font-size: 62px;
+            font-size: 40px; /* Desktop size */
         }
 
         .text-box p {
             margin: 10px 0 40px;
-            font-size: 14px;
+            font-size: 16px; /* Desktop size */
             color: white;
         }
 
@@ -122,15 +137,12 @@
                 height: 50vh; 
                 background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/heroproofm.jpg); 
             }
-
             .text-box h1 {
-                font-size: 20px;
+                font-size: 24px; /* Mobile size */
             }
-
             .nav-links ul li {
                 display: block;
             }
-
             .nav-links {
                 position: absolute;
                 background: rgba(0, 0, 0, 0.9); 
@@ -142,7 +154,6 @@
                 z-index: 999;
                 transition: 0.5s;
             }
-
             nav .fa {
                 display: block;
                 color: white;
@@ -151,17 +162,15 @@
                 cursor: pointer;
                 z-index: 1000;
             }
-
             .nav-links.active {
                 right: 0;
             }
-
             .nav-links ul {
                 padding: 30px;
             }
         }
         
-/*------ Pictures ------*/
+        /*------ Pictures ------*/
         .pictures {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -186,7 +195,7 @@
         }
 
         .gallery-item {
-            flex: 1 1 calc(20% - 20px); /* 20% width for 5 items in a row on desktop */
+            flex: 1 1 calc(20% - 20px);
             max-width: calc(20% - 20px);
             cursor: pointer;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -196,20 +205,20 @@
 
         .gallery-item img {
             width: 100%;
-            height: auto; /* Maintain aspect ratio */
+            height: auto;
             display: block;
         }
 
         @media (max-width: 768px) {
             .gallery-item {
-                flex: 1 1 calc(33.33% - 20px); /* 33.33% width for 3 items in a row on mobile */
+                flex: 1 1 calc(33.33% - 20px);
                 max-width: calc(33.33% - 20px);
             }
         }
 
         /* Lightbox Styles */
         .lightbox {
-            display: none; /* Hidden by default */
+            display: none; 
             position: fixed;
             top: 0;
             left: 0;
@@ -223,7 +232,7 @@
 
         .lightbox img {
             max-width: 90%;
-            max-height: 90%; /* Ensure the image does not overflow */
+            max-height: 90%;
             margin: auto;
         }
 
@@ -253,8 +262,7 @@
             right: 20px;
         }
         
-/*------ Footer ------*/
-
+        /*------ Footer ------*/
         .footer {
             width: 100%;
             text-align: center;
@@ -328,23 +336,35 @@
     <span class="next" onclick="changePhoto(1)">&#10095;</span>
 </div>
 
-<!------JavaScript for Toggle Menu------>
 <script>
 var navLinks = document.getElementById("navLinks");
 var menuBtn = document.getElementById("menuBtn");
 
 function toggleMenu() {
-    // Toggle the menu visibility and the menu button
     if (navLinks.style.right === "0px") {
-        navLinks.style.right = "-200px";  // Hide menu
-        menuBtn.style.display = "block";  // Show menu button
+        navLinks.style.right = "-200px";  
+        menuBtn.style.display = "block";  
     } else {
-        navLinks.style.right = "0";  // Show menu
-        menuBtn.style.display = "none";  // Hide menu button
+        navLinks.style.right = "0";  
+        menuBtn.style.display = "none";  
     }
 }
 
-// JavaScript for Lightbox Functionality
+let lastScrollTop = 0; 
+const logo = document.querySelector('nav img');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        logo.style.opacity = '0'; 
+    } else {
+        logo.style.opacity = '1'; 
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+});
+
+// Lightbox Functionality
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightbox-img');
 const images = document.querySelectorAll('.gallery-item img');
@@ -383,10 +403,10 @@ lightbox.addEventListener('touchmove', (e) => {
     let moveX = e.touches[0].clientX;
     let diffX = startX - moveX;
 
-    if (diffX > 50) { // Swipe left
+    if (diffX > 50) { 
         changePhoto(1);
         startX = 0;
-    } else if (diffX < -50) { // Swipe right
+    } else if (diffX < -50) { 
         changePhoto(-1);
         startX = 0;
     }
@@ -397,10 +417,9 @@ lightbox.addEventListener('touchend', () => {
 });
 </script>
 
-<!------ footer ------>
-  <footer>
-        <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
-    </footer>
+<footer>
+    <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
+</footer>
 
 </body>
 </html>
