@@ -35,17 +35,31 @@ nav {
     padding: 10px 6%;
     justify-content: space-between;
     align-items: center;
-     /* position: fixed; */ /* Remove or comment out this line */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    background: transparent;
+    background: rgba(4, 9, 30, 0.7);
     z-index: 10;
+    transition: opacity 0.3s ease;
 }
 
 nav img {
     width: 150px;
+    transition: opacity 0.3s ease;
 }
+
+@media(max-width: 700px) {
+            nav img {
+                width: 100px;
+            }
+            .text-box h1 {
+                font-size: 24px;
+            }
+            .text-box p {
+                font-size: 14px;
+            }
+        }
 
 .nav-links {
     flex: 1;
@@ -123,45 +137,42 @@ nav .fa {
 
 /* Media Queries for Mobile */
 @media(max-width: 700px) {
-    .text-box h1 {
-        font-size: 20px;
-    }
-
-    .nav-links ul li {
-        display: block;
-    }
-
-    .nav-links {
-        position: absolute;
-        background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
-        height: 100vh;
-        width: 200px;
-        top: 0;
-        right: -200px;
-        text-align: left;
-        z-index: 999;
-        transition: 0.5s;
-    }
-
-    nav .fa {
-        display: block;
-        color: white;
-        margin: 10px;
-        font-size: 22px;
-        cursor: pointer;
-        z-index: 1000;
-    }
-
-    .nav-links ul {
-        padding: 30px;
-    }
-
-    .header {
-        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/bannerheromobile.jpg); /* Mobile-optimized image */
-        background-position: top;
-        background-size: cover;
-    }
-}
+            header {
+                height: 100vh; 
+                background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/bannerherom.jpg); 
+            }
+            .text-box h1 {
+                font-size: 20px; 
+            }
+            .nav-links ul li {
+                display: block;
+            }
+            .nav-links {
+                position: absolute;
+                background: rgba(0, 0, 0, 0.9); 
+                height: 100vh;
+                width: 200px;
+                top: 0;
+                right: -200px;
+                text-align: left;
+                z-index: 999;
+                transition: 0.5s;
+            }
+            nav .fa {
+                display: block;
+                color: white;
+                margin: 10px;
+                font-size: 22px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links ul {
+                padding: 30px;
+            }
+        }
 
 
 /*------ Games ------*/
@@ -448,15 +459,28 @@ var navLinks = document.getElementById("navLinks");
 var menuBtn = document.getElementById("menuBtn");
 
 function toggleMenu() {
-    // Toggle the menu visibility and the menu button
     if (navLinks.style.right === "0px") {
-        navLinks.style.right = "-200px";  // Hide menu
-        menuBtn.style.display = "block";  // Show menu button
+        navLinks.style.right = "-200px";  
+        menuBtn.style.display = "block";  
     } else {
-        navLinks.style.right = "0";  // Show menu
-        menuBtn.style.display = "none";  // Hide menu button
+        navLinks.style.right = "0";  
+        menuBtn.style.display = "none";  
     }
 }
+
+let lastScrollTop = 0; 
+const logo = document.querySelector('nav img');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        logo.style.opacity = '0'; 
+    } else {
+        logo.style.opacity = '1'; 
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+});
 </script>
 
 </body>
