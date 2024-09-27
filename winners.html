@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <style>
-       * {
+* {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
@@ -18,7 +18,7 @@
 }
 
 .header {
-    min-height: 50vh;
+    min-height: 100vh;
     width: 100%;
     background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herowinners.jpg);
     background-position: center;
@@ -133,7 +133,7 @@ nav .fa {
     .nav-links {
         position: absolute;
         background: rgba(0, 0, 0, 0.9); /* Darkened background for mobile menu */
-        height: 100vh;
+        height: 100%;
         width: 200px;
         top: 0;
         right: -200px;
@@ -156,14 +156,13 @@ nav .fa {
     }
 
     .header {
-        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herowinnersm.jpg); /* Mobile-optimized image */
+        background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herowinners.jpg); /* Mobile-optimized image */
         background-position: top;
         background-size: cover;
     }
 }
 
-/*------ Table ------*/
-        }
+        /*------ Table ------*/
         h1 {
             text-align: center;
             margin: 20px 0;
@@ -172,105 +171,83 @@ nav .fa {
             margin: 20px auto;
             width: 90%;
             overflow-x: auto; 
- 	    max-width: 1000px; /* Set a maximum width for larger screens */
-  	    display: flex; /* Optional: Use flexbox for alignment */
-   	    justify-content: center; /* Center the table horizontally */
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            font-family: Arial, sans-serif;
             margin-bottom: 20px;
-	    table-layout: fixed;
+            table-layout: auto; /* Allow columns to adjust */
         }
         th, td {
             padding: 10px;
             text-align: center;
             border: 1px solid #ddd;
-	    word-wrap: break-word;
         }
         th {
             background-color: #f4f4f4;
             position: sticky;
             top: 0;
             z-index: 1; 
-
-/* Fixed widths for each column in pixels */
-th:nth-child(1), td:nth-child(1) { /* BETTOR column */
-    width: 200px; 
-}
-th:nth-child(2), td:nth-child(2) { /* COMBINATION column */
-    width: 150px; 
-}
-th:nth-child(3), td:nth-child(3) { /* BET column */
-    width: 30px; 
-}
-th:nth-child(4), td:nth-child(4) { /* PRIZE column */
-    width: 150px;
-}
-th:nth-child(5), td:nth-child(5) { /* DRAW column */
-    width: 70px; 
-}
-th:nth-child(6), td:nth-child(6) { /* TOB column */
-    width: 100px;
-}
-th:nth-child(7), td:nth-child(7) { /* TEAM column */
-    width: 120px; 
-}
-th:nth-child(8), td:nth-child(8) { /* AGENT column */
-    width: 120px; 
-}
-th:nth-child(9), td:nth-child(9) { /* TIME column */
-    width: 50px; 
-}
-
         }
+        /* Adjust column widths for auto sizing */
+        .table-container table th, 
+        .table-container table td {
+            white-space: nowrap; /* Prevent text from wrapping */
+            overflow: hidden; /* Hide overflow */
+            text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+        }
+
+        /* Specific adjustments for the columns */
+        th:nth-child(1), td:nth-child(1) { /* TEAM column */
+            min-width: 120px; /* Minimum width */
+        }
+        th:nth-child(2), td:nth-child(2) { /* AGENT column */
+            min-width: 120px; /* Minimum width */
+        }
+        th:nth-child(3), td:nth-child(3) { /* BETTOR column */
+            min-width: 150px; /* Minimum width */
+        }
+        th:nth-child(4), td:nth-child(4) { /* COMBINATION column */
+            min-width: 120px; /* Minimum width */
+        }
+        th:nth-child(5), td:nth-child(5) { /* BET column */
+            min-width: 100px; /* Minimum width */
+        }
+        th:nth-child(6), td:nth-child(6) { /* PRIZE column */
+            min-width: 120px; /* Minimum width */
+        }
+        th:nth-child(7), td:nth-child(7) { /* DRAW column */
+            min-width: 100px; /* Minimum width */
+        }
+        th:nth-child(8), td:nth-child(8) { /* TOB column */
+            min-width: 150px; /* Minimum width */
+        }
+        th:nth-child(9), td:nth-child(9) { /* TIME column */
+            min-width: 80px; /* Minimum width */
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            table {
+                font-size: 12px; /* Adjust font size for mobile */
+            }
+            th, td {
+                padding: 8px; /* Adjust padding for mobile view */
+            }
+        }
+
+        /*------ Search ------*/
         #search {
             display: block;
             margin: 20px auto;
-            width: 500px;
+            width: 60%;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 4px;
         }
 
-@media (max-width: 768px) {
-    table {
-        font-size: 8px; /* Adjust this value as needed */
-    }
-    th, td {
-        padding: 8px; /* Adjust padding for mobile view */
-    }
-th:nth-child(1), td:nth-child(1) { /* BETTOR column */
-    width: 152px; 
-}
-th:nth-child(2), td:nth-child(2) { /* COMBINATION column */
-    width: 114px; 
-}
-th:nth-child(3), td:nth-child(3) { /* BET column */
-    width: 23px; 
-}
-th:nth-child(4), td:nth-child(4) { /* PRIZE column */
-    width: 114px; 
-}
-th:nth-child(5), td:nth-child(5) { /* DRAW column */
-    width: 53px; 
-}
-th:nth-child(6), td:nth-child(6) { /* TOB column */
-    width: 76px; 
-}
-th:nth-child(7), td:nth-child(7) { /* TEAM column */
-    width: 91px; 
-}
-th:nth-child(8), td:nth-child(8) { /* AGENT column */
-    width: 91px; 
-}
-th:nth-child(9), td:nth-child(9) { /* TIME column */
-    width: 38px; 
-}
-
-/*------ Footer ------*/
+        /*------ Footer ------*/
         footer {
             background: #0033cc;
             color: #fff;
@@ -307,7 +284,6 @@ th:nth-child(9), td:nth-child(9) { /* TIME column */
     </header>
 </section>
 
-<h1>List of Winners</h1>
 <!-- Search Input -->
 <input type="text" id="search" placeholder="Search Winner">
 
@@ -357,14 +333,14 @@ th:nth-child(9), td:nth-child(9) { /* TIME column */
         const table = document.createElement('table');
         table.innerHTML = `<thead>
             <tr>
+                <th>TEAM</th>
+                <th>AGENT</th>
                 <th>BETTOR</th>
                 <th>COMBI</th>
                 <th>BET</th>
                 <th>PRIZE</th>
                 <th>DRAW</th>
                 <th>TOB</th>
-                <th>TEAM</th>
-                <th>AGENT</th>
                 <th>TIME</th>
             </tr>
         </thead><tbody></tbody>`;
@@ -372,18 +348,18 @@ th:nth-child(9), td:nth-child(9) { /* TIME column */
         const tbodyForWinners = table.querySelector('tbody');
 
         // Sort by bettor's name alphabetically
-        const sortedWinners = groupedWinners[date].sort((a, b) => a.BETTOR.localeCompare(b.BETTOR));
+        const sortedWinners = groupedWinners[date].sort((a, b) => a.TEAM.localeCompare(b.TEAM));
 
         sortedWinners.forEach(winner => {
             const row = `<tr>
+                <td>${winner.TEAM}</td>
+                <td>${winner.AGENT}</td>
                 <td>${winner.BETTOR}</td>
                 <td>${winner.COMBINATION}</td>
                 <td>${winner.BET}</td>
                 <td>${winner.PRIZE}</td>
                 <td>${winner.DRAW}</td>
                 <td>${winner.TOB}</td>
-                <td>${winner.TEAM}</td>
-                <td>${winner.AGENT}</td>
                 <td>${winner.TIME}</td>
             </tr>`;
             tbodyForWinners.innerHTML += row;
@@ -411,7 +387,7 @@ function filterTable() {
     });
 
     if (filteredData.length) {
-        const tableHeader = document.createElement('h4');
+        const tableHeader = document.createElement('h2');
         tableHeader.textContent = 'Winners';
         tbody.appendChild(tableHeader);
 
@@ -419,14 +395,14 @@ function filterTable() {
         table.innerHTML = `<thead>
             <tr>
                 <th>DATE</th>
+                <th>TEAM</th>
+                <th>AGENT</th>
                 <th>BETTOR</th>
                 <th>COMBI</th>
                 <th>BET</th>
                 <th>PRIZE</th>
                 <th>DRAW</th>
                 <th>TOB</th>
-                <th>TEAM</th>
-                <th>AGENT</th>
                 <th>TIME</th>
             </tr>
         </thead><tbody></tbody>`;
@@ -439,14 +415,14 @@ function filterTable() {
         sortedFilteredData.forEach(winner => {
             const row = `<tr>
                 <td>${new Date(winner.DATE).toLocaleDateString('en-US')}</td>
+                <td>${winner.TEAM}</td>
+                <td>${winner.AGENT}</td>
                 <td>${winner.BETTOR}</td>
                 <td>${winner.COMBINATION}</td>
                 <td>${winner.BET}</td>
                 <td>${winner.PRIZE}</td>
                 <td>${winner.DRAW}</td>
                 <td>${winner.TOB}</td>
-                <td>${winner.TEAM}</td>
-                <td>${winner.AGENT}</td>
                 <td>${winner.TIME}</td>
             </tr>`;
             tbodyForFiltered.innerHTML += row;
@@ -458,20 +434,21 @@ function filterTable() {
 
     loadCSV();
 
-<!------JavaScript for Toggle Menu------>
-var navLinks = document.getElementById("navLinks");
-var menuBtn = document.getElementById("menuBtn");
+    // Menu Button Function   
+    var navLinks = document.getElementById("navLinks");
+    var menuBtn = document.getElementById("menuBtn");
 
-function toggleMenu() {
-    // Toggle the menu visibility and the menu button
-    if (navLinks.style.right === "0px") {
-        navLinks.style.right = "-200px";  // Hide menu
-        menuBtn.style.display = "block";  // Show menu button
-    } else {
-        navLinks.style.right = "0";  // Show menu
-        menuBtn.style.display = "none";  // Hide menu button
+    function toggleMenu() {
+        if (navLinks.style.right === "0px") {
+            navLinks.style.right = "-200px";  // Hide menu
+            menuBtn.style.display = "block";  // Show menu button
+        } else {
+            navLinks.style.right = "0";  // Show menu
+            menuBtn.style.display = "none";  // Hide menu button
+        }
     }
-}
+
+    document.getElementById('search').addEventListener('input', filterTable);
 </script>
 
 </body>
