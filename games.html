@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRS Philippines Official - Proof of Winners</title>
+    <link rel="shortcut icon" type="x-icon" href="creatives/lrs.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            box-sizing: border-box;
+        }
+
+        header {
+            width: 100vw; 
+            height: 50vh; 
+            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/heroregames.jpg);
+            background-position: center; 
+            background-size: cover; 
+            position: relative;
+            z-index: 1;
+        }
+
+        nav {
+            position: fixed; /* Keep navigation fixed */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(4, 9, 30, 0.7); /* Background for visibility */
+            z-index: 10;
+            padding: 10px 6%; /* Padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: opacity 0.3s ease; /* Smooth transition for visibility */
+        }
+
+        nav img {
+            width: 120px; /* Desktop size */
+            transition: opacity 0.3s ease; /* Smooth transition for visibility */
+        }
+
+        @media(max-width: 700px) {
+            nav img {
+                width: 100px; /* Mobile size */
+            }
+            .text-box h1 {
+                font-size: 24px; /* Mobile size */
+            }
+            .text-box p {
+                font-size: 14px; /* Mobile size */
+            }
+        }
+
+        .nav-links {
+            flex: 1;
+            text-align: right;
+        }
+
+        .nav-links ul li {
+            list-style: none;
+            display: inline-block;
+            padding: 8px 12px;
+            position: relative;
+        }
+
+        .nav-links ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .nav-links ul li::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: blue;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+
+        .nav-links ul li:hover::after {
+            width: 100%;
+        }
+
+        .text-box {
+            width: 90%;
+            color: white;
+            position: absolute;
+            top: 70%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center; 
+        }
+
+        .text-box h1 {
+            font-size: 40px; /* Desktop size */
+        }
+
+        .text-box p {
+            margin: 10px 0 40px;
+            font-size: 16px; /* Desktop size */
+            color: white;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            border: 1px solid white;
+            padding: 12px 34px;
+            font-size: 13px;
+            background: transparent;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .hero-btn:hover {
+            border: 1px solid blue;
+            background: blue;
+            transition: 0.5s;
+        }
+
+        nav .fa {
+            display: none;
+        }
+
+        @media(max-width: 700px) {
+            header {
+                height: 50vh; 
+                background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herogamesm.jpg); 
+            }
+            .text-box h1 {
+                font-size: 24px; /* Mobile size */
+            }
+            .nav-links ul li {
+                display: block;
+            }
+            .nav-links {
+                position: absolute;
+                background: rgba(0, 0, 0, 0.9); 
+                height: 100vh;
+                width: 200px;
+                top: 0;
+                right: -200px;
+                text-align: left;
+                z-index: 999;
+                transition: 0.5s;
+            }
+            nav .fa {
+                display: block;
+                color: white;
+                margin: 10px;
+                font-size: 22px;
+                cursor: pointer;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .nav-links ul {
+                padding: 30px;
+            }
+        }
+        
+        /*------ Footer ------*/
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(4, 9, 30, 0.7);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+<section class="header">
+    <header>
+        <nav>
+            <a href="./"><img src="creatives/lrs.png" alt="LRS Logo"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="toggleMenu()"></i>
+                <ul>
+                    <li><a href="./">HOME</a></li>
+                    <li><a href="./games">GAMES</a></li>
+                    <li><a href="./results">RESULT</a></li>
+                    <li><a href="./winners">WINNERS</a></li>
+                    <li><a href="./proof">PROOF OF PAID</a></li>
+                    <li><a href="./contact">CONTACT</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
+        </nav>
+    </header>
+</section>
+
+
+<footer>
+    <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
+</footer>
+
+<!------JavaScript for Toggle Menu------>
+<script>
+var navLinks = document.getElementById("navLinks");
+var menuBtn = document.getElementById("menuBtn");
+
+function toggleMenu() {
+    if (navLinks.style.right === "0px") {
+        navLinks.style.right = "-200px";  
+        menuBtn.style.display = "block";  
+    } else {
+        navLinks.style.right = "0";  
+        menuBtn.style.display = "none";  
+    }
+}
+
+let lastScrollTop = 0; 
+const logo = document.querySelector('nav img');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        logo.style.opacity = '0'; 
+    } else {
+        logo.style.opacity = '1'; 
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+});
+</script>
+
+</body>
+</html>
