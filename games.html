@@ -89,8 +89,7 @@
         .nav-links ul li:hover::after {
             width: 100%;
         }
-
-        .text-box {
+.text-box {
             width: 90%;
             color: white;
             position: absolute;
@@ -169,14 +168,96 @@
                 padding: 30px;
             }
         }
-        
-        /*------ Footer ------*/
-        footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        /*------ games ------*/
+        .game-container {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .game-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            max-width: 300px;
+            cursor: pointer;
             text-align: center;
-            padding: 10px 0;
+            transition: transform 0.3s;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .game-card h3 {
+            background: #0033cc;
+            color: white;
+            padding: 10px;
+            margin: 0;
+        }
+
+        .game-card p {
+            padding: 10px;
+            display: none; /* Hide by default */
+        }
+
+        .expanded {
+            display: none; 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0, 0, 0, 0.8); 
+            z-index: 100; 
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expanded-content {
+            display: flex;
+            max-width: 90%;
+            height: 80%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .expanded img {
+            max-width: 50%; 
+            height: auto; 
+        }
+
+        .description {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 50%;
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none; 
+            border: none; 
+            color: white; 
+            font-size: 24px; 
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
             background-color: rgba(4, 9, 30, 0.7);
             color: white;
         }
@@ -184,60 +265,118 @@
 </head>
 
 <body>
-<section class="header">
-    <header>
-        <nav>
-            <a href="./"><img src="creatives/lrs.png" alt="LRS Logo"></a>
-            <div class="nav-links" id="navLinks">
-                <i class="fa fa-times" onclick="toggleMenu()"></i>
-                <ul>
-                    <li><a href="./">HOME</a></li>
-                    <li><a href="./games">GAMES</a></li>
-                    <li><a href="./results">RESULT</a></li>
-                    <li><a href="./winners">WINNERS</a></li>
-                    <li><a href="./proof">PROOF OF PAID</a></li>
-                    <li><a href="./contact">CONTACT</a></li>
-                </ul>
-            </div>
-            <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
-        </nav>
+ <header>
+    <nav>
+        <a href="./"><img src="creatives/lrs.png" alt="LRS Logo"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="./">HOME</a></li>
+                <li><a href="./games">GAMES</a></li>
+                <li><a href="./results">RESULT</a></li>
+                <li><a href="./winners">WINNERS</a></li>
+                <li><a href="./proof">PROOF OF PAID</a></li>
+                <li><a href="./contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+<div class="text-box">
+        <h1>LRS Philippines Official</h1>
+        <p>Discover Our Lotto Games</p></div>
     </header>
 </section>
+    <main>
+        <div class="game-container">
+            <div class="game-card" onclick="expandImage(this)">
+                <img src="img/45 PRIZE.jpg" alt="6/45 Lotto" data-expanded-src="img/45 EXPANDED.jpg">
+                <h3>6/45 Mega Lotto</h3>
+                <p>Pick 3 numbers from 1 to 45. Win immediately if all three numbers match!</p>
+                <span class="caption">Pumili ng 3 numero mula 1 hanggang 45.</span>
+            </div>
+            <div class="game-card" onclick="expandImage(this)">
+                <img src="img/49 PRIZE.jpg" alt="6/49 Lotto" data-expanded-src="img/49 EXPANDED.jpg">
+                <h3>6/49 Super Lotto</h3>
+                <p>Pick 3 numbers from 1 to 49. Win immediately if all three numbers match!</p>
+                <span class="caption">Pumili ng 3 numero mula 1 hanggang 49.</span>
+            </div>
+            <div class="game-card" onclick="expandImage(this)">
+                <img src="img/55 PRIZE.jpg" alt="6/55 Lotto" data-expanded-src="img/55 EXPANDED.jpg">
+                <h3>6/55 Ultra Lotto</h3>
+                <p>Pick 3 numbers from 1 to 55. Win immediately if all three numbers match!</p>
+                <span class="caption">Pumili ng 3 numero mula 1 hanggang 55.</span>
+            </div>
+            <div class="game-card" onclick="expandImage(this)">
+                <img src="img/58 PRIZE.jpg" alt="6/58 Lotto" data-expanded-src="img/58 EXPANDED.jpg">
+                <h3>6/58 Ultra Lotto</h3>
+                <p>Pick 3 numbers from 1 to 58. Win immediately if all three numbers match!</p>
+                <span class="caption">Pumili ng 3 numero mula 1 hanggang 58.</span>
+            </div>
+            <div class="game-card" onclick="expandImage(this)">
+                <img src="img/2d PRIZE.jpg" alt="2D Lotto" data-expanded-src="img/2d EXPANDED.jpg">
+                <h3>2D Lotto</h3>
+                <p>Pick 2 numbers from 1 to 31. Use 'S' for straight, 'R' for rumble, and 'P' for pompi.</p>
+                <span class="caption">Pumili ng 2 numero mula 1 hanggang 31.</span>
+            </div>
+            <div class="game-card" onclick="expandImage(this)">
+                <img src="img/3d PRIZE.jpg" alt="3D Lotto" data-expanded-src="img/3d EXPANDED.jpg">
+                <h3>3D Lotto</h3>
+                <p>Pick 3 numbers from 0 to 9. Use 'S' for straight, 'R' for rumble, and 'T' for trio.</p>
+                <span class="caption">Pumili ng 3 numero mula 0 hanggang 9.</span>
+            </div>
+        </div>
 
+        <!-- Expanded View -->
+        <div class="expanded" id="expandedView">
+            <div class="expanded-content">
+                <button class="close-btn" onclick="closeExpanded()">&times;</button>
+                <img id="expandedImage" src="" alt="">
+                <div class="description">
+                    <h3 id="expandedTitle"></h3>
+                    <p id="expandedDescription"></p>
+                </div>
+            </div>
+        </div>
+    </main>
 
-<footer>
-    <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
-</footer>
+    <footer>
+        <p>© 2024 LRS Philippines Official. All rights reserved.</p>
+    </footer>
 
-<!------JavaScript for Toggle Menu------>
-<script>
-var navLinks = document.getElementById("navLinks");
-var menuBtn = document.getElementById("menuBtn");
+    <script>
+        function expandImage(card) {
+            const expandedView = document.getElementById('expandedView');
+            const expandedImage = document.getElementById('expandedImage');
+            const expandedTitle = document.getElementById('expandedTitle');
+            const expandedDescription = document.getElementById('expandedDescription');
 
-function toggleMenu() {
-    if (navLinks.style.right === "0px") {
-        navLinks.style.right = "-200px";  
-        menuBtn.style.display = "block";  
-    } else {
-        navLinks.style.right = "0";  
-        menuBtn.style.display = "none";  
-    }
-}
+            // Get data from the clicked card
+            expandedImage.src = card.getAttribute('data-expanded-src');
+            expandedTitle.innerText = card.querySelector('h3').innerText;
+            expandedDescription.innerText = card.querySelector('p').innerText;
 
-let lastScrollTop = 0; 
-const logo = document.querySelector('nav img');
+            // Show the expanded view
+            expandedView.style.display = 'flex';
+        }
 
-window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        function closeExpanded() {
+            const expandedView = document.getElementById('expandedView');
 
-    if (scrollTop > lastScrollTop) {
-        logo.style.opacity = '0'; 
-    } else {
-        logo.style.opacity = '1'; 
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
-});
-</script>
+            // Hide the expanded view
+            expandedView.style.display = 'none';
+        }
+      
+      function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
 
+        const gameCards = document.querySelectorAll('.game-card');
+        gameCards.forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('show');
+                const isExpanded = card.classList.contains('show');
+                card.setAttribute('aria-expanded', isExpanded);
+            });
+        });
+    </script>
 </body>
 </html>
