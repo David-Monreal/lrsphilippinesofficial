@@ -2,142 +2,147 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LRS Philippines Official - Proof of Winners</title>
+    <title>LRS Philippines Official</title>
     <link rel="shortcut icon" type="x-icon" href="creatives/lrs.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
 
-        header {
-            width: 100vw; 
-            height: 50vh; 
-            background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herogames.jpg);
-            background-position: center; 
-            background-size: cover; 
-            position: relative;
-            z-index: 1;
-        }
+.header {
+    min-height: 50vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(creatives/herogames.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    z-index: 1;
+}
 
-        nav {
-            position: fixed; /* Keep navigation fixed */
-            top: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(4, 9, 30, 0.7); /* Background for visibility */
-            z-index: 10;
-            padding: 10px 6%; /* Padding */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: opacity 0.3s ease; /* Smooth transition for visibility */
-        }
+/* Navigation Styles */
+nav {
+    display: flex;
+    padding: 10px 6%;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(4, 9, 30, 0.7);
+    z-index: 10;
+    transition: opacity 0.3s ease;
+}
 
-        nav img {
-            width: 120px; /* Desktop size */
-            transition: opacity 0.3s ease; /* Smooth transition for visibility */
-        }
+nav img {
+    width: 150px;
+    transition: opacity 0.3s ease;
+}
 
-        @media(max-width: 700px) {
+@media(max-width: 700px) {
             nav img {
-                width: 100px; /* Mobile size */
+                width: 100px;
             }
             .text-box h1 {
-                font-size: 24px; /* Mobile size */
+                font-size: 24px;
             }
             .text-box p {
-                font-size: 14px; /* Mobile size */
+                font-size: 14px;
             }
         }
 
-        .nav-links {
-            flex: 1;
-            text-align: right;
-        }
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
 
-        .nav-links ul li {
-            list-style: none;
-            display: inline-block;
-            padding: 8px 12px;
-            position: relative;
-        }
+.nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 12px;
+    position: relative;
+}
 
-        .nav-links ul li a {
-            color: white;
-            text-decoration: none;
-            font-size: 13px;
-        }
+.nav-links ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+}
 
-        .nav-links ul li::after {
-            content: '';
-            width: 0%;
-            height: 2px;
-            background: blue;
-            display: block;
-            margin: auto;
-            transition: 0.5s;
-        }
+.nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: blue;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+}
 
-        .nav-links ul li:hover::after {
-            width: 100%;
-        }
+.nav-links ul li:hover::after {
+    width: 100%;
+}
+
 .text-box {
-            width: 90%;
-            color: white;
-            position: absolute;
-            top: 70%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center; 
-        }
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center; 
+}
 
-        .text-box h1 {
-            font-size: 40px; /* Desktop size */
-        }
+.text-box h1 {
+    font-size: 62px;
+}
 
-        .text-box p {
-            margin: 10px 0 40px;
-            font-size: 16px; /* Desktop size */
-            color: white;
-        }
+.text-box p {
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: white;
+}
 
-        .hero-btn {
-            display: inline-block;
-            text-decoration: none;
-            color: white;
-            border: 1px solid white;
-            padding: 12px 34px;
-            font-size: 13px;
-            background: transparent;
-            position: relative;
-            cursor: pointer;
-        }
+.hero-btn {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background: transparent;
+    position: relative;
+    cursor: pointer;
+}
 
-        .hero-btn:hover {
-            border: 1px solid blue;
-            background: blue;
-            transition: 0.5s;
-        }
+.hero-btn:hover {
+    border: 1px solid blue;
+    background: blue;
+    transition: 0.5s;
+}
 
-        nav .fa {
-            display: none;
-        }
+nav .fa {
+    display: none;
+}
 
-        @media(max-width: 700px) {
+/* Media Queries for Mobile */
+@media(max-width: 700px) {
             header {
                 height: 50vh; 
                 background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(creatives/herogamesm.jpg); 
             }
             .text-box h1 {
-                font-size: 24px; /* Mobile size */
+                font-size: 20px; 
             }
             .nav-links ul li {
                 display: block;
@@ -168,7 +173,10 @@
                 padding: 30px;
             }
         }
-        /*------ games ------*/
+
+        
+        /*------ Games ------*/
+
         .game-container {
             padding: 20px;
             display: flex;
@@ -206,14 +214,14 @@
         }
 
         .expanded {
-            position: fixed; 
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%; 
-            height: 100%; 
-            background-color: rgba(0, 0, 0, 0.8); 
-            z-index: 100; 
-            display: flex; 
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            display: flex;
             align-items: center;
             justify-content: center;
         }
@@ -228,8 +236,8 @@
         }
 
         .expanded img {
-            max-width: 50%; 
-            height: auto; 
+            max-width: 50%;
+            height: auto;
         }
 
         .description {
@@ -241,44 +249,50 @@
             justify-content: center;
             max-width: 50%;
             position: relative;
-          font-size: 12px;
+            font-size: 12px;
         }
 
         .close-btn {
             position: absolute;
             top: 10px;
             right: 10px;
-            background: none; 
-            border: none; 
-            color: white; 
-            font-size: 24px; 
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
             cursor: pointer;
         }
+
         @media(max-width: 700px) {
             .description {
                 font-size: 8px;
-
             }
+
             .expanded img {
-            width: auto; 
-            max-height: 50%;
-            }   
+                width: auto;
+                max-height: 50%;
+            }
         }
 
+        /*------ footer ------*/
         footer {
             text-align: center;
-            padding: 20px 0;
+            padding: 10px 0;
             background-color: rgba(4, 9, 30, 0.7);
             color: white;
+		bottom: 0;
         }
+
     </style>
 </head>
 
 <body>
- <header>
+<header>
+    <section class="header">
     <nav>
         <a href="./"><img src="creatives/lrs.png" alt="LRS Logo"></a>
-        <div class="nav-links">
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="toggleMenu()"></i>
             <ul>
                 <li><a href="./">HOME</a></li>
                 <li><a href="./games">GAMES</a></li>
@@ -288,15 +302,17 @@
                 <li><a href="./contact">CONTACT</a></li>
             </ul>
         </div>
+        <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
     </nav>
-    </header>
-</section>
+</header>
     <main>
         <div class="game-container">
+            <!-- 6/45 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/45ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/55 PRIZE.jpg">
+                <img src="creatives/45ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/45 PRIZE.jpg">
                 <h3>6/45 Mega Lotto</h3>
-                <p>1. Pumili ng mga Numero
+                <p>
+                    1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 45.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
@@ -311,13 +327,16 @@
                     <br>● Ang 6/45 Mega Lotto ay tuwing araw ng Lunes, Miyerkules, at Biyernes sa 9:00 PM.
                     <br>&nbsp
                     <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.</p>
-                <span class="caption">Pumili ng 3 numero <br>mula 1 hanggang 45.</span>
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
             </div>
+
+            <!-- 6/49 Super Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/49ban.jpg" alt="6/49 Lotto" data-expanded-src="creatives/49 PRIZE.jpg">
-                <h3>6/49 Super Lotto</h3>
-                <p>1. Pumili ng mga Numero
+                <img src="creatives/49ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/49 PRIZE.jpg">
+                <h3>6/45 Super Lotto</h3>
+                <p>
+                    1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 49.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
@@ -332,13 +351,16 @@
                     <br>● Ang 6/49 Super Lotto ay tuwing araw ng Martes at Huwebes sa 9:00 PM.
                     <br>&nbsp
                     <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.</p>
-                <span class="caption">Pumili ng 3 numero <br>mula 1 hanggang 49.</span>
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
             </div>
+
+            <!-- 6/55 Grand Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/55ban.jpg" alt="6/55 Lotto" data-expanded-src="creatives/55 PRIZE.jpg">
+                <img src="creatives/55ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/55 PRIZE.jpg">
                 <h3>6/55 Grand Lotto</h3>
-                <p>1. Pumili ng mga Numero
+                <p>
+                    1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 55.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
@@ -353,13 +375,16 @@
                     <br>● Ang 6/55 Grand Lotto ay tuwing araw ng Sabado sa oras na 9:00 PM.
                     <br>&nbsp
                     <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.</p>
-                <span class="caption">Pumili ng 3 numero <br>mula 1 hanggang 55.</span>
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
             </div>
+
+            <!-- 6/58 Ultra Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/58ban.jpg" alt="6/58 Lotto" data-expanded-src="creatives/58 PRIZE.jpg">
+                <img src="creatives/58ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/58 PRIZE.jpg">
                 <h3>6/58 Ultra Lotto</h3>
-                <p>1. Pumili ng mga Numero
+                <p>
+                    1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 58.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
@@ -374,13 +399,16 @@
                     <br>● Ang 6/58 Ultra Lotto ay tuwing araw ng Biyernes sa oras na 9:00 PM.
                     <br>&nbsp
                     <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.</p>
-                <span class="caption">Pumili ng 3 numero <br>mula 1 hanggang 58.</span>
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
             </div>
+
+            <!-- 2D Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/2D PRIZE.jpg" alt="2D Lotto" data-expanded-src="creatives/2D PRIZE.jpg">
+                <img src="creatives/2D PRIZE.jpg" alt="6/45 Lotto" data-expanded-src="creatives/2D PRIZE.jpg">
                 <h3>2D Lotto</h3>
-                <p>1. Pumili ng mga Numero
+                <p>
+                    1. Pumili ng mga Numero
                     <br>● Pumili ng dalwang (2) numero mula sa 1 hanggang 31.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Ipinapayo na idagdag ang mga sumusunod na letra sa iyong mga napiling numero:
@@ -397,13 +425,16 @@
                     <br>● Ang mga resulta ng 2D Lotto ay iaanunsyo tuwing 2:00 PM, 5:00 PM at 9:00 PM araw-araw.
                     <br>&nbsp
                     <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.</p>
-                <span class="caption">Pumili ng 2 numero <br>mula 1 hanggang 31.</span>
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
             </div>
+
+            <!-- 3D Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/3D PRIZE.jpg" alt="3D Lotto" data-expanded-src="creatives/3D PRIZE.jpg">
+                <img src="creatives/3D PRIZE.jpg" alt="6/45 Lotto" data-expanded-src="creatives/3D PRIZE.jpg">
                 <h3>3D Lotto</h3>
-                <p>1. Pumili ng mga Numero
+                <p>
+                    1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 0 hanggang 9.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>●Ipinapayo na idagdag ang mga sumusunod na letra sa iyong mga napiling numero:
@@ -420,64 +451,75 @@
                     <br>● Ang mga resulta ng 3D Lotto ay iaanunsyo tuwing 2:00 PM, 5:00 PM at 9:00 PM araw-araw.
                     <br>&nbsp
                     <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.</p>
-                <span class="caption">Pumili ng 3 numero <br>mula 0 hanggang 9.</span>
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
             </div>
-        </div>
 
-        <!-- Expanded View -->
-        <div class="expanded" id="expandedView">
-            <div class="expanded-content">
-                <button class="close-btn" onclick="closeExpanded()">&times;</button>
-                <img id="expandedImage" src="" alt="">
-                <div class="description">
-                    <h3 id="expandedTitle"></h3>
-                    <p id="expandedDescription"></p>
+
+            <!-- More game cards... -->
+
+            <!-- Expanded View Modal -->
+            <div id="expanded-view" class="expanded" style="display: none;">
+                <div class="expanded-content">
+                    <img id="expanded-img" src="" alt="">
+                    <div class="description">
+                        <button class="close-btn" onclick="closeExpandedView()">×</button>
+                        <p id="expanded-description"></p>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
 
     <footer>
-        <p>© 2024 LRS Philippines Official. All rights reserved.</p>
+        <p>&copy; 2024 LRS Philippines Official</p>
     </footer>
 
     <script>
         function expandImage(card) {
-            const expandedView = document.getElementById('expandedView');
-            const expandedImage = document.getElementById('expandedImage');
-            const expandedTitle = document.getElementById('expandedTitle');
-            const expandedDescription = document.getElementById('expandedDescription');
+            const expandedView = document.getElementById('expanded-view');
+            const expandedImg = document.getElementById('expanded-img');
+            const expandedDescription = document.getElementById('expanded-description');
 
-            // Get data from the clicked card
-            expandedImage.src = card.getAttribute('data-expanded-src');
-            expandedTitle.innerText = card.querySelector('h3').innerText;
-            expandedDescription.innerText = card.querySelector('p').innerText;
+            const imgSrc = card.querySelector('img').getAttribute('data-expanded-src');
+            const description = card.querySelector('p').innerHTML;
 
-            // Show the expanded view
+            expandedImg.src = imgSrc;
+            expandedDescription.innerHTML = description;
+
             expandedView.style.display = 'flex';
         }
 
-        function closeExpanded() {
-            const expandedView = document.getElementById('expandedView');
-
-            // Hide the expanded view
-            expandedView.style.display = 'none';
-        }
-      
-      function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
+        function closeExpandedView() {
+            document.getElementById('expanded-view').style.display = 'none';
         }
 
-        const gameCards = document.querySelectorAll('.game-card');
-        gameCards.forEach(card => {
-            card.addEventListener('click', () => {
-                card.classList.toggle('show');
-                const isExpanded = card.classList.contains('show');
-                card.setAttribute('aria-expanded', isExpanded);
-            });
-        });
+var navLinks = document.getElementById("navLinks");
+var menuBtn = document.getElementById("menuBtn");
+
+function toggleMenu() {
+    if (navLinks.style.right === "0px") {
+        navLinks.style.right = "-200px";  
+        menuBtn.style.display = "block";  
+    } else {
+        navLinks.style.right = "0";  
+        menuBtn.style.display = "none";  
+    }
+}
+
+let lastScrollTop = 0; 
+const logo = document.querySelector('nav img');
+
+window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+    if (scrollTop > lastScrollTop) {
+        logo.style.opacity = '0'; 
+    } else {
+        logo.style.opacity = '1'; 
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
+});
     </script>
 </body>
 </html>
