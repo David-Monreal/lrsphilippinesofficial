@@ -194,7 +194,31 @@ nav .fa {
             cursor: pointer;
             text-align: center;
             transition: transform 0.3s;
+	    position: relative; /* Set position to relative for overlay positioning */
         }
+	.overlay {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: 100%;
+	    height: 100%;
+	    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+ 	   opacity: 0; /* Initially hidden */
+	    transition: opacity 0.3s ease; /* Transition for smooth effect */
+	}
+
+	.game-card:hover .overlay {
+	    opacity: 1; /* Show overlay on hover */
+	}
+
+	.learn-more {
+	    color: white; /* Text color */
+	    font-size: 20px; /* Font size */
+	    text-align: center; /* Center the text */
+	}
 
         .game-card img {
             width: 100%;
@@ -322,6 +346,8 @@ nav .fa {
             <!-- 6/45 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/45ban.jpg" alt="6/45 Lotto">
+		<div class="overlay">
+        		<h3 class="learn-more">Learn More</h3></div>	
                 <h3>6/45 Mega Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -346,6 +372,8 @@ nav .fa {
             <!-- 6/49 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/49ban.jpg" alt="6/49 Lotto">
+		<div class="overlay">
+        		<h3 class="learn-more">Learn More</h3></div>
                 <h3>6/49 Super Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -370,6 +398,8 @@ nav .fa {
             <!-- 6/55 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/55ban.jpg" alt="6/55 Lotto">
+		<div class="overlay">
+        		<h3 class="learn-more">Learn More</h3></div>
                 <h3>6/55 Grand Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -394,6 +424,8 @@ nav .fa {
             <!-- 6/58 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/58ban.jpg" alt="6/58 Lotto">
+		<div class="overlay">
+        		<h3 class="learn-more">Learn More</h3></div>
                 <h3>6/58 Ultra Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -418,6 +450,8 @@ nav .fa {
             <!-- 2D Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/2D PRIZE.jpg" alt="2D Lotto">
+		<div class="overlay">
+        		<h3 class="learn-more">Learn More</h3></div>
                 <h3>2D Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -444,6 +478,8 @@ nav .fa {
             <!-- 3D Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/3D PRIZE.jpg" alt="3D Lotto">
+		<div class="overlay">
+        		<h3 class="learn-more">Learn More</h3></div>
                 <h3>3D Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -466,6 +502,8 @@ nav .fa {
                     <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
                 </p>
             </div>
+
+
 
 
 
@@ -528,3 +566,5 @@ window.addEventListener('scroll', function() {
     </script>
 </body>
 </html>
+
+
