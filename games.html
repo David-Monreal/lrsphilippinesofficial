@@ -176,6 +176,23 @@ nav .fa {
 
         
         /*------ Games ------*/
+.games {
+   width: 80%;
+   margin: auto;
+   text-align: center;
+   padding-top: 100px;
+}
+h1{
+  font-size: 36px;
+  font-weight: 600;
+}
+p{
+  color: black;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 22px;
+  padding: 10px;
+}
 
         .game-container {
             padding: 20px;
@@ -271,7 +288,7 @@ nav .fa {
             justify-content: center;
             max-width: 100%;
             position: relative;
-            font-size: 20px;
+            font-size: 25px;
 	    border-radius: 5px;
         }
 
@@ -310,7 +327,6 @@ nav .fa {
 
         /*------ Footer ------*/
         footer {
-            position: fixed;
             bottom: 0;
             width: 100%;
             text-align: center;
@@ -342,16 +358,20 @@ nav .fa {
     </nav>
 </header>
     <main>
+<section class="games">
+<h1>Pick 3 Games</h1>
+  <p>Kahit ikaw ay sanay na manlalaro o bagong tuklas sa saya ng lotto, nagbibigay kami ng simpleng at nakakaengganyong karanasan sa pagtaya. Tuklasin ang iyong paboritong laro ngayon at dagdagan ang iyong tsansa na manalo ng jackpot!</p>	
+  <p>Sumali sa saya sa aming iba't ibang laro ng lotto! Pumili mula sa 6/45, 6/49, 6/55 at 6/58. Bawat laro ay nag-aalok ng natatanging pagkakataon upang manalo ng malaki! 🏆💰</p>
+</section>
         <div class="game-container">
             <!-- 6/45 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
-                <img src="creatives/45ban.jpg" alt="6/45 Lotto">
+                <img src="creatives/45lotto.jpg" alt="6/45 Lotto">
 		<div class="overlay">
         		<h3 class="learn-more">Learn More</h3></div>	
                 <h3>6/45 Mega Lotto</h3>
-                <p>
-                    1. Pumili ng mga Numero
-                    <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 45.
+                <p>Pumili ng mga Numero
+		    <br>● Pumili ng tatlong (3) numero mula 1 hanggang 45.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
                     <br>● Kung dalawa (2) lamang ang numero na tumugma, makakatanggap ka ng return bet.
@@ -371,7 +391,7 @@ nav .fa {
 
             <!-- 6/49 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
-                <img src="creatives/49ban.jpg" alt="6/49 Lotto">
+                <img src="creatives/49lotto.jpg" alt="6/49 Lotto">
 		<div class="overlay">
         		<h3 class="learn-more">Learn More</h3></div>
                 <h3>6/49 Super Lotto</h3>
@@ -397,7 +417,7 @@ nav .fa {
 
             <!-- 6/55 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
-                <img src="creatives/55ban.jpg" alt="6/55 Lotto">
+                <img src="creatives/55lotto.jpg" alt="6/55 Lotto">
 		<div class="overlay">
         		<h3 class="learn-more">Learn More</h3></div>
                 <h3>6/55 Grand Lotto</h3>
@@ -423,7 +443,7 @@ nav .fa {
 
             <!-- 6/58 Mega Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
-                <img src="creatives/58ban.jpg" alt="6/58 Lotto">
+                <img src="creatives/58lotto.jpg" alt="6/58 Lotto">
 		<div class="overlay">
         		<h3 class="learn-more">Learn More</h3></div>
                 <h3>6/58 Ultra Lotto</h3>
@@ -446,7 +466,13 @@ nav .fa {
                     <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
                 </p>
             </div>
+</div>
 
+<section class="games">
+<h1>🎉 2D at 3D Lotto 🎉</h1>
+  <p>Kahit ikaw ay sanay na manlalaro o bagong tuklas sa saya ng lotto, nagbibigay kami ng simpleng at nakakaengganyong karanasan sa pagtaya. Tuklasin ang iyong paboritong laro ngayon at dagdagan ang iyong tsansa na manalo ng jackpot!</p>
+</section>
+        <div class="game-container">
             <!-- 2D Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
                 <img src="creatives/2D PRIZE.jpg" alt="2D Lotto">
@@ -461,7 +487,7 @@ nav .fa {
                     <br>&nbsp&nbsp&nbsp✔ 'S' para sa straight o exact order.
                     <br>&nbsp&nbsp&nbsp✔ 'R' para sa rumble o in any order.
                     <br>&nbsp&nbsp&nbsp✔ 'P' para sa pompi o same number.
-                    <br><strong>3. Minimum na Pagtaya</strong>
+                    <br>3. Minimum na Pagtaya
                     <br>● Ang minimum bet ay 10 pesos. Pwede ka ding tumaya sa ng may mga butal na 5, tulad ng 15, 25 at iba pa. 
                     <br>4. Proseso ng Pagtaya
                     <br>I-chat sa GC ang mga napiling kombinasyon.
@@ -502,10 +528,7 @@ nav .fa {
                     <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
                 </p>
             </div>
-
-
-
-
+</section>
 
             <!-- More game cards... -->
 
@@ -566,5 +589,3 @@ window.addEventListener('scroll', function() {
     </script>
 </body>
 </html>
-
-
