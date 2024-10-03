@@ -228,6 +228,7 @@ nav .fa {
 
         .expanded-content {
             display: flex;
+	    flex-direction: row;
             max-width: 100%;
             height: 100%;
             background-color: white;
@@ -238,6 +239,7 @@ nav .fa {
         .expanded img {
             max-width: 100%;
             height: 100%;
+	    object-fit: contain;
         }
 
         .description {
@@ -264,14 +266,23 @@ nav .fa {
         }
 
         @media(max-width: 700px) {
+	    .expanded-content {
+	        flex-direction: column; /* Stack the image and description in a column */
+	    }
             .description {
-                font-size: 8px;
+                font-size: 12px; /* Smaller font size for mobile */
+		max-height: 50%; /* Allow the description to take up the bottom half */
+        	overflow-y: auto; /* Enable scrolling if the description is too long */
+        	padding: 10px; /* Adjust padding for mobile */
             }
 
             .expanded img {
-                width: 50%;
-                max-height: 100%;
+                width: 100%; /* Make sure the image takes up full width in mobile */
+                max-height: 50%; /* Restrict the image height to half the screen */
             }
+	    .close-btn {
+	        font-size: 18px; /* Smaller close button for mobile */
+    }
         }
 
         /*------ Footer ------*/
@@ -332,7 +343,6 @@ nav .fa {
                     <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
                 </p>
             </div>
-
             <!-- 6/49 Super Lotto Game Card -->
             <div class="game-card" onclick="expandImage(this)">
                 <img src="creatives/49ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/49lotto.jpg">
@@ -456,7 +466,6 @@ nav .fa {
                     <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
                 </p>
             </div>
-
 
             <!-- More game cards... -->
 
