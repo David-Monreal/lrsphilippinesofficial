@@ -230,20 +230,13 @@ nav .fa {
         .expanded-content {
             display: flex;
 	    flex-direction: row;
-            max-width: 100%;
+            max-width: 800px;
             height: 100%;
             background-color: white;
             border-radius: 10px;
             overflow: hidden;
 	    padding: 10px;
         }
-
-        .expanded img {
-            width: 100%;
-	    max-height: 100vh; /* Limit image height */
-	    object-fit: contain;
-	    margin-left: 10px; /* Add space below the image */
-	}
 
         .description {
             padding: 20px;
@@ -286,10 +279,6 @@ nav .fa {
 		padding: 10px; /* Add padding on all sides for mobile */
             }
 
-            .expanded img {
-                width: 100%; /* Make sure the image takes up full width in mobile */
-                max-height: 50%; /* Restrict the image height to half the screen */
-            }
 	    .close-btn {
 	        font-size: 18px; /* Smaller close button for mobile */
     }
@@ -331,8 +320,8 @@ nav .fa {
     <main>
         <div class="game-container">
             <!-- 6/45 Mega Lotto Game Card -->
-            <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/45ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/45lotto.jpg">
+            <div class="game-card" onclick="expandDescription(this)">
+                <img src="creatives/45ban.jpg" alt="6/45 Lotto">
                 <h3>6/45 Mega Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
@@ -353,10 +342,35 @@ nav .fa {
                     <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
                 </p>
             </div>
-            <!-- 6/49 Super Lotto Game Card -->
-            <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/49ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/49lotto.jpg">
-                <h3>6/45 Super Lotto</h3>
+
+            <!-- 6/49 Mega Lotto Game Card -->
+            <div class="game-card" onclick="expandDescription(this)">
+                <img src="creatives/49ban.jpg" alt="6/49 Lotto">
+                <h3>6/49 Super Lotto</h3>
+                <p>
+                    1. Pumili ng mga Numero
+                    <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 45.
+                    <br>2. Mga Panuntunan sa Pagtaya
+                    <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
+                    <br>● Kung dalawa (2) lamang ang numero na tumugma, makakatanggap ka ng return bet.
+                    <br>3. Minimum na Pagtaya
+                    <br>● Ang minimum bet ay 25 pesos. Tiyaking nasusunod ito sa iyong taya. 
+                    <br>4. Proseso ng Pagtaya
+                    <br>● I-chat sa GC ang mga napiling kombinasyon.
+                    <br>● Pagkatapos, i-send ang bayad sa GCash.
+                    <br>● Huwag kalimutan na iscreenshot ang kumpirmasyon ng iyong pagbabayad at at i-send sa GC para sa validation.
+                    <br>5. Draw Schedule
+                    <br>● Ang 6/45 Mega Lotto ay tuwing araw ng Lunes, Miyerkules, at Biyernes sa 9:00 PM.
+                    <br>&nbsp
+                    <br>&nbsp
+                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
+                </p>
+            </div>
+
+            <!-- 6/55 Mega Lotto Game Card -->
+            <div class="game-card" onclick="expandDescription(this)">
+                <img src="creatives/55ban.jpg" alt="6/55 Lotto">
+                <h3>6/55 Grand Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 49.
@@ -377,10 +391,10 @@ nav .fa {
                 </p>
             </div>
 
-            <!-- 6/55 Grand Lotto Game Card -->
-            <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/55ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/55lotto.jpg">
-                <h3>6/55 Grand Lotto</h3>
+            <!-- 6/58 Mega Lotto Game Card -->
+            <div class="game-card" onclick="expandDescription(this)">
+                <img src="creatives/58ban.jpg" alt="6/58 Lotto">
+                <h3>6/58 Ultra Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 55.
@@ -401,42 +415,18 @@ nav .fa {
                 </p>
             </div>
 
-            <!-- 6/58 Ultra Lotto Game Card -->
-            <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/58ban.jpg" alt="6/45 Lotto" data-expanded-src="creatives/58lotto.jpg">
-                <h3>6/58 Ultra Lotto</h3>
-                <p>
-                    1. Pumili ng mga Numero
-                    <br>● Pumili ng tatlong (3) numero mula sa 1 hanggang 58.
-                    <br>2. Mga Panuntunan sa Pagtaya
-                    <br>● Kapag ang lahat ng tatlong numero na iyong pinili ay tumugma sa alinman sa anim na (6) bolang lumabas, ikaw ay mananalo ng premyo!
-                    <br>● Kung dalawa (2) lamang ang numero na tumugma, makakatanggap ka ng return bet.
-                    <br>3. Minimum na Pagtaya
-                    <br>● Ang minimum bet ay 25 pesos. Tiyaking nasusunod ito sa iyong taya. 
-                    <br>4. Proseso ng Pagtaya
-                    <br>● I-chat sa GC ang mga napiling kombinasyon.
-                    <br>● Pagkatapos, i-send ang bayad sa GCash.
-                    <br>● Huwag kalimutan na iscreenshot ang kumpirmasyon ng iyong pagbabayad at at i-send sa GC para sa validation.
-                    <br>5. Draw Schedule
-                    <br>● Ang 6/58 Ultra Lotto ay tuwing araw ng Biyernes sa oras na 9:00 PM.
-                    <br>&nbsp
-                    <br>&nbsp
-                    <br>Para sa kumpletong listahan ng mga nanalo at mga resulta, mangyaring bisitahin ang aming website: LRS Philippines Official.
-                </p>
-            </div>
-
             <!-- 2D Lotto Game Card -->
-            <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/2D PRIZE.jpg" alt="6/45 Lotto" data-expanded-src="creatives/2D PRIZE.jpg">
+            <div class="game-card" onclick="expandDescription(this)">
+                <img src="creatives/2D PRIZE.jpg" alt="2D Lotto">
                 <h3>2D Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
                     <br>● Pumili ng dalwang (2) numero mula sa 1 hanggang 31.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>● Ipinapayo na idagdag ang mga sumusunod na letra sa iyong mga napiling numero:
-                    <br>   ✔ 'S' para sa straight o exact order.
-                    <br>   ✔ 'R' para sa rumble o in any order.
-                    <br>   ✔ 'P' para sa pompi o same number.
+                    <br>&nbsp&nbsp&nbsp✔ 'S' para sa straight o exact order.
+                    <br>&nbsp&nbsp&nbsp✔ 'R' para sa rumble o in any order.
+                    <br>&nbsp&nbsp&nbsp✔ 'P' para sa pompi o same number.
                     <br><strong>3. Minimum na Pagtaya</strong>
                     <br>● Ang minimum bet ay 10 pesos. Pwede ka ding tumaya sa ng may mga butal na 5, tulad ng 15, 25 at iba pa. 
                     <br>4. Proseso ng Pagtaya
@@ -452,17 +442,17 @@ nav .fa {
             </div>
 
             <!-- 3D Lotto Game Card -->
-            <div class="game-card" onclick="expandImage(this)">
-                <img src="creatives/3D PRIZE.jpg" alt="6/45 Lotto" data-expanded-src="creatives/3D PRIZE.jpg">
+            <div class="game-card" onclick="expandDescription(this)">
+                <img src="creatives/3D PRIZE.jpg" alt="3D Lotto">
                 <h3>3D Lotto</h3>
                 <p>
                     1. Pumili ng mga Numero
                     <br>● Pumili ng tatlong (3) numero mula sa 0 hanggang 9.
                     <br>2. Mga Panuntunan sa Pagtaya
                     <br>●Ipinapayo na idagdag ang mga sumusunod na letra sa iyong mga napiling numero:
-                    <br>   ✔ 'S' para sa straight o exact order.
-                    <br>   ✔ 'R' para sa rumble o in any order.
-                    <br>   ✔ 'T' para sa trio o same numbers.
+                    <br>&nbsp&nbsp&nbsp✔ 'S' para sa straight o exact order.
+                    <br>&nbsp&nbsp&nbsp✔ 'R' para sa rumble o in any order.
+                    <br>&nbsp&nbsp&nbsp✔ 'T' para sa trio o same numbers.
                     <br>3. Minimum na Pagtaya
                     <br>● Ang minimum bet ay 10 pesos. Pwede ka ding tumaya ng may mga butal na 5, tulad ng 15, 25 at iba pa. 
                     <br>4. Proseso ng Pagtaya
@@ -477,42 +467,36 @@ nav .fa {
                 </p>
             </div>
 
+
+
             <!-- More game cards... -->
 
-            <!-- Expanded View Modal -->
-            <div id="expanded-view" class="expanded" style="display: none;">
-                <div class="expanded-content">
-                    <img id="expanded-img" src="" alt="">
-                    <div class="description">
-                        <button class="close-btn" onclick="closeExpandedView()">&nbsp×&nbsp</button>
-                        <p id="expanded-description"></p>
-                    </div>
-                </div>
+	<!-- Expanded content for description -->
+	<div class="expanded" id="expandedContent" style="display:none;">
+	    <div class="expanded-content">
+                <button class="close-btn" onclick="closeDescription()">&nbsp×&nbsp</button>
+                <div class="description" id="gameDescription"></div>
             </div>
-        </div>
+	</div>
     </main>
+
 
     <footer>
     <p>&copy; 2024 LRS Philippines Official. All rights reserved.</p>
 </footer>
 
     <script>
-        function expandImage(card) {
-            const expandedView = document.getElementById('expanded-view');
-            const expandedImg = document.getElementById('expanded-img');
-            const expandedDescription = document.getElementById('expanded-description');
+        function expandDescription(card) {
+            var description = card.querySelector("p").innerHTML;
+            var expandedContent = document.getElementById("expandedContent");
+            var gameDescription = document.getElementById("gameDescription");
 
-            const imgSrc = card.querySelector('img').getAttribute('data-expanded-src');
-            const description = card.querySelector('p').innerHTML;
-
-            expandedImg.src = imgSrc;
-            expandedDescription.innerHTML = description;
-
-            expandedView.style.display = 'flex';
+            gameDescription.innerHTML = description;
+            expandedContent.style.display = "flex";
         }
 
-        function closeExpandedView() {
-            document.getElementById('expanded-view').style.display = 'none';
+        function closeDescription() {
+            document.getElementById("expandedContent").style.display = "none";
         }
 
 var navLinks = document.getElementById("navLinks");
