@@ -315,7 +315,7 @@ nav .fa {
 
         /* Image inside the popup */
         .popup-content img {
-            width: 100%;
+            width: 900px;
             height: auto;
             border-radius: 8px;
 		z-index: 1;
@@ -340,6 +340,10 @@ nav .fa {
 
         .close-btn:hover {
             background-color: darkred;
+        }
+	@media (max-width: 768px) {
+	    .popup-content img {
+            width: 420px;
         }
 
         /*------ Footer ------*/
@@ -383,7 +387,7 @@ nav .fa {
 <!-- Video Section -->
 <section class="video">
     <h2>JOIN THE FUN!</h2>
-    <video controls>
+	<video autoplay muted loop controls>
         <source src="video/video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
@@ -462,7 +466,7 @@ window.addEventListener('scroll', function() {
 // Show the popup after 30 seconds
         setTimeout(function() {
             document.getElementById('popup').style.display = 'flex';
-        }, 3000); // 30,000 milliseconds = 30 seconds
+        }, 30000); // 30,000 milliseconds = 30 seconds
 
         // Close the popup when the close button is clicked
         function closePopup() {
