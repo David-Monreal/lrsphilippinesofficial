@@ -315,11 +315,18 @@ nav .fa {
 
         /* Image inside the popup */
         .popup-content img {
-            width: 100%;
+            width: 90%;
             height: auto;
+		max-width: 400px;
             border-radius: 8px;
 		z-index: 1;
         }
+@media (min-width: 768px) {
+  img {
+    width: 60%; /* Takes only 60% of the screen width */
+    max-width: 600px; /* Maximum width when resized */
+  }
+}
 
         /* Close button styles */
         .close-btn {
