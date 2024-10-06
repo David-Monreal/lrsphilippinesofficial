@@ -27,6 +27,18 @@
         z-index: 1;
     }
 
+.container {
+    max-width: 1200px;  /* Fixed maximum width */
+    margin: 0 auto;     /* Center the content */
+    padding: 0 15px;    /* Add padding to prevent content from touching the edges */
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 10px;  /* Adjust padding on smaller screens */
+    }
+}
+
 /* Navigation Styles */
 nav {
     display: flex;
@@ -325,7 +337,9 @@ p{
 
         /*------ Footer ------*/
         footer {
+            position: fixed;
             bottom: 0;
+            left: 0;
             width: 100%;
             text-align: center;
             padding: 10px 0;
@@ -473,7 +487,7 @@ p{
         <div class="game-container">
             <!-- 2D Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
-                <img src="creatives/2Dlotto.jpg" alt="2D Lotto">
+                <img src="creatives/2D PRIZE.jpg" alt="2D Lotto">
 		<div class="overlay">
         		<h3 class="learn-more">Learn More</h3></div>
                 <h3>2D Lotto</h3>
@@ -501,7 +515,7 @@ p{
 
             <!-- 3D Lotto Game Card -->
             <div class="game-card" onclick="expandDescription(this)">
-                <img src="creatives/3Dlotto.jpg" alt="3D Lotto">
+                <img src="creatives/3D PRIZE.jpg" alt="3D Lotto">
 		<div class="overlay">
         		<h3 class="learn-more">Learn More</h3></div>
                 <h3>3D Lotto</h3>
