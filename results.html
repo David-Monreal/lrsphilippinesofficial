@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -169,7 +170,56 @@
                 padding: 30px;
             }
         }
-        
+ 
+/* Live Draws Section */
+.live-draws {
+    padding: 50px;
+    background-color: #f9f9f9;
+}
+
+.live-draws h2{
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.video-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.video-box {
+    width: 30%;
+    text-align: center;
+    border: 2px solid #ccc;  /* Add a border for the box */
+    border-radius: 8px;      /* Optional: add rounded corners */
+    padding: 10px;           /* Space inside the box */
+    background-color: white; /* Background color for the box */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.video-box iframe {
+    width: 100%;
+    height: 250px;
+}
+
+.caption {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Responsive for Mobile */
+@media (max-width: 700px) {
+    .video-box {
+        width: 100%; /* Full width on smaller screens */
+        margin-bottom: 20px; /* Space between boxes */
+    }
+}
+
+    
         /*------ Footer ------*/
         footer {
             position: fixed;
@@ -202,6 +252,23 @@
             <i class="fa fa-bars" id="menuBtn" onclick="toggleMenu()"></i>
         </nav>
     </header>
+</section>
+<section class="live-draws">
+<h2>WATCH LOTTO LIVE DRAWS</h2>
+    <div class="video-container">
+        <div class="video-box">
+            <iframe width="100%" height="250" src="https://www.youtube.com/embed/DW6QDQmW_qc?si=F9h-HzDp6x85vpIs" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p class="caption">October 01, 2024 - 2PM Live Draw</p>
+        </div>
+        <div class="video-box">
+            <iframe width="100%" height="250" src="https://www.youtube.com/embed/kv21WLfBFcs?si=hYaFSLFsQWv4Kk7U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p class="caption">October 01, 2024 - 5PM Live Draw</p>
+        </div>
+        <div class="video-box">
+            <iframe width="100%" height="250" src="https://www.youtube.com/embed/kkWRlNbx3OM?si=Z_dlNztjoATchu-t" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p class="caption">October 01, 2024 - 9PM Live Draw</p>
+        </div>
+    </div>
 </section>
 
 
