@@ -293,10 +293,10 @@ nav .fa {
 /* Popup styles */
         .popup {
             position: fixed;
-            top: 0;
-            left: 0;
-            max-width: 100%;
-            height: 100%;
+            top: 30px;
+            left: 30px;
+            max-width: 90%;
+            height: auto;
             background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
             display: none; /* Hidden by default */
             justify-content: center;
@@ -315,7 +315,7 @@ nav .fa {
 
         /* Image inside the popup */
         .popup-content img {
-            width: 100%;
+            width: 90%;
             height: auto;
             border-radius: 8px;
 	    z-index: 1;
@@ -469,7 +469,7 @@ window.addEventListener('scroll', function() {
 // Show the popup after 30 seconds
         setTimeout(function() {
             document.getElementById('popup').style.display = 'flex';
-        }, 300000); // 30,000 milliseconds = 30 seconds
+        }, 3000); // 30,000 milliseconds = 30 seconds
 
         // Close the popup when the close button is clicked
         function closePopup() {
