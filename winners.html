@@ -28,6 +28,18 @@
     z-index: 1;
 }
 
+.container {
+    max-width: 1200px;  /* Fixed maximum width */
+    margin: 0 auto;     /* Center the content */
+    padding: 0 15px;    /* Add padding to prevent content from touching the edges */
+}
+
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 10px;  /* Adjust padding on smaller screens */
+    }
+}
+
 /* Navigation Styles */
 nav {
     display: flex;
