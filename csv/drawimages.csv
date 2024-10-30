@@ -1,8 +1,2 @@
-day,image_url
-Sunday,https://www.pcso.gov.ph/pcsofiles/Games/649.png
-Monday,https://www.pcso.gov.ph/pcsofiles/Games/645.png
-Tuesday,https://www.pcso.gov.ph/pcsofiles/Games/649.png
-Wednesday,https://www.pcso.gov.ph/pcsofiles/Games/645.png
-Thursday,https://www.pcso.gov.ph/pcsofiles/Games/649.png
-Friday,https://www.pcso.gov.ph/pcsofiles/Games/658.png
-Saturday,https://www.pcso.gov.ph/pcsofiles/Games/655.png
+draw,number1,number1,number1,number1,number1,number1,
+645,1,2,3,4,5,6
