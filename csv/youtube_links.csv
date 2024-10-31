@@ -1,4 +1,5 @@
-Date,Time,Url
-October 31 2024,9PM,https://www.youtube.com/embed/UnL6DoPlkXE?si=McVOJry2PaKMyocB
-October 31 2024,5PM,https://www.youtube.com/embed/UnL6DoPlkXE?si=McVOJry2PaKMyocB
-October 31 2024,2PM,https://www.youtube.com/embed/UnL6DoPlkXE?si=McVOJry2PaKMyocB
+Date,Time,EmbedCode
+"October 31 2024","9PM","<iframe width='560' height='315' src='https://www.youtube.com/embed/UnL6DoPlkXE?si=5CwnKnO2-a8dJuUS' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
+"October 31 2024","5PM","<iframe width='560' height='315' src='https://www.youtube.com/embed/8M7MSOL__ns?t=19s' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
+"October 31 2024","2PM","<iframe width='560' height='315' src='https://www.youtube.com/embed/M18EmND05mc?t=170s' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' referrerpolicy='strict-origin-when-cross-origin' allowfullscreen></iframe>"
+
